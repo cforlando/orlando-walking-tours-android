@@ -1,7 +1,15 @@
 language: android
-    components:
-    # The SDK version used to compile your project
+jdk: oraclejdk7
+before_install:
+ - chmod +x gradlew
+ - echo yes | android update sdk --all --filter build-tools-21.1.2 --no-ui --force > /dev/null
+
+env:
+  matrix:
+    - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
+
+android:
+  components:
     - build-tools-21.1.1
-    - android-21
-    - add-on
-    - extra
+
+script: ./gradlew assembleDebug
