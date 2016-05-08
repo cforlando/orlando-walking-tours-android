@@ -2,7 +2,6 @@ language: android
 jdk: oraclejdk7
 before_install:
  - chmod +x gradlew
- - echo yes | android update sdk --all --filter build-tools-23.0.2 --no-ui --force > /dev/null
 
 env:
   matrix:
@@ -10,6 +9,9 @@ env:
 
 android:
   components:
+    - tools
+    - build-tools-23.0.2
     - android-23
+    - extra-android-m2repository
 
 script: ./gradlew assembleDebug
