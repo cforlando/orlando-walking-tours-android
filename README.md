@@ -6,7 +6,8 @@
 
 Orlando Walking Tours for iOS : https://github.com/cforlando/orlando-walking-tours-ios
 
-Ex: Brigade Resources - [GitHub - Code for Orlando](https://github.com/cforlando/brigade-resources)
+**Data Source** 
+The list of historic locations is currently stored [here](https://brigades.opendatanetwork.com/dataset/Orlando-Historical-Landmarks/hzkr-id6u).
 
 **Project Lead:**  
 Marko Markovic  
@@ -14,28 +15,6 @@ slack: markom
 email: markomarksdev@gmail.com
 
 ---
-
-## About
-
-Give a more in-depth description of the project. This can include:
-* **Purpose** - how will it benefit the community
-* **Target Audience/Users** - who will use and/or benefit from it
-* **Technologies Used** - languages, frameworks, infrastructure, target version numbers
-* **Screenshots** - images are very effective but keep them up to date
-
-## Project-specific
-
-This and additional sections are subject to each project's needs. For example, a mobile application might list the app's structure and design rules while a backend service could show an example input/output for each endpoint. Provide any guidelines for making pull requests.
-
-For code-based projects, you must include an **Installation** section which walks a new contributor through how to get the existing project running. [See here](https://github.com/codeforamerica/cfapi#installation) for a thorough example. Include these subsections as necessary:
-
-* **Dependencies**
-* **Environment**
-* **Install**
-* **Deploy**
-* **Test**
-
-A simple version history or roadmap useful but not necessary. Limit any future plans to general milestones and leave the specifics to GitHub issues.
 
 ## Contributing
 
