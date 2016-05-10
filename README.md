@@ -15,8 +15,6 @@ slack: markom
 email: markomarksdev@gmail.com
 
 ---
-## Adding new data sources
-In case you 
 ## Models
 New classes that would hold some kind of data should be stored in the **com.codefororlando.orlandowalkingtours.models package**.
 ## Managers
