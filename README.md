@@ -2,7 +2,7 @@
 
 **Orlando Walking Tours** is an Android app that will allow users to create customized walking tours of the various historic locations around the city of Orlando. 
 
-**Version** 0.0 (MVP)
+**Version** 1.0 (MVP)
 
 Orlando Walking Tours for iOS : https://github.com/cforlando/orlando-walking-tours-ios
 
@@ -15,6 +15,15 @@ slack: markom
 email: markomarksdev@gmail.com
 
 ---
+## Adding new data sources
+In case you 
+## Models
+New classes that would hold some kind of data should be stored in the com.codefororlando.orlandowalkingtours.models package.
+## Managers
+If we ever need to pull data from new data sources, classes that would be handling such requests should be stored in the com.codefororlando.orlandowalkingtours.managers packages. 
+We are using [ion](https://github.com/koush/ion) for pulling the data from the API. Look at the implentation of HistoricLandmarkManager as an example.
+## Deserializer
+Any new deserializers that we need for the app should be stored in the com.codefororlando.orlandowalkingtours.deserializer package.
 
 ## Contributing
 
