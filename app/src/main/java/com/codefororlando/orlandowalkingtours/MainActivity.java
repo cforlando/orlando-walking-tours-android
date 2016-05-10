@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 case HistoricLandmarkManager.PULL_SUCCESS:
                 {
                     ArrayList<HistoricLandmark> results = historicLandmarkManager.getHistoricLandmarks();
-                    Log.e("ORLANDOWALKINGTOURS", "Got results, size -> " + results.size());
+                    Log.v("ORLANDOWALKINGTOURS", "Got results, size -> " + results.size());
                 }break;
             }
         }

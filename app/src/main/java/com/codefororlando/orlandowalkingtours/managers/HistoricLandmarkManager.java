@@ -36,6 +36,7 @@ public class HistoricLandmarkManager extends BaseRouteManager {
     }
 
     public void pullHistoricLandmarks() {
+        mHistoricLandmarks.clear();
         if(mState != IDLE)
         {
             return;
@@ -63,6 +64,18 @@ public class HistoricLandmarkManager extends BaseRouteManager {
                         }
                         for (JsonElement element : result) {
                             HistoricLandmark land = mGson.fromJson(element, HistoricLandmark.class);
+                            Log.v("ORLANDOWALKINGTOURS", "Pulled landmark -> "
+                                    + land.getName() + ", "
+                                    + land.getAddress() + ", "
+                                    + land.getLocation_location() +  ", "
+                                    + land.getLocation_city()  + ", "
+                                    + land.getLocation_state()  + ", "
+                                    + land.getType() + ", "
+                                    + land.getLocal().toString() + ", "
+                                    + land.getLocation().getLatitude()  + ", "
+                                    + land.getLocation().getLongitude() + ", "
+                                    + land.getLocation().getType()
+                            );
                             mHistoricLandmarks.add(land);
                         }
 
