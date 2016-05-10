@@ -1,7 +1,9 @@
-package com.example.cforlando.walkingtours;
+package com.codefororlando.orlandowalkingtours;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.codefororlando.orlandowalkingtours.walkingtours.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.cforlando.walkingtours;
+package com.codefororlando.orlandowalkingtours;
 
 import org.junit.Test;
 
