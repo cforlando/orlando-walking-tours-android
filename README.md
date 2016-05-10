@@ -15,8 +15,15 @@ slack: markom
 email: markomarksdev@gmail.com
 
 ---
+## Installation
+To be able to build and run this app would need 
+- Android studio - 2.1
+- Android 6.0 (API 23) SDK and tools
+- buildToolsVersion - 23.0.2
+
 ## Models
-New classes that would hold some kind of data should be stored in the **com.codefororlando.orlandowalkingtours.models package**.
+New classes that would hold some kind of data should be stored in the **com.codefororlando.orlandowalkingtours.models package**. 
+
 ## Managers
 If we ever need to pull data from new data sources, classes that would be handling such requests should be stored in the **com.codefororlando.orlandowalkingtours.managers** package. 
 We are using [ion](https://github.com/koush/ion) for pulling the data from the API. Look at the implentation of **HistoricLandmarkManager.java** as an example.
