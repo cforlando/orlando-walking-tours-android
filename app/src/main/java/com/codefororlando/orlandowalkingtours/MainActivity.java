@@ -7,6 +7,8 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import com.codefororlando.orlandowalkingtours.managers.HistoricLandmarkManager;
 import com.codefororlando.orlandowalkingtours.models.HistoricLandmark;
@@ -19,12 +21,26 @@ public class MainActivity extends AppCompatActivity {
 
     private HistoricLandmarkManager historicLandmarkManager;
     LocalBroadcastManager broadcastManager;
+    private Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialize();
+        ctx = this;
+        Button showMap = (Button) findViewById(R.id.btn_showmap);
+        if(showMap!=null){
+            showMap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ctx, MapsActivity.class);
+                    //intent.putExtra(EXTRA_MESSAGE, message);
+                    startActivity(intent);
+                }
+            });
+        }
+
 
         historicLandmarkManager = new HistoricLandmarkManager(this);
         historicLandmarkManager.pullHistoricLandmarks();
