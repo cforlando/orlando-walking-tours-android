@@ -8,6 +8,7 @@ import java.util.Date;
  */
 //This class represents Historic landmark. Use it for mapping data from the datasource
 public class HistoricLandmark implements Serializable {
+    private int mId;
     private String mAddress;
     private Date mLocal;
     private Location mLocation;
@@ -16,8 +17,12 @@ public class HistoricLandmark implements Serializable {
     private String mLocation_location;
     private String mName;
     private String mType;
+    private String mThumbnail;
+    private String mFullSizeImage;
+    private String mDescription;
 
-    public HistoricLandmark(String address, Date local, Location location, String location_location, String location_city, String location_state, String name, String type){
+    public HistoricLandmark(int id, String address, Date local, Location location, String location_location, String location_city, String location_state, String name, String description, String type, String thumbnail, String fullsizeImage){
+        mId = id;
         mAddress = address;
         mLocal = local;
         mLocation = location;
@@ -26,6 +31,11 @@ public class HistoricLandmark implements Serializable {
         mLocation_state = location_state;
         mName = name;
         mType = type;
+
+        mDescription = description;
+
+        mThumbnail = thumbnail;
+        mFullSizeImage = fullsizeImage;
     }
 
     public String getAddress() {
@@ -58,5 +68,19 @@ public class HistoricLandmark implements Serializable {
 
     public String getType() {
         return mType;
+    }
+
+    public int getId(){ return mId; }
+
+    public String getThumbnail(){
+        return mThumbnail;
+    }
+
+    public String getFullSizeImage(){
+        return mFullSizeImage;
+    }
+
+    public String getDescription(){
+        return mDescription;
     }
 }
