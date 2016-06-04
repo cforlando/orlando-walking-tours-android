@@ -3,6 +3,8 @@ package com.codefororlando.orlandowalkingtours;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.codefororlando.orlandowalkingtours.models.HistoricLandmark;
+import com.codefororlando.orlandowalkingtours.utilities.DevelopmentUtilities;
 import com.codefororlando.orlandowalkingtours.walkingtours.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,6 +12,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -23,6 +27,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        ArrayList<HistoricLandmark> locations = (ArrayList<HistoricLandmark>) getIntent().getSerializableExtra("HLOCATIONS");
+
+        DevelopmentUtilities.logV("Locations -> " + getIntent().getSerializableExtra("HLOCATIONS"));
     }
 
 

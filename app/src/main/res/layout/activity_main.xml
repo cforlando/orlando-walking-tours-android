@@ -7,12 +7,28 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.codefororlando.orlandowalkingtours.MainActivity">
+    android:orientation="vertical"
+    tools:context="com.codefororlando.orlandowalkingtours.MainActivity"
+
+    >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Landing page!" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My tours" />
+
+    <Button
+        android:id="@+id/btn_createtour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="create tour"
+        />
 
     <Button
         android:id="@+id/btn_showmap"
@@ -20,4 +36,11 @@
         android:layout_height="wrap_content"
         android:text="show map"
         />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_savedtours" />
+
+
 </LinearLayout>
