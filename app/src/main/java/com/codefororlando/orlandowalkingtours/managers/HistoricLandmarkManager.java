@@ -8,6 +8,7 @@ import android.util.Log;
 import com.codefororlando.orlandowalkingtours.deserializer.HistoricLandmarkDeserializer;
 import com.codefororlando.orlandowalkingtours.models.AppConfig;
 import com.codefororlando.orlandowalkingtours.models.HistoricLandmark;
+import com.codefororlando.orlandowalkingtours.utilities.DevelopmentUtilities;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -30,8 +31,7 @@ public class HistoricLandmarkManager extends BaseRouteManager {
         mContext = context;
         final GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(HistoricLandmark.class, new HistoricLandmarkDeserializer());
-        final Gson gson = gsonBuilder.create();
-        mGson = gson;
+        mGson = gsonBuilder.create();
         switchState(IDLE);
     }
 
@@ -53,7 +53,7 @@ public class HistoricLandmarkManager extends BaseRouteManager {
                     public void onCompleted(Exception e, JsonArray result) {
 
                         if (e != null) {
-                            Log.e("ORLANDOWALKINGTOURS", "Exception + " + e.getMessage());
+                            DevelopmentUtilities.logE("Exception + " + e.getMessage());
                             switchState(FINISHED);
                             return;
                         }
@@ -64,7 +64,7 @@ public class HistoricLandmarkManager extends BaseRouteManager {
                         }
                         for (JsonElement element : result) {
                             HistoricLandmark land = mGson.fromJson(element, HistoricLandmark.class);
-                            Log.v("ORLANDOWALKINGTOURS", "Pulled landmark -> "
+                            DevelopmentUtilities.logV("Pulled landmark -> "
                                     + land.getName() + ", "
                                     + land.getAddress() + ", "
                                     + land.getLocation_location() +  ", "
@@ -83,8 +83,6 @@ public class HistoricLandmarkManager extends BaseRouteManager {
                         return;
                     }
                 });
-
-        return;
     }
 
     @Override
