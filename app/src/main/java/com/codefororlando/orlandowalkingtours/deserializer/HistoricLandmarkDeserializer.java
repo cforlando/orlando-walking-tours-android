@@ -2,6 +2,7 @@ package com.codefororlando.orlandowalkingtours.deserializer;
 
 import com.codefororlando.orlandowalkingtours.models.HistoricLandmark;
 import com.codefororlando.orlandowalkingtours.models.Location;
+import com.codefororlando.orlandowalkingtours.utilities.DevelopmentUtilities;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -22,6 +23,7 @@ public class HistoricLandmarkDeserializer implements JsonDeserializer<HistoricLa
     public HistoricLandmark deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jObject = json.getAsJsonObject();
         if(jObject !=null){
+            int id = -1;
             String address = "";
             String name = "";
             String location_city = "";
@@ -29,13 +31,28 @@ public class HistoricLandmarkDeserializer implements JsonDeserializer<HistoricLa
             String location_location = "";
             String loctype = "";
             Location location = null;
+            String thumbnail = "";
+            String fullsizeimage = "";
+            String description = "";
 
             Date local = new Date();
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.US);
 
+            if(jObject.get("id") != null){
+                try {
+                    id = Integer.parseInt(jObject.get("id").getAsString());
+                } catch(NumberFormatException nfe) {
+                    DevelopmentUtilities.logE("Could not parse location id " + nfe.getMessage());
+                }
+            }
+
             if(jObject.get("address")!=null){
                 address = jObject.get("address").getAsString();
+            }
+
+            if(jObject.get("downtown_walking_tour")!=null){
+                description = jObject.get("downtown_walking_tour").getAsString();
             }
 
             if(jObject.get("local") != null){
@@ -73,7 +90,17 @@ public class HistoricLandmarkDeserializer implements JsonDeserializer<HistoricLa
                 loctype = jObject.get("type").getAsString();
             }
 
-            HistoricLandmark result = new HistoricLandmark(address, local, location, location_location, location_city, location_state, name, loctype);
+            if(jObject.get("thumbnail")!=null){
+                thumbnail = jObject.get("thumbnail").getAsString();
+            }
+
+            if(jObject.get("full_size_image")!=null)
+            {
+                fullsizeimage = jObject.get("full_size_image").getAsString();
+
+            }
+
+            HistoricLandmark result = new HistoricLandmark(id, address, local, location, location_location, location_city, location_state, name, description, loctype, thumbnail, fullsizeimage);
             return result;
         }
 

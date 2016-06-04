@@ -73,7 +73,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 HistoricLandmark lan = historicMarkesMap.get(marker);
 
-                DevelopmentUtilities.logV("Sending landmark -> " + lan.getName());
+                DevelopmentUtilities.logV("Sending landmark -> " + lan.getId());
                 intent.putExtra("HLOCATION", lan);
                 startActivity(intent);
             }
