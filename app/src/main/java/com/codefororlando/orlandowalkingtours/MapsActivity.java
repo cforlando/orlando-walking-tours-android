@@ -1,6 +1,5 @@
 package com.codefororlando.orlandowalkingtours;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,12 +19,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ArrayList<HistoricLandmark> historicLocations;
     private Context ctx;
+
+    private HashMap<Marker, HistoricLandmark> historicMarkesMap = new HashMap<>();
 
 
     @Override
@@ -37,8 +39,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        DevelopmentUtilities.logV("Locations -> " + getIntent().getSerializableExtra("HLOCATIONS"));
 
         ctx = this;
     }
@@ -71,7 +71,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onInfoWindowClick(Marker marker) {
                 Intent intent = new Intent(ctx, LocationDetailActivity.class);
 
-                intent.putExtra("HLOCATION", historicLocations.get(0));
+                HistoricLandmark lan = historicMarkesMap.get(marker);
+
+                DevelopmentUtilities.logV("Sending landmark -> " + lan.getName());
+                intent.putExtra("HLOCATION", lan);
                 startActivity(intent);
             }
         });
@@ -84,7 +87,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .snippet(lan.getAddress())
             );
 
-
+            historicMarkesMap.put(mark, lan);
 
         }
 
