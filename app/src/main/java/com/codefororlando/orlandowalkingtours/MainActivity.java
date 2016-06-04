@@ -7,10 +7,10 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.codefororlando.orlandowalkingtours.managers.HistoricLandmarkManager;
 import com.codefororlando.orlandowalkingtours.models.HistoricLandmark;
+import com.codefororlando.orlandowalkingtours.utilities.DevelopmentUtilities;
 import com.codefororlando.orlandowalkingtours.walkingtours.R;
 
 import java.util.ArrayList;
@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initialize();
 
         historicLandmarkManager = new HistoricLandmarkManager(this);
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 case HistoricLandmarkManager.PULL_SUCCESS:
                 {
                     ArrayList<HistoricLandmark> results = historicLandmarkManager.getHistoricLandmarks();
-                    Log.v("ORLANDOWALKINGTOURS", "Got results, size -> " + results.size());
+                    DevelopmentUtilities.logV("Got results, size -> " + results.size());
                 }break;
             }
         }
