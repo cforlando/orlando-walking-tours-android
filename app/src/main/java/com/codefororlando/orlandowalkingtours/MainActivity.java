@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.codefororlando.orlandowalkingtours.managers.HistoricLandmarkManager;
 import com.codefororlando.orlandowalkingtours.models.HistoricLandmark;
@@ -43,6 +45,21 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+
+        ListView myTours = (ListView)findViewById(R.id.list_savedtours);
+
+        ArrayList<String> mytours = new ArrayList<String>();
+        mytours.add("Awesome tour");
+        mytours.add("Sunny tour");
+        mytours.add("Yawn tour");
+
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                mytours);
+
+        myTours.setAdapter(adapter);
+
+        adapter.notifyDataSetChanged();
 
         historicLandmarkManager = new HistoricLandmarkManager(this);
         historicLandmarkManager.pullHistoricLandmarks();
