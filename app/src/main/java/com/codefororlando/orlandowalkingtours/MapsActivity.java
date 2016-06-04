@@ -1,6 +1,8 @@
 package com.codefororlando.orlandowalkingtours;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private GoogleMap mMap;
     private ArrayList<HistoricLandmark> historicLocations;
+    private Context ctx;
 
 
     @Override
@@ -35,6 +39,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
 
         DevelopmentUtilities.logV("Locations -> " + getIntent().getSerializableExtra("HLOCATIONS"));
+
+        ctx = this;
     }
 
 
@@ -60,10 +66,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng myLoc = new LatLng(28.544735, -81.3871897);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc,12.5f));
 
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(ctx, LocationDetailActivity.class);
+
+                intent.putExtra("HLOCATION", historicLocations.get(0));
+                startActivity(intent);
+            }
+        });
         // Add a marker in Sydney and move the camera
         for(HistoricLandmark lan : historicLocations){
             LatLng temp = new LatLng(lan.getLocation().getLatitude(), lan.getLocation().getLongitude());
-            mMap.addMarker(new MarkerOptions().position(temp).title(lan.getName()));
+            Marker mark = mMap.addMarker(new MarkerOptions()
+                    .position(temp)
+                    .title(lan.getName())
+                    .snippet(lan.getAddress())
+            );
+
+
+
         }
 
 
