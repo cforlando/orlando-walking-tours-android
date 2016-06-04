@@ -1,5 +1,6 @@
 package com.codefororlando.orlandowalkingtours.deserializer;
 import com.codefororlando.orlandowalkingtours.models.Location;
+import com.codefororlando.orlandowalkingtours.utilities.DevelopmentUtilities;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -29,11 +30,14 @@ public class LocationDeserializer implements JsonDeserializer<Location> {
                 JsonArray coords = jObject.get("coordinates").getAsJsonArray();
 
                 if(coords.size() > 1){
-                    /* we receive coordinates as an array and have to get the latitude and longitude respectively
-                        ex: "coordinates": [-81.37636357399998,28.53608693900003]
+                    /* we receive coordinates as an array and have to get the longitude and latitude respectively
+                        ex: "coordinates": [28.53608693900003, -81.37636357399998]
                     */
-                    latitude = coords.get(0).getAsDouble();
-                    longitude = coords.get(1).getAsDouble();
+
+                    latitude = coords.get(1).getAsDouble();
+                    longitude = coords.get(0).getAsDouble();
+
+                    DevelopmentUtilities.logE("Adding lat" + String.valueOf(latitude) + "-" + String.valueOf(longitude));
                 }
             }
 

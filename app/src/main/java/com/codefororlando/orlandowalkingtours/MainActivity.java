@@ -14,6 +14,7 @@ import com.codefororlando.orlandowalkingtours.managers.HistoricLandmarkManager;
 import com.codefororlando.orlandowalkingtours.models.HistoricLandmark;
 import com.codefororlando.orlandowalkingtours.utilities.DevelopmentUtilities;
 import com.codefororlando.orlandowalkingtours.walkingtours.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(ctx, MapsActivity.class);
-                    //intent.putExtra(EXTRA_MESSAGE, message);
+
+                    intent.putExtra("HLOCATIONS", historicLandmarkManager.getHistoricLandmarks());
                     startActivity(intent);
                 }
             });

@@ -1,12 +1,13 @@
 package com.codefororlando.orlandowalkingtours.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by MarkoPhillipMarkovic on 5/9/2016.
  */
 //This class represents Historic landmark. Use it for mapping data from the datasource
-public class HistoricLandmark {
+public class HistoricLandmark implements Serializable {
     private String mAddress;
     private Date mLocal;
     private Location mLocation;
