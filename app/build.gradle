@@ -29,6 +29,9 @@ android {
 }
 
 dependencies {
+    compile project(':data'),
+            project(':domain')
+    
     def s = projectDependency.support,
         g = projectDependency.google,
         rx = projectDependency.rx,
