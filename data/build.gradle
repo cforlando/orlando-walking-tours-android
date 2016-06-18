@@ -1,0 +1,13 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion targetAndroidVersion
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion minAndroidVersion
+        targetSdkVersion targetAndroidVersion
+        versionCode project.versionCode
+        versionName semanticVersion
+    }
+}
