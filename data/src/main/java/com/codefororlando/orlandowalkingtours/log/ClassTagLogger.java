@@ -7,7 +7,15 @@ public class ClassTagLogger implements Logger {
     private final boolean isDebug;
 
     public ClassTagLogger(Object o, boolean isDebug) {
-        tag = o.getClass().getSimpleName();
+        this(o.getClass(), isDebug);
+    }
+
+    public ClassTagLogger(Class cls, boolean isDebug) {
+        this(cls.getSimpleName(), isDebug);
+    }
+
+    public ClassTagLogger(String tag, boolean isDebug) {
+        this.tag = tag;
         this.isDebug = isDebug;
     }
 

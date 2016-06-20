@@ -4,6 +4,7 @@ def supportVersion = '23.4.0',
 ext {
     projectDependency = [
             support: [
+                    annotations : "com.android.support:support-annotations:${supportVersion}",
                     design      : "com.android.support:design:${supportVersion}",
                     appCompat   : "com.android.support:appcompat-v7:${supportVersion}",
                     recyclerView: "com.android.support:recyclerview-v7:${supportVersion}",
@@ -12,8 +13,9 @@ ext {
             ],
 
             google : [
-                    gson: 'com.google.code.gson:gson:2.6.2',
-                    maps: "com.google.android.gms:play-services-maps:${gmsVersion}"
+                    gson   : 'com.google.code.gson:gson:2.6.2',
+                    maps   : "com.google.android.gms:play-services-maps:${gmsVersion}",
+                    mapUtil: "com.google.maps.android:android-maps-utils:0.4+"
             ],
 
             rx     : [
@@ -26,10 +28,6 @@ ext {
                     okHttp             : "com.squareup.okhttp3:okhttp:3.3.1",
                     butterKnife        : "com.jakewharton:butterknife:8.1.0",
                     butterKnifeCompiler: "com.jakewharton:butterknife-compiler:8.1.0",
-            ],
-
-            koush  : [
-                    ion: "com.koushikdutta.ion:ion:2.+"
             ],
 
             test   : [

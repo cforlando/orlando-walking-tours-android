@@ -11,3 +11,12 @@ android {
         versionName semanticVersion
     }
 }
+
+dependencies {
+    def s = projectDependency.support,
+        g = projectDependency.google
+
+    compile s.annotations
+
+    compile g.gson
+}

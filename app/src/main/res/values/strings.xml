@@ -1,4 +1,16 @@
 <resources>
-    <string name="app_name">WalkingTours</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="app_name">Walking Tours</string>
+
+    <string name="title_tours">Tours</string>
+    <string name="title_map">Map</string>
+
+    <string name="title_orlando_walking_tours">Orlando Walking Tours</string>
+    <string name="title_new_tour">New Tour</string>
+    <string name="title_edit_tour">Edit Tour</string>
+
+    <string name="title_new">New</string>
+    <string name="title_name">Name</string>
+
+    <string name="title_done">Done</string>
+    <string name="title_cancel">Cancel</string>
 </resources>

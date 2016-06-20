@@ -1,8 +1,8 @@
 package com.codefororlando.orlandowalkingtours.present.base;
 
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.appcompat.BuildConfig;
 
+import com.codefororlando.orlandowalkingtours.BuildConfig;
 import com.codefororlando.orlandowalkingtours.log.ClassTagLogger;
 import com.codefororlando.orlandowalkingtours.log.Logger;
 

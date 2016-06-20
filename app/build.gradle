@@ -29,13 +29,11 @@ android {
 }
 
 dependencies {
-    compile project(':data'),
-            project(':domain')
-    
+    compile project(':data')
+
     def s = projectDependency.support,
         g = projectDependency.google,
         rx = projectDependency.rx,
-        k = projectDependency.koush,
         sq = projectDependency.square
 
     compile s.design,
@@ -43,13 +41,12 @@ dependencies {
             s.volley
 
     compile g.gson,
-            g.maps
+            g.maps,
+            g.mapUtil
 
     compile rx.java,
             rx.android,
             rx.location
-
-    compile k.ion
 
     compile sq.okHttp,
             sq.butterKnife
