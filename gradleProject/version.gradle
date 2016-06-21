@@ -1,0 +1,9 @@
+ext {
+    androidBuildToolsVersion = '24.0.0'
+
+    versionCode = 1
+    semanticVersion = '1.0.0'
+
+    minAndroidVersion = 16
+    targetAndroidVersion = 24
+}

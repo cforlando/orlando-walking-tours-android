@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion targetAndroidVersion
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion minAndroidVersion
+        targetSdkVersion targetAndroidVersion
+        versionCode project.versionCode
+        versionName semanticVersion
+    }
+}
+
+dependencies {
+    def s = projectDependency.support,
+        g = projectDependency.google
+
+    compile s.annotations
+
+    compile g.gson
+}
