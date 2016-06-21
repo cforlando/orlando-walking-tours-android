@@ -14,6 +14,7 @@ import com.codefororlando.orlandowalkingtours.data.model.Tour;
 import com.codefororlando.orlandowalkingtours.data.repository.TourRepository;
 import com.codefororlando.orlandowalkingtours.event.OnEditTourDoneEvent;
 import com.codefororlando.orlandowalkingtours.event.OnSelectLandmarkEvent;
+import com.codefororlando.orlandowalkingtours.present.activity.LandmarkDetailActivity;
 import com.codefororlando.orlandowalkingtours.present.activity.SelectLandmarkActivity;
 import com.codefororlando.orlandowalkingtours.present.base.DoneCancelBarFragment;
 import com.codefororlando.orlandowalkingtours.present.base.RetainFragment;
@@ -88,6 +89,8 @@ public class TourEditFragment extends DoneCancelBarFragment {
                 dataFragment.addStop(landmarkId);
                 mTourStopAdapter.notifyItemInserted(mTourStopAdapter.getItemCount() - 1);
             }
+        } else if (event instanceof TourStopAdapter.ShowTourStopInfoEvent) {
+            showTourStopInfo(((TourStopAdapter.ShowTourStopInfoEvent) event).adapterPosition);
         } else if (event instanceof TourStopAdapter.DeleteTourStopEvent) {
             int position = ((TourStopAdapter.DeleteTourStopEvent) event).adapterPosition;
             dataFragment.deleteTourStop(position);
@@ -131,6 +134,13 @@ public class TourEditFragment extends DoneCancelBarFragment {
             tourStopRecyclerView.setAdapter(mTourStopAdapter);
         }
         mTourStopAdapter.setTourStopIds(dataFragment.getStopIds());
+    }
+
+    // Methods
+
+    private void showTourStopInfo(int dataIndex) {
+        long landmarkId = dataFragment.getStopIds().get(dataIndex);
+        startActivity(LandmarkDetailActivity.getIntent(getActivity(), landmarkId));
     }
 
     // Done/cancel

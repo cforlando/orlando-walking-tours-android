@@ -108,8 +108,8 @@ public class LandmarkTable extends AutoIncrementIdTable {
                 String description = landmark.description;
                 String streetAddress = landmark.streetAddress;
                 double[] coordinates = landmark.location.coordinates;
-                double latitude = coordinates[0];
-                double longitude = coordinates[1];
+                double longitude = coordinates[0];
+                double latitude = coordinates[1];
                 sqLiteStatement.clearBindings();
                 sqLiteStatement.bindLong(1, landmark.id);
                 sqLiteStatement.bindString(2, name);

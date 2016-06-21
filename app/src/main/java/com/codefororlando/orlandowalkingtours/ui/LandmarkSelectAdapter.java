@@ -13,6 +13,14 @@ import java.util.List;
 
 public class LandmarkSelectAdapter extends BaseRecyclerViewAdapter<LandmarkSelectViewHolder>
         implements LandmarkSelectViewHolder.OnLandmarkItemListener {
+    public static class ShowLandmarkInfoEvent {
+        public final long landmarkId;
+
+        public ShowLandmarkInfoEvent(long landmarkId) {
+            this.landmarkId = landmarkId;
+        }
+    }
+
     public static class SelectLandmarkEvent {
         public final boolean select;
         public final int adapterPosition;
@@ -40,7 +48,7 @@ public class LandmarkSelectAdapter extends BaseRecyclerViewAdapter<LandmarkSelec
 
     @Override
     public void showInfo(int position) {
-        // TODO Publish event
+        bus.publish(new ShowLandmarkInfoEvent(mLandmarkData.get(position).landmark.id));
     }
 
     public void selectItem(int position, boolean select) {

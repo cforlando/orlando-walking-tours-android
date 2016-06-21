@@ -14,6 +14,14 @@ import java.util.List;
 
 public class TourStopAdapter extends BaseRecyclerViewAdapter<TourStopViewHolder>
         implements TourStopViewHolder.OnTourStopItemListener {
+    public static class ShowTourStopInfoEvent {
+        public final int adapterPosition;
+
+        public ShowTourStopInfoEvent(int adapterPosition) {
+            this.adapterPosition = adapterPosition;
+        }
+    }
+
     public static class DeleteTourStopEvent {
         public final int adapterPosition;
 
@@ -40,12 +48,7 @@ public class TourStopAdapter extends BaseRecyclerViewAdapter<TourStopViewHolder>
 
     @Override
     public void onItemPress(int position) {
-        // No action
-    }
-
-    @Override
-    public void showInfo(int position) {
-        // TODO Publish event
+        bus.publish(new ShowTourStopInfoEvent(position));
     }
 
     @Override

@@ -12,8 +12,6 @@ import butterknife.OnClick;
 public class TourStopViewHolder extends LandmarkViewHolder
         implements PopupMenu.OnMenuItemClickListener {
     public interface OnTourStopItemListener extends OnAdapterPositionPressListener {
-        void showInfo(int position);
-
         void deleteItem(int position);
     }
 
@@ -23,6 +21,13 @@ public class TourStopViewHolder extends LandmarkViewHolder
         super(itemView);
 
         itemListener = listener;
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemPress(getAdapterPosition());
+            }
+        });
     }
 
     @OnClick(R.id.more)
@@ -39,9 +44,6 @@ public class TourStopViewHolder extends LandmarkViewHolder
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.info:
-                itemListener.showInfo(getAdapterPosition());
-                return true;
             case R.id.delete:
                 itemListener.deleteItem(getAdapterPosition());
                 return true;

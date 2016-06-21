@@ -38,15 +38,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".present.activity.MapsActivity"
-            android:label="@string/title_map" />
-
         <activity android:name=".present.activity.TourEditActivity" />
 
-        <activity android:name=".present.activity.LocationDetailActivity" />
-
         <activity android:name=".present.activity.SelectLandmarkActivity" />
+
+        <activity android:name=".present.activity.LandmarkDetailActivity" />
 
     </application>
 

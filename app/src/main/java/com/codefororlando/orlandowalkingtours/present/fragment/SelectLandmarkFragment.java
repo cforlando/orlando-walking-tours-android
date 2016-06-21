@@ -1,6 +1,7 @@
 package com.codefororlando.orlandowalkingtours.present.fragment;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import com.codefororlando.orlandowalkingtours.data.repository.LandmarkRepository
 import com.codefororlando.orlandowalkingtours.event.OnCancelSelectLandmarkEvent;
 import com.codefororlando.orlandowalkingtours.event.OnQueryLandmarksEvent;
 import com.codefororlando.orlandowalkingtours.event.OnSelectLandmarkEvent;
+import com.codefororlando.orlandowalkingtours.present.activity.LandmarkDetailActivity;
 import com.codefororlando.orlandowalkingtours.present.base.DoneCancelBarFragment;
 import com.codefororlando.orlandowalkingtours.present.base.RetainFragment;
 import com.codefororlando.orlandowalkingtours.ui.LandmarkSelectAdapter;
@@ -33,6 +35,8 @@ import rx.schedulers.Schedulers;
 public class SelectLandmarkFragment extends DoneCancelBarFragment {
     public static final String CALLER_KEY = "CALLER_KEY";
 
+    private static final String LAYOUT_MANAGER_STATE_KEY = "LAYOUT_MANAGER_STATE_KEY";
+
     public static SelectLandmarkFragment newInstance(Serializable caller) {
         SelectLandmarkFragment fragment = new SelectLandmarkFragment();
         Bundle bundle = new Bundle();
@@ -46,8 +50,10 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
 
     private DataFragment dataFragment;
 
-    // TODO Keep scroll position on config change
     private LandmarkSelectAdapter mLandmarkAdapter;
+
+    // Keeps recycler view scroll position on config change
+    private Parcelable layoutManagerState;
 
     // Lifecycle/event
 
@@ -56,6 +62,10 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
         super.onCreate(savedInstanceState);
 
         dataFragment = RetainFragment.getOrAdd(this, DataFragment.class);
+
+        if (savedInstanceState != null) {
+            layoutManagerState = savedInstanceState.getParcelable(LAYOUT_MANAGER_STATE_KEY);
+        }
     }
 
     @Override
@@ -74,9 +84,18 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
     protected void onEvent(Object event) {
         if (event instanceof LandmarkSelectAdapter.SelectLandmarkEvent) {
             updateSelection((LandmarkSelectAdapter.SelectLandmarkEvent) event);
+        } else if (event instanceof LandmarkSelectAdapter.ShowLandmarkInfoEvent) {
+            showLandmarkInfo(((LandmarkSelectAdapter.ShowLandmarkInfoEvent) event).landmarkId);
         } else if (event instanceof OnLandmarkLoadEvent) {
             updateLandmarkView();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Parcelable parcelable = landmarkRecyclerView.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(LAYOUT_MANAGER_STATE_KEY, parcelable);
     }
 
     @Override
@@ -100,6 +119,9 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
         if (mLandmarkAdapter == null) {
             mLandmarkAdapter = new LandmarkSelectAdapter(bus);
             landmarkRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            if (layoutManagerState != null) {
+                landmarkRecyclerView.getLayoutManager().onRestoreInstanceState(layoutManagerState);
+            }
             landmarkRecyclerView.setAdapter(mLandmarkAdapter);
         }
         mLandmarkAdapter.setLandmarks(dataFragment.getLandmarkData());
@@ -120,6 +142,12 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
         } else {
             dataFragment.setSelection(-1, 0);
         }
+    }
+
+    // Methods
+
+    private void showLandmarkInfo(long landmarkId) {
+        startActivity(LandmarkDetailActivity.getIntent(getActivity(), landmarkId));
     }
 
     // Done/cancel
