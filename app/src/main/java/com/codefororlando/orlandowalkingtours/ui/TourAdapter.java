@@ -12,11 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TourAdapter extends BaseRecyclerViewAdapter<TourViewHolder>
-        implements OnAdapterPositionSelectListener {
+        implements TourViewHolder.OnTourItemListener {
     public static class EditTourEvent {
         public final long tourId;
 
         public EditTourEvent(long tourId) {
+            this.tourId = tourId;
+        }
+    }
+
+    public static class DeleteTourEvent {
+        public final long tourId;
+
+        public DeleteTourEvent(long tourId) {
             this.tourId = tourId;
         }
     }
@@ -32,12 +40,27 @@ public class TourAdapter extends BaseRecyclerViewAdapter<TourViewHolder>
         notifyDataSetChanged();
     }
 
-    // OnAdapterPositionSelectListener
+    // TourViewHolder.OnTourItemListener
+
+    private long getTourId(int position) {
+        return mTourData.get(position).id;
+    }
 
     @Override
-    public void onItemSelect(int position) {
-        bus.publish(new EditTourEvent(mTourData.get(position).id));
+    public void onItemPress(int position) {
+        bus.publish(new EditTourEvent(getTourId(position)));
     }
+
+    @Override
+    public void deleteItem(int position) {
+        // Save tour ID before deleting data
+        long tourId = getTourId(position);
+        mTourData.remove(position);
+        notifyItemRemoved(position);
+        bus.publish(new DeleteTourEvent(tourId));
+    }
+
+    // Adapter
 
     @Override
     protected TourViewHolder newViewHolder(View view) {

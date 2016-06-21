@@ -7,7 +7,9 @@ import java.util.List;
 public interface TourRepository {
     List<Tour> getTours();
 
-    Tour getTour(long tourId);
+    Tour get(long tourId);
 
-    Tour saveTour(Tour tour);
+    Tour save(Tour tour);
+
+    long delete(long tourId);
 }

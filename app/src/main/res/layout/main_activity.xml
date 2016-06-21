@@ -13,7 +13,7 @@
         <include layout="@layout/app_bar" />
 
         <fragment
-            android:id="@+id/tours"
+            android:id="@+id/tours_fragment"
             class="com.codefororlando.orlandowalkingtours.present.fragment.ToursFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

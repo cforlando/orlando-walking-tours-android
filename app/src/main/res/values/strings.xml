@@ -8,9 +8,20 @@
     <string name="title_new_tour">New Tour</string>
     <string name="title_edit_tour">Edit Tour</string>
 
+    <string name="title_more">More</string>
+    <string name="title_info">Info</string>
+    <string name="title_delete">Delete</string>
     <string name="title_new">New</string>
     <string name="title_name">Name</string>
 
     <string name="title_done">Done</string>
     <string name="title_cancel">Cancel</string>
+
+    <plurals name="stop_count_format_d">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stops</item>
+    </plurals>
+
+    <string name="add_tour_stop">Add tour stop</string>
+    <string name="define_name_to_save">Name this tour</string>
 </resources>

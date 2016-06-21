@@ -1,11 +1,11 @@
 package com.codefororlando.orlandowalkingtours;
 
 import com.android.volley.RequestQueue;
+import com.codefororlando.orlandowalkingtours.data.DatabaseHelper;
 import com.codefororlando.orlandowalkingtours.data.repository.LandmarkRepository;
 import com.codefororlando.orlandowalkingtours.data.repository.LandmarkRepositoryImpl;
 import com.codefororlando.orlandowalkingtours.data.repository.TourRepository;
 import com.codefororlando.orlandowalkingtours.data.repository.TourRepositoryImpl;
-import com.codefororlando.orlandowalkingtours.data.DatabaseHelper;
 import com.codefororlando.orlandowalkingtours.event.RxBus;
 import com.codefororlando.orlandowalkingtours.log.ClassTagLogger;
 

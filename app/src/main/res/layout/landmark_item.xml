@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_select_selector"
+    android:minHeight="?attr/listPreferredItemHeight"
+    android:paddingBottom="@dimen/content_space_material"
+    android:paddingStart="@dimen/edge_space_material"
+    android:paddingTop="@dimen/content_space_material">
+
+    <FrameLayout
+        android:id="@+id/info"
+        android:layout_width="@dimen/touch_target_size"
+        android:layout_height="@dimen/touch_target_size"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/content_space_material">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/title_more"
+            app:srcCompat="@drawable/ic_info_outline_black_24dp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/name"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/info"
+        android:ellipsize="end"
+        android:maxLines="2" />
+
+    <TextView
+        android:id="@+id/street_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/name"
+        android:layout_below="@id/name"
+        android:layout_marginTop="@dimen/content_space_material"
+        android:layout_toStartOf="@+id/info" />
+
+    <!--TODO Distance pin-->
+
+</RelativeLayout>

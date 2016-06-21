@@ -2,6 +2,8 @@ package com.codefororlando.orlandowalkingtours.present.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.widget.EditText;
 
@@ -11,14 +13,21 @@ import com.codefororlando.orlandowalkingtours.RepositoryProvider;
 import com.codefororlando.orlandowalkingtours.data.model.Tour;
 import com.codefororlando.orlandowalkingtours.data.repository.TourRepository;
 import com.codefororlando.orlandowalkingtours.event.OnEditTourDoneEvent;
+import com.codefororlando.orlandowalkingtours.event.OnSelectLandmarkEvent;
+import com.codefororlando.orlandowalkingtours.present.activity.SelectLandmarkActivity;
 import com.codefororlando.orlandowalkingtours.present.base.DoneCancelBarFragment;
 import com.codefororlando.orlandowalkingtours.present.base.RetainFragment;
 import com.codefororlando.orlandowalkingtours.rx.SaveTourAction;
 import com.codefororlando.orlandowalkingtours.rx.SaveTourFunc;
+import com.codefororlando.orlandowalkingtours.ui.TourStopAdapter;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -38,6 +47,10 @@ public class TourEditFragment extends DoneCancelBarFragment {
 
     @BindView(R.id.name)
     EditText nameEdit;
+    @BindView(android.R.id.list)
+    RecyclerView tourStopRecyclerView;
+
+    private TourStopAdapter mTourStopAdapter;
 
     private DataFragment dataFragment;
 
@@ -51,25 +64,44 @@ public class TourEditFragment extends DoneCancelBarFragment {
         if (savedInstanceState == null) {
             dataFragment.setTourId(getTourId());
         }
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+        /*
+         * Must listen for select landmark event outside of onStop.
+         * Requires less code than wiring up startActivityForResult.
+         */
         busSubscribe();
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        updateUi();
+    }
+
+    @Override
     protected void onEvent(Object event) {
-        if (event instanceof OnTourLoadEvent) {
+        if (event instanceof OnSelectLandmarkEvent) {
+            OnSelectLandmarkEvent selectLandmarkEvent = (OnSelectLandmarkEvent) event;
+            // Select request originated here
+            if (getClass().equals(selectLandmarkEvent.caller)) {
+                long landmarkId = selectLandmarkEvent.landmarkId;
+                dataFragment.addStop(landmarkId);
+                mTourStopAdapter.notifyItemInserted(mTourStopAdapter.getItemCount() - 1);
+            }
+        } else if (event instanceof TourStopAdapter.DeleteTourStopEvent) {
+            int position = ((TourStopAdapter.DeleteTourStopEvent) event).adapterPosition;
+            dataFragment.deleteTourStop(position);
+            mTourStopAdapter.notifyItemRemoved(position);
+        } else if (event instanceof OnTourLoadEvent) {
             nameEdit.setText(dataFragment.getInitialTour().name);
+            updateTourStopView();
         }
     }
 
     @Override
-    public void onStop() {
+    public void onDestroy() {
         busUnsubscribe();
-        super.onStop();
+        super.onDestroy();
     }
 
     // UI/action
@@ -77,6 +109,28 @@ public class TourEditFragment extends DoneCancelBarFragment {
     @Override
     protected int getLayoutResId() {
         return R.layout.tour_edit_fragment;
+    }
+
+    @OnClick(R.id.add_stop)
+    public void onAddStop() {
+        addStop();
+    }
+
+    private void addStop() {
+        startActivity(SelectLandmarkActivity.getIntent(getActivity(), getClass()));
+    }
+
+    private void updateUi() {
+        updateTourStopView();
+    }
+
+    private void updateTourStopView() {
+        if (mTourStopAdapter == null) {
+            mTourStopAdapter = new TourStopAdapter(bus, RepositoryProvider.getLandmark());
+            tourStopRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            tourStopRecyclerView.setAdapter(mTourStopAdapter);
+        }
+        mTourStopAdapter.setTourStopIds(dataFragment.getStopIds());
     }
 
     // Done/cancel
@@ -88,12 +142,13 @@ public class TourEditFragment extends DoneCancelBarFragment {
     @Override
     protected void onDone() {
         String name = nameEdit.getText().toString().trim();
-
-        if (!TextUtils.isEmpty(name)) {
+        if (TextUtils.isEmpty(name) && dataFragment.getStopIds().size() > 0) {
+            nameEdit.requestFocus();
+            nameEdit.setError(getString(R.string.define_name_to_save));
+        } else {
             dataFragment.saveTour(getTourId(), name);
+            publishEvent(true);
         }
-
-        publishEvent(false);
     }
 
     @Override
@@ -117,9 +172,10 @@ public class TourEditFragment extends DoneCancelBarFragment {
 
         private final AtomicReference<Tour> initialTour = new AtomicReference<>();
 
+        private List<Long> mStopsLandmarkId = new LinkedList<>();
+
         public void setTourId(long id) {
             tourId = id;
-            logD("set Tour %d", tourId);
         }
 
         @Override
@@ -132,6 +188,10 @@ public class TourEditFragment extends DoneCancelBarFragment {
             if (tourId > 0) {
                 loadTour(tourId);
             }
+        }
+
+        private void publishLoad() {
+            bus.publish(new OnTourLoadEvent());
         }
 
         @Override
@@ -151,29 +211,48 @@ public class TourEditFragment extends DoneCancelBarFragment {
                     .map(new Func1<Long, Tour>() {
                         @Override
                         public Tour call(Long id) {
-                            return tourRepository.getTour(id);
+                            return tourRepository.get(id);
                         }
                     })
                     .subscribe(new Action1<Tour>() {
                         @Override
                         public void call(Tour tour) {
                             initialTour.set(tour);
-                            bus.publish(new OnTourLoadEvent());
+                            List<Long> stopsLandmarkId = new LinkedList<>();
+                            for (Long landmarkId : tour.getTourStopIds()) {
+                                stopsLandmarkId.add(landmarkId);
+                            }
+                            mStopsLandmarkId = stopsLandmarkId;
+                            publishLoad();
                         }
                     });
         }
 
-        public void saveTour(long tourId, String name) {
-            Tour initialTour = getInitialTour(),
-                    tour = new Tour(tourId, name);
-            if (initialTour == null ||
-                    !name.equals(initialTour.name)) {
-                Observable.just(tour)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .map(new SaveTourFunc(tourRepository))
-                        .subscribe(new SaveTourAction(bus));
+        public boolean saveTour(long tourId, String name) {
+            boolean isDefined = !TextUtils.isEmpty(name) || mStopsLandmarkId.size() > 0;
+            Tour initialTour = getInitialTour();
+            if (initialTour == null && !isDefined) {
+                return false;
             }
+
+            Observable.just(new Tour(tourId, name, mStopsLandmarkId))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map(new SaveTourFunc(tourRepository))
+                    .subscribe(new SaveTourAction(bus));
+            return true;
+        }
+
+        public void addStop(long landmarkId) {
+            mStopsLandmarkId.add(landmarkId);
+        }
+
+        public void deleteTourStop(int index) {
+            mStopsLandmarkId.remove(index);
+        }
+
+        public List<Long> getStopIds() {
+            return Collections.unmodifiableList(mStopsLandmarkId);
         }
     }
 }

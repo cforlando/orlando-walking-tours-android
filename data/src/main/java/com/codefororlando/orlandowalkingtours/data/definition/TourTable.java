@@ -4,18 +4,14 @@ import android.annotation.TargetApi;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
-import android.provider.BaseColumns;
 
-import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmark;
 import com.codefororlando.orlandowalkingtours.data.model.Tour;
-import com.codefororlando.orlandowalkingtours.data.repository.LandmarkRepository;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class TourTable implements SqliteDefinition {
+public class TourTable extends AutoIncrementIdTable {
     public static final String TABLE_NAME = "tour",
-            ID = BaseColumns._ID,
             NAME = "name",
             LAST_MODIFY_MILLIS = "lastModifyMillis";
 
@@ -24,7 +20,7 @@ public class TourTable implements SqliteDefinition {
         return String.format(
                 "create table if not exists %s (%s,%s,%s)",
                 TABLE_NAME,
-                String.format("%s integer primary key autoincrement", ID),
+                AUTO_INCREMENT_ID_COLUMN,
                 String.format("%s text", NAME),
                 String.format("%s integer default (%s)", LAST_MODIFY_MILLIS, NOW_MILLIS)
         );
@@ -35,18 +31,26 @@ public class TourTable implements SqliteDefinition {
     }
 
     private final String selectTourIdName =
-            String.format("select %s, %s from %s", ID, NAME, TABLE_NAME);
+            String.format("select %s, %s from %s", _ID, NAME, TABLE_NAME);
 
-    // Does not load landmarks
     @TargetApi(19)
-    public List<Tour> get(SQLiteDatabase database) {
+    public List<Tour> get(SQLiteDatabase database, TourLandmarkTable xrTable) {
         String sql = String.format("%s order by %s desc", selectTourIdName, LAST_MODIFY_MILLIS);
-        try (Cursor cursor = database.rawQuery(sql, null)) {
-            List<Tour> tours = new LinkedList<>();
-            while (cursor.moveToNext()) {
-                tours.add(toTour(cursor));
+        // Wrap multiple queries in transaction for performance
+        database.beginTransaction();
+        try {
+            try (Cursor cursor = database.rawQuery(sql, null)) {
+                List<Tour> tours = new LinkedList<>();
+                while (cursor.moveToNext()) {
+                    Tour tour = toTour(cursor);
+                    tour.setTourStops(xrTable.getLandmarkIds(database, tour.id));
+                    tours.add(tour);
+                }
+                database.setTransactionSuccessful();
+                return tours;
             }
-            return tours;
+        } finally {
+            database.endTransaction();
         }
     }
 
@@ -58,17 +62,14 @@ public class TourTable implements SqliteDefinition {
     }
 
     @TargetApi(19)
-    public Tour get(SQLiteDatabase database,
-                    long tourId,
-                    TourLandmarkTable tourLandmarkTable,
-                    LandmarkRepository landmarkRepository) {
+    public Tour get(SQLiteDatabase database, long tourId, TourLandmarkTable tourLandmarkTable) {
         Tour tour = null;
 
         // Performing multiple queries in a transaction is much quicker than outside a transaction
         database.beginTransaction();
 
         try {
-            String sql = String.format("%s where %s=?", selectTourIdName, ID);
+            String sql = String.format("%s where %s=?", selectTourIdName, _ID);
             try (Cursor cursor = database.rawQuery(sql, new String[]{String.valueOf(tourId)})) {
                 if (cursor.moveToNext()) {
                     tour = toTour(cursor);
@@ -76,9 +77,8 @@ public class TourTable implements SqliteDefinition {
             }
 
             if (tour != null) {
-                List<HistoricLandmark> stops =
-                        tourLandmarkTable.getLandmarks(database, tour.id, landmarkRepository);
-                tour.setTourStops(stops);
+                List<Long> stopIds = tourLandmarkTable.getLandmarkIds(database, tour.id);
+                tour.setTourStops(stopIds);
             }
 
             database.setTransactionSuccessful();
@@ -89,42 +89,48 @@ public class TourTable implements SqliteDefinition {
         return tour;
     }
 
-    public Tour save(SQLiteDatabase database, Tour tour) {
-        // TODO Set name and add landmarks
+    public Tour save(SQLiteDatabase database, Tour tour, TourLandmarkTable xrTable) {
         try {
             database.beginTransaction();
 
             // Existing
             if (tour.id > 0) {
-                return updateTourTransact(database, tour);
+                return updateTourTransact(database, tour, xrTable);
             }
 
             // New
-            return saveNewTourTransact(database, tour);
+            return saveNewTourTransact(database, tour, xrTable);
 
         } finally {
             database.endTransaction();
         }
     }
 
-    private Tour updateTourTransact(SQLiteDatabase database, final Tour tour) {
+    private Tour updateTourTransact(SQLiteDatabase database,
+                                    Tour tour,
+                                    TourLandmarkTable xrTable) {
         String updateSql = String.format(
                 "update %s set %s=? where %s=?",
                 TABLE_NAME,
                 NAME,
-                ID
+                _ID
         );
         SQLiteStatement statement = database.compileStatement(updateSql);
         statement.bindString(1, tour.name);
         statement.bindLong(2, tour.id);
-        statement.executeUpdateDelete();
+        int updateCount = statement.executeUpdateDelete();
+
+        xrTable.deleteTourStops(database, tour.id);
+        xrTable.saveTourStops(database, tour);
 
         database.setTransactionSuccessful();
 
         return tour;
     }
 
-    private Tour saveNewTourTransact(SQLiteDatabase database, final Tour tour) {
+    private Tour saveNewTourTransact(SQLiteDatabase database,
+                                     Tour tour,
+                                     TourLandmarkTable xrTable) {
         String saveSql = String.format(
                 "insert into %s(%s) values(?)",
                 TABLE_NAME,
@@ -134,8 +140,20 @@ public class TourTable implements SqliteDefinition {
         statement.bindString(1, tour.name);
         long id = statement.executeInsert();
 
+        tour = new Tour(id, tour);
+        List<Long> stopIds = xrTable.saveTourStops(database, tour);
+        tour.setTourStops(stopIds);
+
         database.setTransactionSuccessful();
 
-        return new Tour(id, tour);
+        return tour;
+    }
+
+    public long delete(SQLiteDatabase database, long tourId) {
+        String deleteSql = String.format("delete from %s where %s=?", TABLE_NAME, _ID);
+        SQLiteStatement statement = database.compileStatement(deleteSql);
+        statement.bindLong(1, tourId);
+        long deleteCount = statement.executeUpdateDelete();
+        return deleteCount > 0 ? tourId : 0;
     }
 }

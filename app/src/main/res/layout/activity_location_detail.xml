@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".present.activity.LocationDetailActivity">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -31,43 +32,36 @@
             android:layout_height="wrap_content"
             android:textStyle="italic"
             android:text="Location description"
-            android:paddingBottom="20dp"
-            />
-
+            android:paddingBottom="20dp" />
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="center"
-            >
+            android:layout_gravity="center">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Add to tour"
-                />
+                android:text="Add to tour" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Map"
-                />
+                android:text="Map" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Home"
-                />
+                android:text="Home" />
 
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </ScrollView>

@@ -12,6 +12,9 @@ import rx.Subscription;
 import rx.functions.Action1;
 
 public class BaseFragment extends Fragment {
+
+    // Bus
+
     protected RxBus bus;
     private Subscription busSubscription;
 

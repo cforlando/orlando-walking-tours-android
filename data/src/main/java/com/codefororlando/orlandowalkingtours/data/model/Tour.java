@@ -7,10 +7,10 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Tour {
     public final long id;
     public final String name;
-    private final AtomicReference<List<HistoricLandmark>> tourStopsAr = new AtomicReference<>();
+    private final AtomicReference<List<Long>> tourStopIdsAr = new AtomicReference<>();
 
     public Tour(long id, Tour tour) {
-        this(id, tour.name, tour.tourStopsAr.get());
+        this(id, tour.name, tour.tourStopIdsAr.get());
     }
 
     @SuppressWarnings("unchecked")
@@ -18,25 +18,25 @@ public class Tour {
         this(id, name, Collections.EMPTY_LIST);
     }
 
-    public Tour(long id, String name, List<HistoricLandmark> stops) {
+    public Tour(long id, String name, List<Long> stops) {
         this.id = id;
         this.name = name;
         setTourStops(stops);
     }
 
     @SuppressWarnings("unchecked")
-    public void setTourStops(List<HistoricLandmark> stops) {
-        synchronized (tourStopsAr) {
-            tourStopsAr.set(stops == null ? Collections.EMPTY_LIST : stops);
+    public void setTourStops(List<Long> stops) {
+        synchronized (tourStopIdsAr) {
+            tourStopIdsAr.set(stops == null ? Collections.EMPTY_LIST : stops);
         }
     }
 
-    public List<HistoricLandmark> getTourStops() {
-        return tourStopsAr.get();
+    public List<Long> getTourStopIds() {
+        return tourStopIdsAr.get();
     }
 
     @Override
     public String toString() {
-        return String.format("%s (%d)", name, tourStopsAr.get().size());
+        return String.format("%s (%d)", name, tourStopIdsAr.get().size());
     }
 }

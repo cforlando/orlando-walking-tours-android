@@ -42,14 +42,18 @@ public class DatabaseHelper extends DatabaseHelperDefine {
     }
 
     public List<Tour> getTours() {
-        return tourTable.get(getReadableDatabase());
+        return tourTable.get(getReadableDatabase(), tourLandmarkTable);
     }
 
     public Tour getTour(long tourId, LandmarkRepository landmarkRepository) {
-        return tourTable.get(getReadableDatabase(), tourId, tourLandmarkTable, landmarkRepository);
+        return tourTable.get(getReadableDatabase(), tourId, tourLandmarkTable);
     }
 
     public Tour saveTour(Tour tour) {
-        return tourTable.save(getWritableDatabase(), tour);
+        return tourTable.save(getWritableDatabase(), tour, tourLandmarkTable);
+    }
+
+    public long deleteTour(long tourId) {
+        return tourTable.delete(getWritableDatabase(), tourId);
     }
 }

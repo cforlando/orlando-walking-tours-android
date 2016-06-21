@@ -7,9 +7,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.codefororlando.orlandowalkingtours.data.DatabaseHelper;
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmark;
 import com.codefororlando.orlandowalkingtours.data.model.RemoteLandmark;
-import com.codefororlando.orlandowalkingtours.data.DatabaseHelper;
 import com.codefororlando.orlandowalkingtours.event.OnQueryLandmarksEvent;
 import com.codefororlando.orlandowalkingtours.event.RxBus;
 import com.codefororlando.orlandowalkingtours.log.Logger;
@@ -40,6 +40,7 @@ public class LandmarkRepositoryImpl
     private final RxBus bus;
     private final Logger logger;
 
+    // Landmarks for a given city is low and should not stress device memory
     private final Map<Long, HistoricLandmark> cache = new ConcurrentHashMap<>();
     private List<HistoricLandmark> mList = new ArrayList<>();
 

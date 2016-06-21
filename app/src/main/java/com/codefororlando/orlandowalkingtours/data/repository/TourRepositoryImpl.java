@@ -19,12 +19,17 @@ public class TourRepositoryImpl implements TourRepository {
     }
 
     @Override
-    public Tour getTour(long tourId) {
+    public Tour get(long tourId) {
         return databaseHelper.getTour(tourId, RepositoryProvider.getLandmark());
     }
 
     @Override
-    public Tour saveTour(Tour tour) {
+    public Tour save(Tour tour) {
         return databaseHelper.saveTour(tour);
+    }
+
+    @Override
+    public long delete(long tourId) {
+        return databaseHelper.deleteTour(tourId);
     }
 }

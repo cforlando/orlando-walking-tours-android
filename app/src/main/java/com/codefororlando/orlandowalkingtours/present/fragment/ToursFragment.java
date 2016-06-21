@@ -9,6 +9,7 @@ import com.codefororlando.orlandowalkingtours.R;
 import com.codefororlando.orlandowalkingtours.RepositoryProvider;
 import com.codefororlando.orlandowalkingtours.data.model.Tour;
 import com.codefororlando.orlandowalkingtours.data.repository.TourRepository;
+import com.codefororlando.orlandowalkingtours.event.OnTourDeleteEvent;
 import com.codefororlando.orlandowalkingtours.event.OnTourSaveEvent;
 import com.codefororlando.orlandowalkingtours.present.activity.TourEditActivity;
 import com.codefororlando.orlandowalkingtours.present.base.ButterKnifeFragment;
@@ -59,6 +60,8 @@ public class ToursFragment extends ButterKnifeFragment {
     protected void onEvent(Object event) {
         if (event instanceof TourAdapter.EditTourEvent) {
             editTour(((TourAdapter.EditTourEvent) event).tourId);
+        } else if (event instanceof TourAdapter.DeleteTourEvent) {
+            deleteTour(((TourAdapter.DeleteTourEvent) event).tourId);
         } else if (event instanceof OnTourDataLoadEvent) {
             updateTourView();
         }
@@ -96,12 +99,15 @@ public class ToursFragment extends ButterKnifeFragment {
     }
 
     protected void editTour(long tourId) {
-        logD("edit tour %d", tourId);
-        startActivity(TourEditActivity.getEditIntent(getActivity(), tourId));
+        startActivity(TourEditActivity.getIntent(getActivity(), tourId));
+    }
+
+    protected void deleteTour(long tourId) {
+        dataFragment.deleteTour(tourId);
     }
 
     protected void newTour() {
-        startActivity(TourEditActivity.getEditIntent(getActivity()));
+        startActivity(TourEditActivity.getIntent(getActivity()));
     }
 
     // Data
@@ -154,6 +160,24 @@ public class ToursFragment extends ButterKnifeFragment {
                         public void call(List<Tour> tours) {
                             toursAr.set(tours);
                             bus.publish(new OnTourDataLoadEvent());
+                        }
+                    });
+        }
+
+        public void deleteTour(long tourId) {
+            Observable.just(tourId)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map(new Func1<Long, Long>() {
+                        @Override
+                        public Long call(Long id) {
+                            return tourRepository.delete(id);
+                        }
+                    })
+                    .subscribe(new Action1<Long>() {
+                        @Override
+                        public void call(Long id) {
+                            bus.publish(new OnTourDeleteEvent(id));
                         }
                     });
         }

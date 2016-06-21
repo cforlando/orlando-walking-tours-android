@@ -3,15 +3,14 @@ package com.codefororlando.orlandowalkingtours.data.definition;
 import android.annotation.TargetApi;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
+import android.database.sqlite.SQLiteStatement;
 
-import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmark;
-import com.codefororlando.orlandowalkingtours.data.repository.LandmarkRepository;
+import com.codefororlando.orlandowalkingtours.data.model.Tour;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class TourLandmarkTable implements SqliteDefinition {
+public class TourLandmarkTable extends AutoIncrementIdTable {
     public static final String TABLE_NAME = "tourLandmark",
             TOUR_ID = "tourId",
             LANDMARK_ID = "landmarkId",
@@ -19,16 +18,14 @@ public class TourLandmarkTable implements SqliteDefinition {
 
     @Override
     public String getCreateStatement() {
-        String idColumn = BaseColumns._ID;
+        String idColumn = _ID;
         return String.format(
-                "create table if not exists %s (%s,%s,%s,%s,%s,%s)",
+                "create table if not exists %s (%s,%s,%s,%s)",
                 TABLE_NAME,
-                String.format("%s integer primary key", BaseColumns._ID),
-                String.format("%s integer", TOUR_ID),
-                String.format("%s integer", LANDMARK_ID),
-                String.format("%s integer", TOUR_STOP),
-                String.format("foreign key(%s) references %s(%s)", TOUR_ID, TourTable.TABLE_NAME, idColumn),
-                String.format("foreign key(%s) references %s(%s)", LANDMARK_ID, LandmarkTable.TABLE_NAME, idColumn)
+                AUTO_INCREMENT_ID_COLUMN,
+                String.format("%s integer references %s(%s) on delete cascade", TOUR_ID, TourTable.TABLE_NAME, idColumn),
+                String.format("%s integer references %s(%s)", LANDMARK_ID, LandmarkTable.TABLE_NAME, idColumn),
+                String.format("%s integer", TOUR_STOP)
         );
     }
 
@@ -37,9 +34,7 @@ public class TourLandmarkTable implements SqliteDefinition {
     }
 
     @TargetApi(19)
-    public List<HistoricLandmark> getLandmarks(SQLiteDatabase database,
-                                               long tourId,
-                                               LandmarkRepository landmarkRepository) {
+    public List<Long> getLandmarkIds(SQLiteDatabase database, long tourId) {
         String sql = String.format(
                 "select %s from %s where %s=? order by %s asc",
                 TourLandmarkTable.LANDMARK_ID,
@@ -48,13 +43,34 @@ public class TourLandmarkTable implements SqliteDefinition {
                 TourLandmarkTable.TOUR_STOP
         );
         try (Cursor cursor = database.rawQuery(sql, new String[]{String.valueOf(tourId)})) {
-            List<HistoricLandmark> tourStops = new LinkedList<>();
+            List<Long> tourStopIds = new LinkedList<>();
             while (cursor.moveToNext()) {
-                HistoricLandmark landmark = landmarkRepository.getLandmark(cursor.getLong(0));
-                // This should never be null but future changes may break something
-                tourStops.add(landmark);
+                tourStopIds.add(cursor.getLong(0));
             }
-            return tourStops;
+            return tourStopIds;
         }
+    }
+
+    public int deleteTourStops(SQLiteDatabase database, long tourId) {
+        String sql = String.format("delete from %s where %s=?", TABLE_NAME, TOUR_ID);
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.bindLong(1, tourId);
+        return statement.executeUpdateDelete();
+    }
+
+    public List<Long> saveTourStops(SQLiteDatabase database, Tour tour) {
+        String sql = String.format(
+                "insert into %s(%s,%s) values(?,?)",
+                TABLE_NAME, TOUR_ID, LANDMARK_ID
+        );
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.bindLong(1, tour.id);
+        List<Long> stopIds = new LinkedList<>();
+        for (long landmarkId : tour.getTourStopIds()) {
+            statement.bindLong(2, landmarkId);
+            statement.executeInsert();
+            stopIds.add(landmarkId);
+        }
+        return stopIds;
     }
 }

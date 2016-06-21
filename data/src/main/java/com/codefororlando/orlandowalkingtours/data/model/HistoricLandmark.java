@@ -6,22 +6,30 @@ import android.os.Parcelable;
 public class HistoricLandmark implements Parcelable {
     public final long id;
     public final String name;
+    public final String streetAddress;
     public final String description;
     public final double latitude;
     public final double longitude;
 
-    // TODO Thumbnail and image URLs
+    // TODO Thumbnail URL
 
     public HistoricLandmark(long id,
                             String name,
                             String description,
+                            String streetAddress,
                             double latitude,
                             double longitude) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.streetAddress = streetAddress;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     // Parcelable
@@ -31,6 +39,7 @@ public class HistoricLandmark implements Parcelable {
         parcel.writeLong(id);
         parcel.writeString(name);
         parcel.writeString(description);
+        parcel.writeString(streetAddress);
         parcel.writeDouble(latitude);
         parcel.writeDouble(longitude);
     }
@@ -49,6 +58,7 @@ public class HistoricLandmark implements Parcelable {
     private HistoricLandmark(Parcel in) {
         this(
                 in.readLong(),
+                in.readString(),
                 in.readString(),
                 in.readString(),
                 in.readDouble(),

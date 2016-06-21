@@ -14,6 +14,6 @@ public class SaveTourFunc implements Func1<Tour, Tour> {
 
     @Override
     public Tour call(Tour tour) {
-        return tourRepository.saveTour(tour);
+        return tourRepository.save(tour);
     }
 }

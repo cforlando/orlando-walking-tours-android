@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
-import android.provider.BaseColumns;
 
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmark;
 import com.codefororlando.orlandowalkingtours.data.model.RemoteLandmark;
@@ -13,9 +12,8 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LandmarkTable implements SqliteDefinition {
+public class LandmarkTable extends AutoIncrementIdTable {
     public static final String TABLE_NAME = "landmark",
-            ID = BaseColumns._ID,
             REMOTE_ID = "remoteId",
             NAME = "name",
             DESCRIPTION = "description",
@@ -32,7 +30,7 @@ public class LandmarkTable implements SqliteDefinition {
         return String.format(
                 "create table if not exists %s (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 TABLE_NAME,
-                String.format("%s integer primary key", ID),
+                AUTO_INCREMENT_ID_COLUMN,
                 String.format("%s integer unique", REMOTE_ID),
                 String.format("%s text", NAME),
                 String.format("%s text", DESCRIPTION),
@@ -53,10 +51,11 @@ public class LandmarkTable implements SqliteDefinition {
     @TargetApi(19)
     public List<HistoricLandmark> get(SQLiteDatabase sqLiteDatabase) {
         String sql = String.format(
-                "select %s, %s, %s, %s, %s from %s",
-                ID,
+                "select %s, %s, %s, %s, %s, %s from %s",
+                _ID,
                 NAME,
                 DESCRIPTION,
+                STREET_ADDRESS,
                 LATITUDE,
                 LONGITUDE,
                 TABLE_NAME
@@ -68,8 +67,9 @@ public class LandmarkTable implements SqliteDefinition {
                         cursor.getLong(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getDouble(3),
-                        cursor.getDouble(4)
+                        cursor.getString(3),
+                        cursor.getDouble(4),
+                        cursor.getDouble(5)
                 ));
             }
             return landmarks;
@@ -106,6 +106,7 @@ public class LandmarkTable implements SqliteDefinition {
 
                 String name = landmark.name;
                 String description = landmark.description;
+                String streetAddress = landmark.streetAddress;
                 double[] coordinates = landmark.location.coordinates;
                 double latitude = coordinates[0];
                 double longitude = coordinates[1];
@@ -113,7 +114,7 @@ public class LandmarkTable implements SqliteDefinition {
                 sqLiteStatement.bindLong(1, landmark.id);
                 sqLiteStatement.bindString(2, name);
                 sqLiteStatement.bindString(3, description);
-                sqLiteStatement.bindString(4, landmark.streetAddress);
+                sqLiteStatement.bindString(4, streetAddress);
                 sqLiteStatement.bindString(5, landmark.city);
                 sqLiteStatement.bindString(6, landmark.state);
                 sqLiteStatement.bindDouble(7, latitude);
@@ -122,8 +123,9 @@ public class LandmarkTable implements SqliteDefinition {
 
                 long localId = sqLiteStatement.executeInsert();
                 if (localId > 0) {
-                    HistoricLandmark historicLandmark =
-                            new HistoricLandmark(localId, name, description, latitude, longitude);
+                    HistoricLandmark historicLandmark = new HistoricLandmark(
+                            localId, name, description, streetAddress, latitude, longitude
+                    );
                     historicLandmarks.add(historicLandmark);
                 }
             }

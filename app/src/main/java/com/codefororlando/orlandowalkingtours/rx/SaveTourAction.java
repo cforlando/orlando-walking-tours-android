@@ -1,8 +1,8 @@
 package com.codefororlando.orlandowalkingtours.rx;
 
+import com.codefororlando.orlandowalkingtours.data.model.Tour;
 import com.codefororlando.orlandowalkingtours.event.OnTourSaveEvent;
 import com.codefororlando.orlandowalkingtours.event.RxBus;
-import com.codefororlando.orlandowalkingtours.data.model.Tour;
 
 public class SaveTourAction extends BusAction1<Tour> {
     public SaveTourAction(RxBus rxBus) {
