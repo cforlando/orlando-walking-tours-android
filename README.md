@@ -10,11 +10,6 @@ The list of historic locations is currently stored [here](https://brigades.opend
 **Other repositories:**  
 -Orlando Walking Tours for iOS : https://github.com/cforlando/orlando-walking-tours-ios
 
-**Project Lead:**  
-Marko Markovic  
-slack: markom  
-email: markomarksdev@gmail.com
-
 ## Installation
 To be able to build and run this app would need 
 - Android studio - 2.1
