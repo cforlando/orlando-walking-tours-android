@@ -1,6 +1,6 @@
 # Orlando Walking Tours Android  [![Build Status](https://travis-ci.org/cforlando/orlando-walking-tours-android.svg?branch=master)](https://travis-ci.org/cforlando/orlando-walking-tours-android)
-##About  
-**Orlando Walking Tours** is an Android app that will allow users to create customized walking tours of the various historic locations around the city of Orlando. 
+## About  
+**Orlando Walking Tours** is an Android app allowing users to create customized walking tours of the various historic locations around Orlando. 
 
 **Version** 1.0 (MVP)
 
@@ -8,45 +8,35 @@
 The list of historic locations is currently stored [here](https://brigades.opendatanetwork.com/dataset/Orlando-Historical-Landmarks/hzkr-id6u).
 
 **Other repositories:**  
--Orlando Walking Tours for iOS : https://github.com/cforlando/orlando-walking-tours-ios
+- [Orlando Walking Tours for iOS](https://github.com/cforlando/orlando-walking-tours-ios)
 
 ## Installation
-To be able to build and run this app would need 
-- Android studio - 2.1
-- Android 6.X (API 24) SDK and tools
-- buildToolsVersion - 24.0.0
-- JDK 1.8
+Project meta is defined in the gradle build files ([project](https://github.com/cforlando/orlando-walking-tours-android/blob/master/build.gradle), [app](https://github.com/cforlando/orlando-walking-tours-android/blob/master/app/build.gradle), [data module](https://github.com/cforlando/orlando-walking-tours-android/blob/master/data/build.gradle)) and the [version file](https://github.com/cforlando/orlando-walking-tours-android/blob/master/gradleProject/version.gradle)
 
-## Development
-
-#### Models
-New classes that would hold some kind of data should be stored in the **com.codefororlando.orlandowalkingtours.models package**. 
-
-#### Managers
-If we ever need to pull data from new data sources, classes that would be handling such requests should be stored in the **com.codefororlando.orlandowalkingtours.managers** package. 
-We are using [ion](https://github.com/koush/ion) for pulling the data from the API. Look at the implentation of **HistoricLandmarkManager.java** as an example.
-
-#### Deserializer
-Any new deserializers that we need for the app should be stored in the **com.codefororlando.orlandowalkingtours.deserializer** package. For json deserializer use the **HistoricLandmarkDeserializer.java** for reference.
-
-#### Development utilities
-Any tools that would ease up the software development should be stored in the  **com.codefororlando.orlandowalkingtours.utilities** package and the DevelopmentUtilities class.
+## Development Consideration
+This is a community project. Unless you are devoting serious time to supporting this app do not introduce features requiring long term support. Feel free to use proven patterns but do not introduce unnecessary complexity. For example, do not use Dagger or another overarching DI solution as most developers are not familiar with this architecture and will only be deterred from participating when they are unable to wire together simple dependencies. As always, adhere to principle of least privilege. Contain code to as few files as possible with the most restrictive access as possible. Do not try to optimize and tangle the code base purely to suit your needs. Always question if other (future) contributors will be able to build off of what you contribute.
 
 ## Contributing
-
 We encourage anyone who is interested in contributing to Orlando Walking Tours to do so!  In order to ensure good code quality, there are some guidelines we would like to adhere to when contributing to this project. 
+Here are a few:
+1. Follow the code convention of the file. If files use different conventions, code to the convention of each file separately. Yes, this means read the entire (class) file before making changes to it.
+2. Build and test all changes before requesting a pull. Don't be a brat.
+3. Keep changes as small as possible and follow [Git documentation guidelines](http://chris.beams.io/posts/git-commit), it'll make you a better developer.
 
-#### Code for Orlando Members
-If you are currently a member of Code for Orlando (ie. you have access to the Code for Orlando Github repo), we ask that you not push any commits directly into the master branch.  Please create a branch first.  You can do this by using the command `git checkout -b [name-of-branch]`.  You can name the branch anything you'd like, but we encourage using the following: `[your-github-username]/develop`.  When you are ready to commit, push your changes using the command 'git push origin [name-of-branch]` and then submit a pull request.  If you are working on a specific issue (which you should be! :P ), reference the issue number in the pull request.
-
-By following these guidelines, we will be able to perform code reviews on all commits before merging with the master branch!
-
-#### Non-Code for Orlando Members
-For anyone not currently a member of Code for Orlando, we still encourage you to contribute if you are interested!  (Of course, we strongly encourage you to come to a meetup and meet the rest of us!)  If you would like to contribute, go ahead and fork the repo.  Make your changes and push them to your forked repo.  Then you can submit a pull request on Github.
+#### Process
+1. Fork or pull the repository's master branch.
+2. Find an outstanding or create a new ticket.
+3. Estimate how much time it would take for you to complete the ticket. If it is more than 2 hours, consider deconstructing the ticket further.
+4. Add an in progress tag to the ticket and update your current status on it during development.
+3. Make changes covered by the ticket.
+4. Commit and reference the ticket number somewhere in the commit message.
+5. Make a pull request and reference the ticket number in the pull message.
+6. If the Travis build fails cancel the pull request and address the failure then go back to 4.
+7. Wait for code review and address rejection if necessary.
+8. Close the ticket when a pull is made.
 
 ## License
-The MIT License (MIT)
-[LICENSE](https://github.com/cforlando/orlando-walking-tours-android/blob/master/LICENSE)
+[MIT](https://github.com/cforlando/orlando-walking-tours-android/blob/master/LICENSE)
 
 ## About Code for Orlando
 
