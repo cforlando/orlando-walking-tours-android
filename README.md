@@ -13,8 +13,9 @@ The list of historic locations is currently stored [here](https://brigades.opend
 ## Installation
 To be able to build and run this app would need 
 - Android studio - 2.1
-- Android 6.0 (API 23) SDK and tools
-- buildToolsVersion - 23.0.2
+- Android 6.X (API 24) SDK and tools
+- buildToolsVersion - 24.0.0
+- Min. JDK 1.8
 
 ## Development
 
