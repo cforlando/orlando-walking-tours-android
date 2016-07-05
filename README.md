@@ -15,7 +15,7 @@ To be able to build and run this app would need
 - Android studio - 2.1
 - Android 6.X (API 24) SDK and tools
 - buildToolsVersion - 24.0.0
-- Min. JDK 1.8
+- JDK 1.8
 
 ## Development
 
