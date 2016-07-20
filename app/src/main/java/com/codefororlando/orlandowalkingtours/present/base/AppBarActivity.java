@@ -1,7 +1,6 @@
 package com.codefororlando.orlandowalkingtours.present.base;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.annotation.LayoutRes;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -10,15 +9,14 @@ import com.codefororlando.orlandowalkingtours.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+// Requires layout contain Toolbar with ID 'app_bar'
 abstract public class AppBarActivity extends BaseActivity {
     @BindView(R.id.app_bar)
     Toolbar actionBar;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(getLayoutResId());
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(layoutResID);
 
         ButterKnife.bind(this);
 
@@ -38,6 +36,4 @@ abstract public class AppBarActivity extends BaseActivity {
             }
         });
     }
-
-    abstract protected int getLayoutResId();
 }
