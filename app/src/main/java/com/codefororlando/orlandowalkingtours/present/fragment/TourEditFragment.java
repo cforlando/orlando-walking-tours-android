@@ -2,9 +2,11 @@ package com.codefororlando.orlandowalkingtours.present.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 
 import com.codefororlando.orlandowalkingtours.BusProvider;
@@ -13,6 +15,7 @@ import com.codefororlando.orlandowalkingtours.RepositoryProvider;
 import com.codefororlando.orlandowalkingtours.data.model.Tour;
 import com.codefororlando.orlandowalkingtours.data.repository.TourRepository;
 import com.codefororlando.orlandowalkingtours.event.OnEditTourDoneEvent;
+import com.codefororlando.orlandowalkingtours.event.OnPermissionGrantEvent;
 import com.codefororlando.orlandowalkingtours.event.OnSelectLandmarkEvent;
 import com.codefororlando.orlandowalkingtours.present.activity.LandmarkDetailActivity;
 import com.codefororlando.orlandowalkingtours.present.activity.SelectLandmarkActivity;
@@ -21,6 +24,7 @@ import com.codefororlando.orlandowalkingtours.present.base.RetainFragment;
 import com.codefororlando.orlandowalkingtours.rx.SaveTourAction;
 import com.codefororlando.orlandowalkingtours.rx.SaveTourFunc;
 import com.codefororlando.orlandowalkingtours.ui.TourStopAdapter;
+import com.codefororlando.orlandowalkingtours.util.PermissionUtil;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -35,7 +39,8 @@ import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-public class TourEditFragment extends DoneCancelBarFragment {
+public class TourEditFragment extends DoneCancelBarFragment
+        implements PermissionRequestFragment.OnPermissionRequestCompleteListener {
     public static final String TOUR_ID_KEY = "TOUR_ID_KEY";
 
     public static TourEditFragment newInstance(long tourId) {
@@ -54,6 +59,8 @@ public class TourEditFragment extends DoneCancelBarFragment {
     private TourStopAdapter mTourStopAdapter;
 
     private DataFragment dataFragment;
+
+    private Snackbar mLocationPermissionSnackbar;
 
     // Lifecycle/event
 
@@ -74,6 +81,19 @@ public class TourEditFragment extends DoneCancelBarFragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (!PermissionUtil.get().hasLocationPermission()) {
+            // Don't request permissions if user has previously denied
+            dataFragment.suppressPermissionRequest =
+                    PermissionUtil.get().hasDeniedLocationPermissionRequest(getActivity());
+
+            showLocationPermissionRequestUi();
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         updateUi();
@@ -89,15 +109,24 @@ public class TourEditFragment extends DoneCancelBarFragment {
                 dataFragment.addStop(landmarkId);
                 mTourStopAdapter.notifyItemInserted(mTourStopAdapter.getItemCount() - 1);
             }
+
         } else if (event instanceof TourStopAdapter.ShowTourStopInfoEvent) {
             showTourStopInfo(((TourStopAdapter.ShowTourStopInfoEvent) event).adapterPosition);
+
         } else if (event instanceof TourStopAdapter.DeleteTourStopEvent) {
             int position = ((TourStopAdapter.DeleteTourStopEvent) event).adapterPosition;
             dataFragment.deleteTourStop(position);
             mTourStopAdapter.notifyItemRemoved(position);
+
         } else if (event instanceof OnTourLoadEvent) {
             nameEdit.setText(dataFragment.getInitialTour().name);
             updateTourStopView();
+
+        } else if (event instanceof OnPermissionGrantEvent) {
+            String permission = ((OnPermissionGrantEvent) event).permission;
+            if (PermissionUtil.get().isLocationPermission(permission)) {
+                hideLocationPermissionRequestUi();
+            }
         }
     }
 
@@ -134,6 +163,59 @@ public class TourEditFragment extends DoneCancelBarFragment {
             tourStopRecyclerView.setAdapter(mTourStopAdapter);
         }
         mTourStopAdapter.setTourStopIds(dataFragment.getStopIds());
+    }
+
+    private void showLocationPermissionRequestUi() {
+        // Request has already been made, don't make again
+        if (dataFragment.suppressPermissionRequest) {
+            return;
+        }
+
+        if (mLocationPermissionSnackbar == null) {
+            int stringResId = R.string.request_location;
+            int duration = Snackbar.LENGTH_INDEFINITE;
+            mLocationPermissionSnackbar = Snackbar.make(getView(), stringResId, duration);
+            mLocationPermissionSnackbar.setAction(
+                    android.R.string.yes,
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            requestLocationPermission();
+                        }
+                    }
+            );
+        }
+        mLocationPermissionSnackbar.show();
+    }
+
+    private void hideLocationPermissionRequestUi() {
+        if (mLocationPermissionSnackbar == null) {
+            return;
+        }
+
+        dataFragment.suppressPermissionRequest = true;
+
+        mLocationPermissionSnackbar.dismiss();
+        mLocationPermissionSnackbar = null;
+    }
+
+    // Permission
+
+    private void requestLocationPermission() {
+        boolean isRequestPermission =
+                PermissionUtil.get().showLocationPermissionFragment(getFragmentManager(), this);
+        if (isRequestPermission) {
+            hideLocationPermissionRequestUi();
+        } else {
+            showLocationPermissionRequestUi();
+        }
+    }
+
+    // PermissionRequestFragment.OnPermissionRequestCompleteListener
+
+    @Override
+    public void onPermissionRequestComplete() {
+        PermissionUtil.get().removeRequestLocationPermissionFragment(getFragmentManager());
     }
 
     // Methods
@@ -176,6 +258,8 @@ public class TourEditFragment extends DoneCancelBarFragment {
     }
 
     public static class DataFragment extends RetainFragment {
+        public boolean suppressPermissionRequest;
+
         private long tourId;
 
         private TourRepository tourRepository;

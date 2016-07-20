@@ -1,9 +1,15 @@
 package com.codefororlando.orlandowalkingtours.util;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+
+import com.codefororlando.orlandowalkingtours.present.fragment.PermissionRequestFragment;
 
 public class PermissionUtil {
     private static PermissionUtil sInstance;
@@ -17,6 +23,8 @@ public class PermissionUtil {
     }
 
     private final Context context;
+
+    private final String permissionRequestFragmentTag = "requestLocationPermission";
 
     public PermissionUtil(Context context) {
         this.context = context;
@@ -32,6 +40,15 @@ public class PermissionUtil {
             Manifest.permission.ACCESS_FINE_LOCATION
     };
 
+    public boolean isLocationPermission(String permission) {
+        for (String s : locationPermissions) {
+            if (s.equals(permission)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean hasLocationPermission() {
         for (String permission : locationPermissions) {
             if (hasPermission(permission)) {
@@ -39,5 +56,56 @@ public class PermissionUtil {
             }
         }
         return false;
+    }
+
+    // Request location
+
+    public boolean hasDeniedPermission(Activity activity, String permission) {
+        return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
+    }
+
+    public boolean hasDeniedLocationPermissionRequest(Activity activity) {
+        boolean hasDenied = false;
+        for (String permission : locationPermissions) {
+            hasDenied |= hasDeniedPermission(activity, permission);
+        }
+        return hasDenied;
+    }
+
+    public boolean showLocationPermissionFragment(FragmentManager fragmentManager) {
+        return showLocationPermissionFragment(fragmentManager, null);
+    }
+
+    public boolean showLocationPermissionFragment(FragmentManager fragmentManager,
+                                                  Fragment targetFragment) {
+        boolean hasLocationPermission = PermissionUtil.get().hasLocationPermission();
+        if (!hasLocationPermission) {
+            String tag = permissionRequestFragmentTag;
+            Fragment fragment = fragmentManager.findFragmentByTag(tag);
+            if (fragment == null) {
+                String locationPermission = Manifest.permission.ACCESS_COARSE_LOCATION;
+                fragment = PermissionRequestFragment.newInstance(locationPermission);
+                if (targetFragment != null) {
+                    fragment.setTargetFragment(targetFragment, 0);
+                }
+                fragmentManager.beginTransaction()
+                        .add(fragment, tag)
+                        .commit();
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public void removeRequestLocationPermissionFragment(FragmentManager fragmentManager) {
+        Fragment fragment = fragmentManager.findFragmentByTag(permissionRequestFragmentTag);
+        if (fragment != null) {
+            fragmentManager.beginTransaction()
+                    .remove(fragment)
+                    // Stateless fragment can be removed at any time
+                    .commitAllowingStateLoss();
+        }
     }
 }

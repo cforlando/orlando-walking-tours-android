@@ -40,7 +40,7 @@ public class LandmarkRepositoryImpl
     private final RxBus bus;
     private final Logger logger;
 
-    // Landmarks for a given city is low and should not stress device memory
+    // Landmarks for a given city is low and should not stress device memory therefore can be cached
     private final Map<Long, HistoricLandmark> cache = new ConcurrentHashMap<>();
     private List<HistoricLandmark> mList = new ArrayList<>();
 

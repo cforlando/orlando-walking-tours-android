@@ -25,4 +25,6 @@
 
     <string name="add_tour_stop">Add tour stop</string>
     <string name="define_name_to_save">Name this tour</string>
+
+    <string name="request_location">Turn on location</string>
 </resources>
