@@ -1,6 +1,7 @@
 package com.codefororlando.orlandowalkingtours;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.StrictMode;
 
 import com.codefororlando.orlandowalkingtours.data.DatabaseHelper;
@@ -38,7 +39,15 @@ public class App extends Application {
     }
 
     private void initializeSingleton() {
-        VolleyProvider.initialize(this);
+        // StrictMode$StrictModeDiskReadViolation
+        final Context context = this;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                VolleyProvider.initialize(context);
+            }
+        }).start();
+
         BusProvider.initialize();
 
         boolean isDebug = BuildConfig.DEBUG;
