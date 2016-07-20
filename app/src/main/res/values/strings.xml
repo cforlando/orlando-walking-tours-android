@@ -13,6 +13,7 @@
     <string name="title_delete">Delete</string>
     <string name="title_new">New</string>
     <string name="title_name">Name</string>
+    <string name="title_distance">Distance</string>
 
     <string name="title_done">Done</string>
     <string name="title_cancel">Cancel</string>

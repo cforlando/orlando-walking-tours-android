@@ -1,17 +1,23 @@
 package com.codefororlando.orlandowalkingtours.ui;
 
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.codefororlando.orlandowalkingtours.R;
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmark;
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkSelect;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class LandmarkSelectViewHolder extends LandmarkViewHolder {
     public interface OnLandmarkItemListener extends OnAdapterPositionPressListener {
         void showInfo(int position);
     }
+
+    @BindView(R.id.distance)
+    TextView distance;
 
     private final OnLandmarkItemListener itemListener;
 
@@ -33,6 +39,13 @@ public class LandmarkSelectViewHolder extends LandmarkViewHolder {
         bind(landmark);
 
         itemView.setSelected(landmarkSelect.isSelected);
+
+        String distanceText = landmarkSelect.getDistanceText();
+        boolean hasDistance = !TextUtils.isEmpty(distanceText);
+        if (hasDistance) {
+            distance.setText(distanceText);
+        }
+        distance.setVisibility(hasDistance ? View.VISIBLE : View.GONE);
     }
 
     @OnClick(R.id.info)
