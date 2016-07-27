@@ -13,9 +13,10 @@ ext {
             ],
 
             google : [
-                    gson   : 'com.google.code.gson:gson:2.6.2',
-                    maps   : "com.google.android.gms:play-services-maps:${gmsVersion}",
-                    mapUtil: "com.google.maps.android:android-maps-utils:0.4+"
+                    gson    : 'com.google.code.gson:gson:2.6.2',
+                    maps    : "com.google.android.gms:play-services-maps:${gmsVersion}",
+                    location: "com.google.android.gms:play-services-location:${gmsVersion}",
+                    mapUtil : "com.google.maps.android:android-maps-utils:0.4+"
             ],
 
             rx     : [

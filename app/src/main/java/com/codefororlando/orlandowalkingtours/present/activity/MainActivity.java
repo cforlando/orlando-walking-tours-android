@@ -11,11 +11,8 @@ public class MainActivity extends AppBarActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle(R.string.title_tours);
-    }
+        setContentView(R.layout.main_activity);
 
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.main_activity;
+        setTitle(R.string.title_tours);
     }
 }

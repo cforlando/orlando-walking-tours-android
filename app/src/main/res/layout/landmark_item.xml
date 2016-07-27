@@ -21,30 +21,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:contentDescription="@string/title_more"
+            android:contentDescription="@string/title_info"
             app:srcCompat="@drawable/ic_info_outline_black_24dp" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/name"
-        style="@style/TextAppearance.AppCompat.Title"
+    <include
+        layout="@layout/place_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/info"
-        android:ellipsize="end"
-        android:maxLines="2" />
-
-    <TextView
-        android:id="@+id/street_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/name"
-        android:layout_below="@id/name"
-        android:layout_marginTop="@dimen/content_space_material"
-        android:layout_toStartOf="@+id/info" />
-
-    <!--TODO Distance pin-->
+        android:layout_toStartOf="@id/info" />
 
 </RelativeLayout>

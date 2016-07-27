@@ -42,6 +42,7 @@ dependencies {
 
     compile g.gson,
             g.maps,
+            g.location,
             g.mapUtil
 
     compile rx.java,
