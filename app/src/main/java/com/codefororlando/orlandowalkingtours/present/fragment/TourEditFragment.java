@@ -1,6 +1,7 @@
 package com.codefororlando.orlandowalkingtours.present.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -78,18 +79,11 @@ public class TourEditFragment extends DoneCancelBarFragment
          * Requires less code than wiring up startActivityForResult.
          */
         busSubscribe();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
 
         if (!PermissionUtil.get().hasLocationPermission()) {
             // Don't request permissions if user has previously denied
             dataFragment.suppressPermissionRequest =
                     PermissionUtil.get().hasDeniedLocationPermissionRequest(getActivity());
-
-            showLocationPermissionRequestUi();
         }
     }
 
@@ -121,6 +115,8 @@ public class TourEditFragment extends DoneCancelBarFragment
         } else if (event instanceof OnTourLoadEvent) {
             nameEdit.setText(dataFragment.getInitialTour().name);
             updateTourStopView();
+
+            showLocationPermissionRequestUi();
 
         } else if (event instanceof OnPermissionGrantEvent) {
             String permission = ((OnPermissionGrantEvent) event).permission;
@@ -154,6 +150,7 @@ public class TourEditFragment extends DoneCancelBarFragment
 
     private void updateUi() {
         updateTourStopView();
+        showLocationPermissionRequestUi();
     }
 
     private void updateTourStopView() {
@@ -165,9 +162,27 @@ public class TourEditFragment extends DoneCancelBarFragment
         mTourStopAdapter.setTourStopIds(dataFragment.getStopIds());
     }
 
+    /**
+     * Presents request for location permission if makes sense
+     */
     private void showLocationPermissionRequestUi() {
+        // Permission is already granted
+        if (PermissionUtil.get().hasLocationPermission()) {
+            return;
+        }
+
         // Request has already been made, don't make again
         if (dataFragment.suppressPermissionRequest) {
+            return;
+        }
+
+        // Don't request when there are no stops since distances aren't visible
+        if (dataFragment.getStopIds().isEmpty()) {
+            return;
+        }
+
+        // Views are not ready
+        if (tourStopRecyclerView == null) {
             return;
         }
 
@@ -193,21 +208,18 @@ public class TourEditFragment extends DoneCancelBarFragment
             return;
         }
 
+        // Don't nag about permissions again while on this screen
         dataFragment.suppressPermissionRequest = true;
 
         mLocationPermissionSnackbar.dismiss();
         mLocationPermissionSnackbar = null;
     }
 
-    // Permission
-
     private void requestLocationPermission() {
-        boolean isRequestPermission =
+        boolean isRequestPermissionShown =
                 PermissionUtil.get().showLocationPermissionFragment(getFragmentManager(), this);
-        if (isRequestPermission) {
+        if (isRequestPermissionShown) {
             hideLocationPermissionRequestUi();
-        } else {
-            showLocationPermissionRequestUi();
         }
     }
 
@@ -254,9 +266,11 @@ public class TourEditFragment extends DoneCancelBarFragment
         return getArguments().getLong(TOUR_ID_KEY);
     }
 
+    // Tours are loaded and ready for presenting
     private static class OnTourLoadEvent {
     }
 
+    // Stores data (across config changes)
     public static class DataFragment extends RetainFragment {
         public boolean suppressPermissionRequest;
 
@@ -345,6 +359,7 @@ public class TourEditFragment extends DoneCancelBarFragment
             mStopsLandmarkId.remove(index);
         }
 
+        @NonNull
         public List<Long> getStopIds() {
             return Collections.unmodifiableList(mStopsLandmarkId);
         }
