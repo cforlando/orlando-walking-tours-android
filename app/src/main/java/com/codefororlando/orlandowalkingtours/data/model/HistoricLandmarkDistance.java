@@ -46,9 +46,11 @@ public class HistoricLandmarkDistance {
             } else if (latHDelta > latIDelta && lngHDelta > lngIDelta) {
                 return 1;
             }
-            double hypH = Math.hypot(latHDelta, lngHDelta),
-                    hypI = Math.hypot(latIDelta, lngIDelta);
-            return hypH < hypI ? -1 : 1;
+
+            LatLng latLng = new LatLng(latitude, longitude);
+            double j = SphericalUtil.computeDistanceBetween(latLng, f.coordinates),
+                    k = SphericalUtil.computeDistanceBetween(latLng, g.coordinates);
+            return j < k ? -1 : 1;
         }
     }
 

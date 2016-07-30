@@ -19,6 +19,7 @@ This is a community project. Unless you are devoting serious time to supporting 
 ## Contributing
 We encourage anyone who is interested in contributing to Orlando Walking Tours to do so!  In order to ensure good code quality, there are some guidelines we would like to adhere to when contributing to this project. 
 Here are a few:
+
 1. Follow the code convention of the file. If files use different conventions, code to the convention of each file separately. Yes, this means read the entire (class) file before making changes to it.
 2. Build and test all changes before requesting a pull. Don't be a brat.
 3. Keep changes as small as possible and follow [Git documentation guidelines](http://chris.beams.io/posts/git-commit), it'll make you a better developer.
