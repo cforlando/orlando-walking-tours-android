@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.text.TextUtils;
 
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmark;
 import com.codefororlando.orlandowalkingtours.data.model.RemoteLandmark;
@@ -53,9 +54,9 @@ public class LandmarkTable extends AutoIncrementIdTable {
     }
 
     @TargetApi(19)
-    public List<HistoricLandmark> get(SQLiteDatabase sqLiteDatabase) {
+    public List<HistoricLandmark> get(SQLiteDatabase sqLiteDatabase, String query) {
         String sql = String.format(
-                "select %s, %s, %s, %s, %s, %s from %s",
+                "select %s, c.%s, c.%s, c.%s, %s, %s from %s c",
                 _ID,
                 NAME,
                 DESCRIPTION,
@@ -64,7 +65,18 @@ public class LandmarkTable extends AutoIncrementIdTable {
                 LONGITUDE,
                 TABLE_NAME
         );
-        try (Cursor cursor = sqLiteDatabase.rawQuery(sql, null)) {
+
+        String[] selectionArgs = null;
+
+        if (!TextUtils.isEmpty(query)) {
+            // TODO Match only columns displayed (name and street address)
+            sql += String.format(
+                    " inner join %1$s f on c.%2$s=f.docid where %1$s match ?",
+                    LandmarkFtsTable.TABLE_NAME, _ID);
+            selectionArgs = new String[]{query};
+        }
+
+        try (Cursor cursor = sqLiteDatabase.rawQuery(sql, selectionArgs)) {
             List<HistoricLandmark> landmarks = new ArrayList<>();
             while (cursor.moveToNext()) {
                 landmarks.add(new HistoricLandmark(

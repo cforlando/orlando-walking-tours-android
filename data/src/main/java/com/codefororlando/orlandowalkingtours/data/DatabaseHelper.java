@@ -33,8 +33,8 @@ public class DatabaseHelper extends DatabaseHelperDefine {
         super(context, logger);
     }
 
-    public List<HistoricLandmark> getLandmarks() {
-        return landmarkTable.get(getReadableDatabase());
+    public List<HistoricLandmark> getLandmarks(String query) {
+        return landmarkTable.get(getReadableDatabase(), query);
     }
 
     public List<HistoricLandmark> saveLandmarks(List<RemoteLandmark> landmarks) {

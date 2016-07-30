@@ -5,7 +5,7 @@ import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmark;
 import java.util.List;
 
 public interface LandmarkRepository {
-    List<HistoricLandmark> getLandmarks();
+    List<HistoricLandmark> getLandmarks(String query);
 
     void queryLandmarks();
 

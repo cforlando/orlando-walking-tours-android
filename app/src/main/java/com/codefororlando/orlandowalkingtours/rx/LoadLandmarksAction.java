@@ -21,18 +21,21 @@ public class LoadLandmarksAction
     private final LandmarkRepository landmarkRepository;
     private final Location location;
     private final Comparator<HistoricLandmarkDistance> comparator;
+    private final String query;
 
     public LoadLandmarksAction(LandmarkRepository landmarkRepository,
                                Location location,
-                               Comparator<HistoricLandmarkDistance> comparator) {
+                               Comparator<HistoricLandmarkDistance> comparator,
+                               String query) {
         this.landmarkRepository = landmarkRepository;
         this.location = location;
         this.comparator = comparator;
+        this.query = query;
     }
 
     @Override
     public void call(final Subscriber<? super List<HistoricLandmarkDistanceSelect>> subscriber) {
-        Observable.from(landmarkRepository.getLandmarks())
+        Observable.from(landmarkRepository.getLandmarks(query))
                 .map(new Func1<HistoricLandmark, HistoricLandmarkDistanceSelect>() {
                     @Override
                     public HistoricLandmarkDistanceSelect call(HistoricLandmark landmark) {

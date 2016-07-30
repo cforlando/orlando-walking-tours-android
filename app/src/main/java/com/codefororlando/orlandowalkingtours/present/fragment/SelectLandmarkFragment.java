@@ -20,6 +20,7 @@ import com.codefororlando.orlandowalkingtours.RepositoryProvider;
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkDistance;
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkDistanceSelect;
 import com.codefororlando.orlandowalkingtours.data.model.Tour;
+import com.codefororlando.orlandowalkingtours.data.repository.LandmarkRepository;
 import com.codefororlando.orlandowalkingtours.event.OnCancelSelectLandmarkEvent;
 import com.codefororlando.orlandowalkingtours.event.OnLocationChangeEvent;
 import com.codefororlando.orlandowalkingtours.event.OnQueryLandmarksEvent;
@@ -29,6 +30,7 @@ import com.codefororlando.orlandowalkingtours.present.base.DoneCancelBarLocation
 import com.codefororlando.orlandowalkingtours.present.base.RetainFragment;
 import com.codefororlando.orlandowalkingtours.rx.LoadLandmarksAction;
 import com.codefororlando.orlandowalkingtours.ui.LandmarkSelectAdapter;
+import com.codefororlando.orlandowalkingtours.util.ScreenKeyboardUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 import butterknife.BindView;
@@ -45,7 +48,9 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
 
 public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
     public static final String CALLER_KEY = "CALLER_KEY";
@@ -153,6 +158,7 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
     }
 
     private void wireActionBarBehavior() {
+        // Bottom sheet shows/hides on swipe down/up
         final BottomSheetBehavior behavior = BottomSheetBehavior.from(actionBar);
         behavior.setHideable(true);
         landmarkRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -169,6 +175,20 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
                     }
                 }
                 super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                ScreenKeyboardUtil.hideScreenKeyboard(getActivity());
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                dataFragment.onSearch(s.trim());
+                return false;
             }
         });
     }
@@ -276,6 +296,10 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
 
         private Collection<Long> mTourStopIds = Collections.emptySet();
 
+        private final AtomicReference<String> lastQuery = new AtomicReference<>("");
+
+        private final PublishSubject<String> querySubject = PublishSubject.create();
+
         @Override
         public void onAttach(Context context) {
             super.onAttach(context);
@@ -291,13 +315,37 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
 
             loadTour(getArguments().getLong(TOUR_ID_KEY, 0));
 
-            loadLandmarks();
+            loadLandmarks(lastQuery.get());
+
+            querySubject
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .debounce(150, TimeUnit.MILLISECONDS)
+                    .filter(new Func1<String, Boolean>() {
+                        @Override
+                        public Boolean call(String s) {
+                            synchronized (lastQuery) {
+                                if (s == null) {
+                                    s = "";
+                                }
+
+                                String last = lastQuery.getAndSet(s);
+                                return !last.equals(s);
+                            }
+                        }
+                    })
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                            loadLandmarks(s);
+                        }
+                    });
         }
 
         @Override
         protected void onEvent(Object event) {
             if (event instanceof OnQueryLandmarksEvent) {
-                loadLandmarks();
+                loadLandmarks(lastQuery.get());
 
             } else if (event instanceof OnLocationChangeEvent) {
                 Location location = ((OnLocationChangeEvent) event).location;
@@ -305,7 +353,7 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
 
                 if (!isAlphaSort()) {
                     // Easier than creating more methods to sort by distance and republishing
-                    loadLandmarks();
+                    loadLandmarks(lastQuery.get());
                 }
             }
         }
@@ -313,6 +361,7 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
         @Override
         public void onDestroy() {
             busUnsubscribe();
+            querySubject.onCompleted();
             super.onDestroy();
         }
 
@@ -334,6 +383,10 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
 
         public long getSelectedLandmarkId() {
             return mSelectedPositionId.id;
+        }
+
+        public void onSearch(String query) {
+            querySubject.onNext(query);
         }
 
         private boolean isAlphaSort() {
@@ -368,14 +421,15 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
                     });
         }
 
-        private void loadLandmarks() {
+        private void loadLandmarks(final String query) {
             Location location = lastLocationAr.get();
             boolean isAlphaSort = isAlphaSort() || location == null;
             Comparator<HistoricLandmarkDistance> comparator = isAlphaSort
                     ? HistoricLandmarkDistance.NAME_COMPARATOR
                     : new HistoricLandmarkDistance.SquareDistanceComparator(location);
+            LandmarkRepository repository = RepositoryProvider.getLandmark();
             LoadLandmarksAction action =
-                    new LoadLandmarksAction(RepositoryProvider.getLandmark(), location, comparator);
+                    new LoadLandmarksAction(repository, location, comparator, query);
 
             Observable.create(action)
                     .subscribeOn(Schedulers.newThread())
@@ -383,9 +437,14 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
                     .subscribe(new Action1<List<HistoricLandmarkDistanceSelect>>() {
                         @Override
                         public void call(List<HistoricLandmarkDistanceSelect> landmarks) {
-                            mLandmarks = landmarks;
+                            // Query has changed, ignore results
+                            if (!query.equals(lastQuery.get())) {
+                                return;
+                            }
 
                             restoreSelectedLandmark(landmarks);
+
+                            mLandmarks = landmarks;
 
                             bus.publish(new OnLandmarkLoadEvent());
                         }
