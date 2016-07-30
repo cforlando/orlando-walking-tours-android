@@ -48,8 +48,7 @@ public class LandmarkTable extends AutoIncrementIdTable {
     @Override
     public void onUpdate(SQLiteDatabase database, int oldVersion, int newVersion) {
         if (oldVersion < 2) {
-            // 2 introduced FTS so delete old data so landmark FTS will be populated
-            database.delete(TABLE_NAME, null, null);
+            // TODO Update all landmarks from remote source again to populate FTS table
         }
     }
 

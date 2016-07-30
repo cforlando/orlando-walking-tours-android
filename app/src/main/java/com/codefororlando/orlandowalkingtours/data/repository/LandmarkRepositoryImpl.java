@@ -64,6 +64,22 @@ public class LandmarkRepositoryImpl
     }
 
     @Override
+    public void load() {
+        queryCache.clear();
+
+        Observable.create(new Observable.OnSubscribe<List<HistoricLandmark>>() {
+            @Override
+            public void call(Subscriber<? super List<HistoricLandmark>> subscriber) {
+                subscriber.onNext(getLandmarks(""));
+                subscriber.onCompleted();
+            }
+        })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(landmarkPublisher);
+    }
+
+    @Override
     public List<HistoricLandmark> getLandmarks(String query) {
         // Default query is blank string
         if (query == null) {
@@ -91,25 +107,6 @@ public class LandmarkRepositoryImpl
                 new RemoteLandmarkRequest(LandmarkRepositoryImpl.this, LandmarkRepositoryImpl.this);
         requestQueue.add(remoteDownloadRequest);
         return new ArrayList<>(0);
-    }
-
-    @Override
-    public void queryLandmarks() {
-        if (queryCache.containsKey("")) {
-            landmarkPublisher.call(queryCache.get(""));
-
-        } else {
-            Observable.create(new Observable.OnSubscribe<List<HistoricLandmark>>() {
-                @Override
-                public void call(Subscriber<? super List<HistoricLandmark>> subscriber) {
-                    subscriber.onNext(getLandmarks(""));
-                    subscriber.onCompleted();
-                }
-            })
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(landmarkPublisher);
-        }
     }
 
     @Override
@@ -141,8 +138,6 @@ public class LandmarkRepositoryImpl
                     public List<HistoricLandmark> call(List<RemoteLandmark> remoteLandmarks) {
                         List<HistoricLandmark> landmarks =
                                 databaseHelper.saveLandmarks(remoteLandmarks);
-                        // New remote data should clear previous query result sets
-                        queryCache.clear();
                         cacheLandmarks("", landmarks);
                         return landmarks;
                     }
