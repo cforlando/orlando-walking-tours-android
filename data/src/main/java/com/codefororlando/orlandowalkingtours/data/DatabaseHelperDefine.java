@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
+import com.codefororlando.orlandowalkingtours.data.definition.LandmarkFtsTable;
 import com.codefororlando.orlandowalkingtours.data.definition.LandmarkTable;
 import com.codefororlando.orlandowalkingtours.data.definition.SqliteDefinition;
 import com.codefororlando.orlandowalkingtours.data.definition.TourLandmarkTable;
@@ -13,14 +14,16 @@ import com.codefororlando.orlandowalkingtours.log.Logger;
 
 public class DatabaseHelperDefine extends SQLiteOpenHelper {
     protected static final String NAME = "walkingTour.sqlite";
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
 
     protected final LandmarkTable landmarkTable = new LandmarkTable();
+    protected final LandmarkFtsTable landmarkFtsTable = new LandmarkFtsTable();
     protected final TourTable tourTable = new TourTable();
     protected final TourLandmarkTable tourLandmarkTable = new TourLandmarkTable();
 
     private final SqliteDefinition[] definitions = new SqliteDefinition[]{
             landmarkTable,
+            landmarkFtsTable,
             tourTable,
             tourLandmarkTable
     };
@@ -34,13 +37,17 @@ public class DatabaseHelperDefine extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        logger.debug("Database definition");
+
         for (SqliteDefinition definition : definitions) {
             String definitionStatement = definition.getCreateStatement();
-
-            logger.debug("Database definition");
             logger.debug(definitionStatement);
-
             sqLiteDatabase.execSQL(definitionStatement);
+        }
+
+        for (String triggerStatement : landmarkFtsTable.getTriggers()) {
+            logger.debug(triggerStatement);
+            sqLiteDatabase.execSQL(triggerStatement);
         }
     }
 
