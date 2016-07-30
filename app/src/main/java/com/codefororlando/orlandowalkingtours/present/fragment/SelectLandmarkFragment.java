@@ -1,5 +1,8 @@
 package com.codefororlando.orlandowalkingtours.present.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -9,30 +12,32 @@ import android.support.v7.widget.RecyclerView;
 import com.codefororlando.orlandowalkingtours.BusProvider;
 import com.codefororlando.orlandowalkingtours.R;
 import com.codefororlando.orlandowalkingtours.RepositoryProvider;
-import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmark;
-import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkSelect;
-import com.codefororlando.orlandowalkingtours.data.repository.LandmarkRepository;
+import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkDistance;
+import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkDistanceSelect;
 import com.codefororlando.orlandowalkingtours.event.OnCancelSelectLandmarkEvent;
+import com.codefororlando.orlandowalkingtours.event.OnLocationChangeEvent;
 import com.codefororlando.orlandowalkingtours.event.OnQueryLandmarksEvent;
 import com.codefororlando.orlandowalkingtours.event.OnSelectLandmarkEvent;
 import com.codefororlando.orlandowalkingtours.present.activity.LandmarkDetailActivity;
-import com.codefororlando.orlandowalkingtours.present.base.DoneCancelBarFragment;
+import com.codefororlando.orlandowalkingtours.present.base.DoneCancelBarLocationFragment;
 import com.codefororlando.orlandowalkingtours.present.base.RetainFragment;
+import com.codefororlando.orlandowalkingtours.rx.LoadLandmarksAction;
 import com.codefororlando.orlandowalkingtours.ui.LandmarkSelectAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-public class SelectLandmarkFragment extends DoneCancelBarFragment {
+public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
     public static final String CALLER_KEY = "CALLER_KEY";
 
     private static final String LAYOUT_MANAGER_STATE_KEY = "LAYOUT_MANAGER_STATE_KEY";
@@ -72,6 +77,7 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
     public void onStart() {
         super.onStart();
         busSubscribe();
+        bindLocationService();
     }
 
     @Override
@@ -84,8 +90,10 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
     protected void onEvent(Object event) {
         if (event instanceof LandmarkSelectAdapter.SelectLandmarkEvent) {
             updateSelection((LandmarkSelectAdapter.SelectLandmarkEvent) event);
+
         } else if (event instanceof LandmarkSelectAdapter.ShowLandmarkInfoEvent) {
             showLandmarkInfo(((LandmarkSelectAdapter.ShowLandmarkInfoEvent) event).landmarkId);
+
         } else if (event instanceof OnLandmarkLoadEvent) {
             updateLandmarkView();
         }
@@ -100,6 +108,7 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
 
     @Override
     public void onStop() {
+        unbindLocationService();
         busUnsubscribe();
         super.onStop();
     }
@@ -177,20 +186,28 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
     }
 
     public static class DataFragment extends RetainFragment {
-        private LandmarkRepository landmarkRepository;
-
-        private List<HistoricLandmarkSelect> mLandmarks = new ArrayList<>(0);
+        private List<HistoricLandmarkDistanceSelect> mLandmarks = new ArrayList<>(0);
 
         private int mSelectedAdapterPosition = -1;
         private long mSelectedLandmarkId;
+
+        private static final String IS_ALPHA_SORT_KEY = "IS_ALPHA_SORT_KEY";
+        private SharedPreferences activityPreferences;
+
+        private final AtomicReference<Location> lastLocationAr = new AtomicReference<>();
+
+        @Override
+        public void onAttach(Context context) {
+            super.onAttach(context);
+
+            activityPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        }
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
             busSubscribe();
-
-            landmarkRepository = RepositoryProvider.getLandmark();
 
             loadLandmarks();
         }
@@ -199,6 +216,15 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
         protected void onEvent(Object event) {
             if (event instanceof OnQueryLandmarksEvent) {
                 loadLandmarks();
+
+            } else if (event instanceof OnLocationChangeEvent) {
+                Location location = ((OnLocationChangeEvent) event).location;
+                lastLocationAr.set(location);
+
+                if (!isAlphaSort()) {
+                    // Easier than creating more methods to sort by distance and republishing
+                    loadLandmarks();
+                }
             }
         }
 
@@ -208,8 +234,7 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
             super.onDestroy();
         }
 
-
-        public List<HistoricLandmarkSelect> getLandmarkData() {
+        public List<HistoricLandmarkDistanceSelect> getLandmarkData() {
             return Collections.unmodifiableList(mLandmarks);
         }
 
@@ -226,27 +251,25 @@ public class SelectLandmarkFragment extends DoneCancelBarFragment {
             return mSelectedLandmarkId;
         }
 
+        private boolean isAlphaSort() {
+            return activityPreferences.getBoolean(IS_ALPHA_SORT_KEY, false);
+        }
+
         private void loadLandmarks() {
-            Observable.just(0)
+            Location location = lastLocationAr.get();
+            boolean isAlphaSort = isAlphaSort() || location == null;
+            Comparator<HistoricLandmarkDistance> comparator = isAlphaSort
+                    ? HistoricLandmarkDistance.NAME_COMPARATOR
+                    : new HistoricLandmarkDistance.SquareDistanceComparator(location);
+            LoadLandmarksAction action =
+                    new LoadLandmarksAction(RepositoryProvider.getLandmark(), location, comparator);
+
+            Observable.create(action)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .map(new Func1<Integer, List<HistoricLandmarkSelect>>() {
+                    .subscribe(new Action1<List<HistoricLandmarkDistanceSelect>>() {
                         @Override
-                        public List<HistoricLandmarkSelect> call(Integer i) {
-                            List<HistoricLandmark> landmarks = landmarkRepository.getLandmarks();
-                            List<HistoricLandmarkSelect> landmarkSelects =
-                                    new ArrayList<>(landmarks.size());
-                            for (HistoricLandmark landmark : landmarks) {
-                                landmarkSelects.add(new HistoricLandmarkSelect(landmark));
-                            }
-                            // TODO Sort by distance if location is known
-                            Collections.sort(landmarkSelects, HistoricLandmarkSelect.NAME_COMPARATOR);
-                            return landmarkSelects;
-                        }
-                    })
-                    .subscribe(new Action1<List<HistoricLandmarkSelect>>() {
-                        @Override
-                        public void call(List<HistoricLandmarkSelect> landmarks) {
+                        public void call(List<HistoricLandmarkDistanceSelect> landmarks) {
                             mLandmarks = landmarks;
                             bus.publish(new OnLandmarkLoadEvent());
                         }
