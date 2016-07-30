@@ -37,6 +37,7 @@ dependencies {
         sq = projectDependency.square
 
     compile s.design,
+            s.cardView,
             s.appCompat,
             s.volley
 

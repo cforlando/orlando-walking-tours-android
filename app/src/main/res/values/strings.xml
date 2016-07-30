@@ -18,6 +18,8 @@
     <string name="title_done">Done</string>
     <string name="title_cancel">Cancel</string>
 
+    <string name="title_search">Search</string>
+
     <plurals name="stop_count_format_d">
         <item quantity="one">%d stop</item>
         <item quantity="other">%d stops</item>
@@ -27,4 +29,6 @@
     <string name="define_name_to_save">Name this tour</string>
 
     <string name="request_location">Turn on location</string>
+
+    <string name="map_view">Map view</string>
 </resources>

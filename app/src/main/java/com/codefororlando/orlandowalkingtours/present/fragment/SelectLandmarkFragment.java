@@ -6,8 +6,13 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.codefororlando.orlandowalkingtours.BusProvider;
 import com.codefororlando.orlandowalkingtours.R;
@@ -35,6 +40,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -58,6 +64,12 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
 
     @BindView(android.R.id.list)
     RecyclerView landmarkRecyclerView;
+    @BindView(R.id.action_bar)
+    View actionBar;
+    @BindView(R.id.search)
+    SearchView searchView;
+    @BindView(R.id.map_view_action)
+    View mapViewAction;
 
     private DataFragment dataFragment;
 
@@ -74,9 +86,20 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
 
         dataFragment = RetainFragment.getOrAdd(this, DataFragment.class, getArguments());
 
+        // Restore list viewing position
         if (savedInstanceState != null) {
             layoutManagerState = savedInstanceState.getParcelable(LAYOUT_MANAGER_STATE_KEY);
         }
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        wireActionBarBehavior();
+        return view;
     }
 
     @Override
@@ -127,6 +150,37 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
     @Override
     protected int getLayoutResId() {
         return R.layout.select_landmark_fragment;
+    }
+
+    private void wireActionBarBehavior() {
+        final BottomSheetBehavior behavior = BottomSheetBehavior.from(actionBar);
+        behavior.setHideable(true);
+        landmarkRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0) {
+                    if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    }
+
+                } else {
+                    if (behavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
+                        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    }
+                }
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+    }
+
+    @OnClick(R.id.map_view_action)
+    public void onShowMapView() {
+        /*
+         * TODO Show landmarks and allow selection of landmarks not yet selected.
+         *      Toggle between RecyclerView and MapView in layout
+         *      keeping done/cancel and action bar in both views.
+         */
+        logD("Be kind and implement map view of landmarks");
     }
 
     private void updateUi() {
