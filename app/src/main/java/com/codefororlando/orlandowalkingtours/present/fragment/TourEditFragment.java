@@ -184,7 +184,7 @@ public class TourEditFragment extends DoneCancelBarLocationFragment
     }
 
     private void addStop() {
-        startActivity(SelectLandmarkActivity.getIntent(getActivity(), getClass()));
+        startActivity(SelectLandmarkActivity.getIntent(getActivity(), getClass(), getTourId()));
     }
 
     private void updateUi() {

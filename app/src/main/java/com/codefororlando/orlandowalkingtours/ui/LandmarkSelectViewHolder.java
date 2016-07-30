@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.codefororlando.orlandowalkingtours.R;
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkDistanceSelect;
+import com.codefororlando.orlandowalkingtours.util.ViewUtil;
 
 import butterknife.OnClick;
 
@@ -27,10 +28,12 @@ public class LandmarkSelectViewHolder extends LandmarkViewHolder {
         });
     }
 
-    public void bind(HistoricLandmarkDistanceSelect landmarkSelect) {
+    public void bind(HistoricLandmarkDistanceSelect landmarkSelect, boolean disable) {
         super.bind(landmarkSelect);
 
         itemView.setSelected(landmarkSelect.isSelected);
+
+        ViewUtil.enable(itemView, !disable);
     }
 
     @OnClick(R.id.info)

@@ -13,7 +13,18 @@ public class RetainFragment extends BaseFragment {
     }
 
     public static <F extends RetainFragment> F getOrAdd(Fragment fragment, Class<F> cls) {
-        return getOrAdd(fragment.getActivity(), fragment.getFragmentManager(), cls);
+        return getOrAdd(fragment, cls, null);
+    }
+
+    public static <F extends RetainFragment> F getOrAdd(Fragment fragment,
+                                                        Class<F> cls,
+                                                        Bundle arguments) {
+        return getOrAdd(
+                fragment.getActivity(),
+                fragment.getFragmentManager(),
+                cls.getName(),
+                arguments
+        );
     }
 
     public static <F extends RetainFragment> F getOrAdd(Context context,

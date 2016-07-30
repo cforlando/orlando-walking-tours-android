@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 
 import com.codefororlando.orlandowalkingtours.event.OnCancelSelectLandmarkEvent;
 import com.codefororlando.orlandowalkingtours.event.OnSelectLandmarkEvent;
@@ -14,9 +15,10 @@ import java.io.Serializable;
 
 // Host for standalone landmark selection
 public class SelectLandmarkActivity extends BaseActivity {
-    public static Intent getIntent(Context context, Class cls) {
+    public static Intent getIntent(Context context, Class cls, long tourId) {
         return new Intent(context, SelectLandmarkActivity.class)
-                .putExtra(SelectLandmarkFragment.CALLER_KEY, cls);
+                .putExtra(SelectLandmarkFragment.CALLER_KEY, cls)
+                .putExtra(SelectLandmarkFragment.TOUR_ID_KEY, tourId);
     }
 
     @Override
@@ -26,9 +28,11 @@ public class SelectLandmarkActivity extends BaseActivity {
         if (savedInstanceState == null) {
             Serializable caller =
                     getIntent().getSerializableExtra(SelectLandmarkFragment.CALLER_KEY);
+            long tourId = getIntent().getLongExtra(SelectLandmarkFragment.TOUR_ID_KEY, 0);
+            Fragment fragment = SelectLandmarkFragment.newInstance(caller, tourId);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(android.R.id.content, SelectLandmarkFragment.newInstance(caller))
+                    .add(android.R.id.content, fragment)
                     .commit();
         }
 

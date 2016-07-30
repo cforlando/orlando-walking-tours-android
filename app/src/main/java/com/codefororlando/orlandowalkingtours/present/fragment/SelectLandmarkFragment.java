@@ -14,6 +14,7 @@ import com.codefororlando.orlandowalkingtours.R;
 import com.codefororlando.orlandowalkingtours.RepositoryProvider;
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkDistance;
 import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkDistanceSelect;
+import com.codefororlando.orlandowalkingtours.data.model.Tour;
 import com.codefororlando.orlandowalkingtours.event.OnCancelSelectLandmarkEvent;
 import com.codefororlando.orlandowalkingtours.event.OnLocationChangeEvent;
 import com.codefororlando.orlandowalkingtours.event.OnQueryLandmarksEvent;
@@ -26,26 +27,31 @@ import com.codefororlando.orlandowalkingtours.ui.LandmarkSelectAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import butterknife.BindView;
 import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
     public static final String CALLER_KEY = "CALLER_KEY";
+    public static final String TOUR_ID_KEY = "TOUR_ID_KEY";
 
     private static final String LAYOUT_MANAGER_STATE_KEY = "LAYOUT_MANAGER_STATE_KEY";
 
-    public static SelectLandmarkFragment newInstance(Serializable caller) {
+    public static SelectLandmarkFragment newInstance(Serializable caller, long tourId) {
         SelectLandmarkFragment fragment = new SelectLandmarkFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(CALLER_KEY, caller);
+        bundle.putLong(TOUR_ID_KEY, tourId);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -66,7 +72,7 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        dataFragment = RetainFragment.getOrAdd(this, DataFragment.class);
+        dataFragment = RetainFragment.getOrAdd(this, DataFragment.class, getArguments());
 
         if (savedInstanceState != null) {
             layoutManagerState = savedInstanceState.getParcelable(LAYOUT_MANAGER_STATE_KEY);
@@ -95,6 +101,9 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
             showLandmarkInfo(((LandmarkSelectAdapter.ShowLandmarkInfoEvent) event).landmarkId);
 
         } else if (event instanceof OnLandmarkLoadEvent) {
+            updateLandmarkView();
+
+        } else if (event instanceof OnTourLoadEvent) {
             updateLandmarkView();
         }
     }
@@ -133,6 +142,7 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
             }
             landmarkRecyclerView.setAdapter(mLandmarkAdapter);
         }
+        mLandmarkAdapter.setTourStopIds(dataFragment.getTourStopIds());
         mLandmarkAdapter.setLandmarks(dataFragment.getLandmarkData());
     }
 
@@ -182,19 +192,35 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
         return getArguments().getSerializable(CALLER_KEY);
     }
 
+    private static class OnTourLoadEvent {
+    }
+
     private static class OnLandmarkLoadEvent {
+    }
+
+    private static class PositionId {
+        private static final PositionId NO_POSITION_ID = new PositionId(-1, 0);
+
+        public final int position;
+        public final long id;
+
+        public PositionId(int position, long id) {
+            this.position = position;
+            this.id = id;
+        }
     }
 
     public static class DataFragment extends RetainFragment {
         private List<HistoricLandmarkDistanceSelect> mLandmarks = new ArrayList<>(0);
 
-        private int mSelectedAdapterPosition = -1;
-        private long mSelectedLandmarkId;
+        private PositionId mSelectedPositionId = PositionId.NO_POSITION_ID;
 
         private static final String IS_ALPHA_SORT_KEY = "IS_ALPHA_SORT_KEY";
         private SharedPreferences activityPreferences;
 
         private final AtomicReference<Location> lastLocationAr = new AtomicReference<>();
+
+        private Collection<Long> mTourStopIds = Collections.emptySet();
 
         @Override
         public void onAttach(Context context) {
@@ -208,6 +234,8 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
             super.onCreate(savedInstanceState);
 
             busSubscribe();
+
+            loadTour(getArguments().getLong(TOUR_ID_KEY, 0));
 
             loadLandmarks();
         }
@@ -238,21 +266,52 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
             return Collections.unmodifiableList(mLandmarks);
         }
 
+        public Collection<Long> getTourStopIds() {
+            return Collections.unmodifiableCollection(mTourStopIds);
+        }
+
         public void setSelection(int adapterPosition, long landmarkId) {
-            mSelectedAdapterPosition = adapterPosition;
-            mSelectedLandmarkId = landmarkId;
+            mSelectedPositionId = new PositionId(adapterPosition, landmarkId);
         }
 
         public int getSelectedAdapterPosition() {
-            return mSelectedAdapterPosition;
+            return mSelectedPositionId.position;
         }
 
         public long getSelectedLandmarkId() {
-            return mSelectedLandmarkId;
+            return mSelectedPositionId.id;
         }
 
         private boolean isAlphaSort() {
             return activityPreferences.getBoolean(IS_ALPHA_SORT_KEY, false);
+        }
+
+        private void loadTour(final long tourId) {
+            if (tourId <= 0) {
+                return;
+            }
+
+            Observable.create(new Observable.OnSubscribe<Collection<Long>>() {
+                @Override
+                public void call(Subscriber<? super Collection<Long>> subscriber) {
+                    Tour tour = RepositoryProvider.getTour().get(tourId);
+                    Collection<Long> stopIds = new HashSet<>();
+                    if (tour != null) {
+                        stopIds.addAll(tour.getTourStopIds());
+                    }
+                    subscriber.onNext(stopIds);
+                    subscriber.onCompleted();
+                }
+            })
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<Collection<Long>>() {
+                        @Override
+                        public void call(Collection<Long> stopIds) {
+                            mTourStopIds = stopIds;
+                            bus.publish(new OnTourLoadEvent());
+                        }
+                    });
         }
 
         private void loadLandmarks() {
@@ -271,9 +330,35 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
                         @Override
                         public void call(List<HistoricLandmarkDistanceSelect> landmarks) {
                             mLandmarks = landmarks;
+
+                            restoreSelectedLandmark(landmarks);
+
                             bus.publish(new OnLandmarkLoadEvent());
                         }
                     });
+        }
+
+        /**
+         * Restores the previous selection data if still consistent or resets selection state
+         */
+        private void restoreSelectedLandmark(List<HistoricLandmarkDistanceSelect> landmarks) {
+            int position = mSelectedPositionId.position;
+            if (position >= 0 && position < landmarks.size()) {
+                HistoricLandmarkDistanceSelect landmarkDistanceSelect = landmarks.get(position);
+                // Previously selected is still in the same position
+                if (landmarkDistanceSelect.landmark.id == mSelectedPositionId.id) {
+                    landmarkDistanceSelect.isSelected = true;
+                }
+                // A different landmark is in the previously selected position
+                else {
+                    mSelectedPositionId = PositionId.NO_POSITION_ID;
+                }
+
+            }
+            // Previously selected position is now out of bounds
+            else {
+                mSelectedPositionId = PositionId.NO_POSITION_ID;
+            }
         }
     }
 }
