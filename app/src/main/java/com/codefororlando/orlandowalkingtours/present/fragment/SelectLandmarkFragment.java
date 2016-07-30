@@ -30,6 +30,7 @@ import com.codefororlando.orlandowalkingtours.present.base.DoneCancelBarLocation
 import com.codefororlando.orlandowalkingtours.present.base.RetainFragment;
 import com.codefororlando.orlandowalkingtours.rx.LoadLandmarksAction;
 import com.codefororlando.orlandowalkingtours.ui.LandmarkSelectAdapter;
+import com.codefororlando.orlandowalkingtours.util.PermissionUtil;
 import com.codefororlando.orlandowalkingtours.util.ScreenKeyboardUtil;
 
 import java.io.Serializable;
@@ -73,8 +74,8 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
     View actionBar;
     @BindView(R.id.search)
     SearchView searchView;
-    @BindView(R.id.map_view_action)
-    View mapViewAction;
+    @BindView(R.id.toggle_view_action)
+    View toggleViewAction;
 
     private DataFragment dataFragment;
 
@@ -103,7 +104,7 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
-        wireActionBarBehavior();
+        wireActionBar();
         return view;
     }
 
@@ -157,7 +158,7 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
         return R.layout.select_landmark_fragment;
     }
 
-    private void wireActionBarBehavior() {
+    private void wireActionBar() {
         // Bottom sheet shows/hides on swipe down/up
         final BottomSheetBehavior behavior = BottomSheetBehavior.from(actionBar);
         behavior.setHideable(true);
@@ -191,13 +192,22 @@ public class SelectLandmarkFragment extends DoneCancelBarLocationFragment {
                 return false;
             }
         });
+
+        updateMapViewAction();
     }
 
-    @OnClick(R.id.map_view_action)
-    public void onShowMapView() {
+    private void updateMapViewAction() {
+        int visibility = PermissionUtil.get().hasLocationPermission() ? View.VISIBLE : View.GONE;
+        toggleViewAction.setVisibility(visibility);
+    }
+
+    @OnClick(R.id.toggle_view_action)
+    public void onToggleView() {
         /*
-         * TODO Show landmarks and allow selection of landmarks not yet selected.
+         * TODO Request location permission if not granted first.
          *      Toggle between RecyclerView and MapView in layout
+         *      Toggle the icon and contentDescription of this action as well
+         *      Show landmarks and allow selection of landmarks not yet selected.
          *      keeping done/cancel and action bar in both views.
          */
         logD("Be kind and implement map view of landmarks");
