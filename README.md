@@ -14,7 +14,13 @@ The list of historic locations is currently stored [here](https://brigades.opend
 Project meta is defined in the gradle build files ([project](https://github.com/cforlando/orlando-walking-tours-android/blob/master/build.gradle), [app](https://github.com/cforlando/orlando-walking-tours-android/blob/master/app/build.gradle), [data module](https://github.com/cforlando/orlando-walking-tours-android/blob/master/data/build.gradle)) and the [version file](https://github.com/cforlando/orlando-walking-tours-android/blob/master/gradleProject/version.gradle)
 
 ## Development Consideration
-This is a community project. Unless you are devoting serious time to supporting this app do not introduce features requiring long term support. Feel free to use proven patterns but do not introduce unnecessary complexity. For example, do not use Dagger or another overarching DI solution as most developers are not familiar with this architecture and will only be deterred from participating when they are unable to wire together simple dependencies. As always, adhere to principle of least privilege. Contain code to as few files as possible with the most restrictive access as possible. Do not try to optimize and tangle the code base purely to suit your needs. Always question if other (future) contributors will be able to build off of what you contribute.
+This is a community project. Unless you are devoting serious time to supporting this app do not introduce features requiring long term support. 
+Feel free to use proven patterns but do not introduce unnecessary complexity. 
+For example, do not use Dagger or another overarching DI solution as most developers are not familiar with this architecture and will only be deterred from participating when they are unable to wire together simple dependencies. 
+Same goes for Proguard and knowing how to specify rules. 
+As always, adhere to principle of least privilege.  Contain code to as few files as possible with the most restrictive access as possible. 
+Do not try to optimize and tangle the code base purely to suit your needs. 
+Always question if other (future) contributors will be able to build off of what you contribute.
 
 ## Contributing
 We encourage anyone who is interested in contributing to Orlando Walking Tours to do so!  In order to ensure good code quality, there are some guidelines we would like to adhere to when contributing to this project. 
