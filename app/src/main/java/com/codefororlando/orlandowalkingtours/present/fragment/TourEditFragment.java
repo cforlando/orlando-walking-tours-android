@@ -1,11 +1,13 @@
 package com.codefororlando.orlandowalkingtours.present.fragment;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,7 @@ import com.codefororlando.orlandowalkingtours.rx.OnSaveTourAction;
 import com.codefororlando.orlandowalkingtours.rx.SaveTourAction;
 import com.codefororlando.orlandowalkingtours.ui.TourStopAdapter;
 import com.codefororlando.orlandowalkingtours.util.PermissionUtil;
+import com.codefororlando.orlandowalkingtours.util.ScreenKeyboardUtil;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -69,6 +72,8 @@ public class TourEditFragment extends DoneCancelBarLocationFragment
 
     private Snackbar mLocationPermissionSnackbar;
 
+    private int mItemViewBackgroundResId;
+
     // Lifecycle/event
 
     @Override
@@ -103,6 +108,7 @@ public class TourEditFragment extends DoneCancelBarLocationFragment
         tourStopAdapter = new TourStopAdapter(bus);
         tourStopRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         tourStopRecyclerView.setAdapter(tourStopAdapter);
+        getDragDropHelper().attachToRecyclerView(tourStopRecyclerView);
 
         return view;
     }
@@ -176,6 +182,71 @@ public class TourEditFragment extends DoneCancelBarLocationFragment
     @Override
     protected int getLayoutResId() {
         return R.layout.tour_edit_fragment;
+    }
+
+    ItemTouchHelper getDragDropHelper() {
+        return new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                return makeMovementFlags(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0);
+            }
+
+            @Override
+            public boolean isLongPressDragEnabled() {
+                return true;
+            }
+
+            @Override
+            public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
+                if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
+                    // Drag is started, change view indicating drag
+                    ScreenKeyboardUtil.hideScreenKeyboard(getActivity());
+                    viewHolder.itemView.setBackgroundColor(getResources().getColor(R.color.accent));
+                }
+                super.onSelectedChanged(viewHolder, actionState);
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView,
+                                  RecyclerView.ViewHolder viewHolder,
+                                  RecyclerView.ViewHolder target) {
+                int from = viewHolder.getAdapterPosition(),
+                        to = target.getAdapterPosition();
+                dataFragment.moveStop(from, to);
+                tourStopAdapter.notifyItemMoved(from, to);
+                return true;
+            }
+
+            @Override
+            public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                super.clearView(recyclerView, viewHolder);
+
+                // Load once
+                if (mItemViewBackgroundResId == 0) {
+                    int[] attrs = new int[]{R.attr.selectableItemBackgroundBorderless};
+                    TypedArray typedArray = recyclerView.getContext().obtainStyledAttributes(attrs);
+                    mItemViewBackgroundResId = typedArray.getResourceId(0, 0);
+                    typedArray.recycle();
+                }
+                /*
+                 * Padding save/restore is due to bug on 19-
+                 * http://stackoverflow.com/questions/10095196/whered-padding-go-when-setting-background-drawable
+                 */
+                View view = viewHolder.itemView;
+                int pL = view.getPaddingLeft();
+                int pT = view.getPaddingTop();
+                int pR = view.getPaddingRight();
+                int pB = view.getPaddingBottom();
+
+                view.setBackgroundResource(mItemViewBackgroundResId);
+
+                view.setPadding(pL, pT, pR, pB);
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            }
+        });
     }
 
     @OnClick(R.id.add_stop)
@@ -397,6 +468,11 @@ public class TourEditFragment extends DoneCancelBarLocationFragment
 
         public void deleteTourStop(int index) {
             mTourStops.remove(index);
+        }
+
+        public void moveStop(int from, int to) {
+            HistoricLandmarkDistance prev = mTourStops.remove(from);
+            mTourStops.add(to, prev);
         }
 
         @NonNull
