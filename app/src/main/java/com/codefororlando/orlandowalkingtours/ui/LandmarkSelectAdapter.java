@@ -4,11 +4,12 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.codefororlando.orlandowalkingtours.R;
-import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkSelect;
+import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkDistanceSelect;
 import com.codefororlando.orlandowalkingtours.event.Bus;
 import com.codefororlando.orlandowalkingtours.present.base.BaseRecyclerViewAdapter;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class LandmarkSelectAdapter extends BaseRecyclerViewAdapter<LandmarkSelectViewHolder>
@@ -33,13 +34,19 @@ public class LandmarkSelectAdapter extends BaseRecyclerViewAdapter<LandmarkSelec
         }
     }
 
-    private List<HistoricLandmarkSelect> mLandmarkData = new ArrayList<>(0);
+    private List<HistoricLandmarkDistanceSelect> mLandmarkData = Collections.emptyList();
+    private Collection<Long> mTourStopIds = Collections.emptySet();
 
     public LandmarkSelectAdapter(Bus bus) {
         super(bus, R.layout.landmark_item);
     }
 
-    public void setLandmarks(@NonNull List<HistoricLandmarkSelect> landmarks) {
+    public void setTourStopIds(Collection<Long> tourStopIds) {
+        mTourStopIds = tourStopIds;
+        notifyDataSetChanged();
+    }
+
+    public void setLandmarks(@NonNull List<HistoricLandmarkDistanceSelect> landmarks) {
         mLandmarkData = landmarks;
         notifyDataSetChanged();
     }
@@ -58,7 +65,7 @@ public class LandmarkSelectAdapter extends BaseRecyclerViewAdapter<LandmarkSelec
 
     @Override
     public void onItemPress(int position) {
-        HistoricLandmarkSelect landmarkSelect = mLandmarkData.get(position);
+        HistoricLandmarkDistanceSelect landmarkSelect = mLandmarkData.get(position);
         boolean select = !landmarkSelect.isSelected;
         bus.publish(new SelectLandmarkEvent(select, position, landmarkSelect.landmark.id));
     }
@@ -72,7 +79,9 @@ public class LandmarkSelectAdapter extends BaseRecyclerViewAdapter<LandmarkSelec
 
     @Override
     public void onBindViewHolder(LandmarkSelectViewHolder holder, int position) {
-        holder.bind(mLandmarkData.get(position));
+        HistoricLandmarkDistanceSelect landmarkDistanceSelect = mLandmarkData.get(position);
+        boolean isStop = mTourStopIds.contains(landmarkDistanceSelect.landmark.id);
+        holder.bind(landmarkDistanceSelect, isStop);
     }
 
     @Override

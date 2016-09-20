@@ -55,7 +55,7 @@ public class App extends Application {
 
         RepositoryProvider.initialize(
                 DatabaseHelper.get(), VolleyProvider.getRequestQueue(), BusProvider.get(), isDebug);
-        RepositoryProvider.getLandmark().queryLandmarks();
+        RepositoryProvider.getLandmark().load();
 
         PermissionUtil.initialize(this);
     }

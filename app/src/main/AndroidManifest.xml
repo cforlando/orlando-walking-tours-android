@@ -44,6 +44,8 @@
 
         <activity android:name=".present.activity.LandmarkDetailActivity" />
 
+        <service android:name=".service.LocationService" />
+
     </application>
 
 </manifest>

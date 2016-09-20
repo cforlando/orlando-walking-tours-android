@@ -5,7 +5,7 @@
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary"
     android:baselineAligned="false"
-    app:elevation="@dimen/app_bar_elevation">
+    android:elevation="@dimen/app_bar_elevation">
 
     <FrameLayout
         android:id="@+id/cancel"

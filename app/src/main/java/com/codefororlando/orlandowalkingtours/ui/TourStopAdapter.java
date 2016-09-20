@@ -1,11 +1,11 @@
 package com.codefororlando.orlandowalkingtours.ui;
 
+import android.location.Location;
 import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.codefororlando.orlandowalkingtours.R;
-import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmark;
-import com.codefororlando.orlandowalkingtours.data.repository.LandmarkRepository;
+import com.codefororlando.orlandowalkingtours.data.model.HistoricLandmarkDistance;
 import com.codefororlando.orlandowalkingtours.event.Bus;
 import com.codefororlando.orlandowalkingtours.present.base.BaseRecyclerViewAdapter;
 
@@ -30,17 +30,21 @@ public class TourStopAdapter extends BaseRecyclerViewAdapter<TourStopViewHolder>
         }
     }
 
-    private final LandmarkRepository landmarkRepository;
+    private List<HistoricLandmarkDistance> mTourStopData = new ArrayList<>(0);
 
-    private List<Long> mTourStopData = new ArrayList<>(0);
+    private Location mLocation;
 
-    public TourStopAdapter(Bus bus, LandmarkRepository landmarkRepository) {
+    public TourStopAdapter(Bus bus) {
         super(bus, R.layout.tour_stop_item);
-        this.landmarkRepository = landmarkRepository;
     }
 
-    public void setTourStopIds(@NonNull List<Long> tourStopIds) {
-        mTourStopData = tourStopIds;
+    public void setTourStopIds(@NonNull List<HistoricLandmarkDistance> tourStops) {
+        mTourStopData = tourStops;
+        notifyDataSetChanged();
+    }
+
+    public void setLocation(Location location) {
+        mLocation = location;
         notifyDataSetChanged();
     }
 
@@ -65,8 +69,8 @@ public class TourStopAdapter extends BaseRecyclerViewAdapter<TourStopViewHolder>
 
     @Override
     public void onBindViewHolder(TourStopViewHolder holder, int position) {
-        long landmarkId = mTourStopData.get(position);
-        HistoricLandmark landmark = landmarkRepository.getLandmark(landmarkId);
+        HistoricLandmarkDistance landmark = mTourStopData.get(position);
+        landmark.setLocation(mLocation);
         holder.bind(landmark);
     }
 

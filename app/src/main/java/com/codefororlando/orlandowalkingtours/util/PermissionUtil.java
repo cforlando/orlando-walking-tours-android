@@ -64,6 +64,9 @@ public class PermissionUtil {
         return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
     }
 
+    /**
+     * @return TRUE if location permission has been previously denied or FALSE otherwise
+     */
     public boolean hasDeniedLocationPermissionRequest(Activity activity) {
         boolean hasDenied = false;
         for (String permission : locationPermissions) {
@@ -72,10 +75,16 @@ public class PermissionUtil {
         return hasDenied;
     }
 
+    // Request view convenience
+
     public boolean showLocationPermissionFragment(FragmentManager fragmentManager) {
         return showLocationPermissionFragment(fragmentManager, null);
     }
 
+    /**
+     * @return TRUE if the request location fragment is shown or FALSE if no action is taken
+     * @see #removeRequestLocationPermissionFragment(FragmentManager)
+     */
     public boolean showLocationPermissionFragment(FragmentManager fragmentManager,
                                                   Fragment targetFragment) {
         boolean hasLocationPermission = PermissionUtil.get().hasLocationPermission();
@@ -99,6 +108,10 @@ public class PermissionUtil {
         return false;
     }
 
+    /**
+     * @see #showLocationPermissionFragment(FragmentManager)
+     * @see #showLocationPermissionFragment(FragmentManager, Fragment)
+     */
     public void removeRequestLocationPermissionFragment(FragmentManager fragmentManager) {
         Fragment fragment = fragmentManager.findFragmentByTag(permissionRequestFragmentTag);
         if (fragment != null) {

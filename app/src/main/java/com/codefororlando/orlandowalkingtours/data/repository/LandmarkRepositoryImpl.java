@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
@@ -42,7 +43,7 @@ public class LandmarkRepositoryImpl
 
     // Landmarks for a given city is low and should not stress device memory therefore can be cached
     private final Map<Long, HistoricLandmark> cache = new ConcurrentHashMap<>();
-    private List<HistoricLandmark> mList = new ArrayList<>();
+    private final Map<String, List<HistoricLandmark>> queryCache = new ConcurrentHashMap<>();
 
     private final Action1<List<HistoricLandmark>> landmarkPublisher =
             new Action1<List<HistoricLandmark>>() {
@@ -63,16 +64,39 @@ public class LandmarkRepositoryImpl
     }
 
     @Override
-    public List<HistoricLandmark> getLandmarks() {
-        if (cache.size() > 0) {
-            return mList;
+    public void load() {
+        queryCache.clear();
+
+        Observable.create(new Observable.OnSubscribe<List<HistoricLandmark>>() {
+            @Override
+            public void call(Subscriber<? super List<HistoricLandmark>> subscriber) {
+                subscriber.onNext(getLandmarks(""));
+                subscriber.onCompleted();
+            }
+        })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(landmarkPublisher);
+    }
+
+    @Override
+    public List<HistoricLandmark> getLandmarks(String query) {
+        // Default query is blank string
+        if (query == null) {
+            query = "";
         }
 
-        List<HistoricLandmark> landmarks = databaseHelper.getLandmarks();
+        synchronized (queryCache) {
+            if (queryCache.containsKey(query)) {
+                return queryCache.get(query);
+            }
+        }
 
-        // Landmarks have been downloaded
-        if (landmarks.size() > 0) {
-            cacheLandmarks(landmarks);
+        List<HistoricLandmark> landmarks = databaseHelper.getLandmarks(query);
+
+        // Landmarks have been downloaded or result set is empty
+        if (queryCache.size() > 0 || landmarks.size() > 0) {
+            cacheLandmarks(query, landmarks);
             return landmarks;
         }
 
@@ -86,25 +110,6 @@ public class LandmarkRepositoryImpl
     }
 
     @Override
-    public void queryLandmarks() {
-        if (cache.size() > 0) {
-            landmarkPublisher.call(mList);
-
-        } else {
-            Observable.just(0)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .map(new Func1<Integer, List<HistoricLandmark>>() {
-                        @Override
-                        public List<HistoricLandmark> call(Integer integer) {
-                            return getLandmarks();
-                        }
-                    })
-                    .subscribe(landmarkPublisher);
-        }
-    }
-
-    @Override
     public HistoricLandmark getLandmark(long id) {
         HistoricLandmark landmark = cache.get(id);
         // Either landmarks have not been queried or landmarks have changed
@@ -114,11 +119,11 @@ public class LandmarkRepositoryImpl
         return landmark;
     }
 
-    private void cacheLandmarks(List<HistoricLandmark> landmarks) {
+    private void cacheLandmarks(String query, List<HistoricLandmark> landmarks) {
         for (HistoricLandmark landmark : landmarks) {
             cache.put(landmark.id, landmark);
         }
-        mList = new ArrayList<>(cache.values());
+        queryCache.put(query, landmarks);
     }
 
     // Response.Listener<List<RemoteLandmark>>
@@ -133,7 +138,7 @@ public class LandmarkRepositoryImpl
                     public List<HistoricLandmark> call(List<RemoteLandmark> remoteLandmarks) {
                         List<HistoricLandmark> landmarks =
                                 databaseHelper.saveLandmarks(remoteLandmarks);
-                        cacheLandmarks(landmarks);
+                        cacheLandmarks("", landmarks);
                         return landmarks;
                     }
                 })

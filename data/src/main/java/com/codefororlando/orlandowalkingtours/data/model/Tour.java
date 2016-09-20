@@ -24,10 +24,9 @@ public class Tour {
         setTourStops(stops);
     }
 
-    @SuppressWarnings("unchecked")
     public void setTourStops(List<Long> stops) {
         synchronized (tourStopIdsAr) {
-            tourStopIdsAr.set(stops == null ? Collections.EMPTY_LIST : stops);
+            tourStopIdsAr.set(stops == null ? Collections.<Long>emptyList() : stops);
         }
     }
 
