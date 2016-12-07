@@ -31,6 +31,7 @@ public class TourLandmarkTable extends AutoIncrementIdTable {
 
     @Override
     public void onUpdate(SQLiteDatabase database, int oldVersion, int newVersion) {
+        // TODO Alter schema properly as necessary
     }
 
     @TargetApi(19)
