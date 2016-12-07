@@ -1,4 +1,5 @@
 ext {
+    // Remember to update the version in /.travis.yml as well
     androidBuildToolsVersion = '25.0.1'
 
     versionCode = 2
