@@ -8,14 +8,13 @@ public class LandmarkFtsTable extends FtsTable {
     @Override
     public String getCreateStatement() {
         return String.format(
-                "CREATE VIRTUAL TABLE %s USING fts4(content='%s', %s, %s, %s, %s, %s);",
+                "CREATE VIRTUAL TABLE %s USING fts4(content='%s', %s, %s, %s, %s);",
                 TABLE_NAME,
                 LandmarkTable.TABLE_NAME,
                 LandmarkTable.NAME,
+                LandmarkTable.TYPE,
                 LandmarkTable.DESCRIPTION,
-                LandmarkTable.STREET_ADDRESS,
-                LandmarkTable.CITY,
-                LandmarkTable.STATE
+                LandmarkTable.STREET_ADDRESS
         );
     }
 
@@ -33,10 +32,9 @@ public class LandmarkFtsTable extends FtsTable {
     protected String[] getFtsColumnNames() {
         return new String[]{
                 LandmarkTable.NAME,
+                LandmarkTable.TYPE,
                 LandmarkTable.DESCRIPTION,
-                LandmarkTable.STREET_ADDRESS,
-                LandmarkTable.CITY,
-                LandmarkTable.STATE
+                LandmarkTable.STREET_ADDRESS
         };
     }
 

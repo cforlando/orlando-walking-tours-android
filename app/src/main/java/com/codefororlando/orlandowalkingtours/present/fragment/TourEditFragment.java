@@ -356,7 +356,7 @@ public class TourEditFragment extends DoneCancelBarLocationFragment
             nameEdit.setError(getString(R.string.define_name_to_save));
         } else {
             dataFragment.saveTour(getTourId(), name);
-            publishEvent(true);
+            publishEvent(false);
         }
     }
 

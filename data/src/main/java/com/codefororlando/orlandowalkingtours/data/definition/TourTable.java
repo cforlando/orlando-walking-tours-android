@@ -28,6 +28,7 @@ public class TourTable extends AutoIncrementIdTable {
 
     @Override
     public void onUpdate(SQLiteDatabase database, int oldVersion, int newVersion) {
+        // TODO Alter schema properly as necessary
     }
 
     private final String selectTourIdName =

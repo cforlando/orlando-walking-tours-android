@@ -6,6 +6,7 @@ import android.os.Parcelable;
 public class HistoricLandmark implements Parcelable {
     public final long id;
     public final String name;
+    public final String type;
     public final String streetAddress;
     public final String description;
     public final double latitude;
@@ -15,12 +16,14 @@ public class HistoricLandmark implements Parcelable {
 
     public HistoricLandmark(long id,
                             String name,
+                            String type,
                             String description,
                             String streetAddress,
                             double latitude,
                             double longitude) {
         this.id = id;
         this.name = name;
+        this.type = type;
         this.description = description;
         this.streetAddress = streetAddress;
         this.latitude = latitude;
@@ -38,6 +41,7 @@ public class HistoricLandmark implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeLong(id);
         parcel.writeString(name);
+        parcel.writeString(type);
         parcel.writeString(description);
         parcel.writeString(streetAddress);
         parcel.writeDouble(latitude);
@@ -58,6 +62,7 @@ public class HistoricLandmark implements Parcelable {
     private HistoricLandmark(Parcel in) {
         this(
                 in.readLong(),
+                in.readString(),
                 in.readString(),
                 in.readString(),
                 in.readString(),
