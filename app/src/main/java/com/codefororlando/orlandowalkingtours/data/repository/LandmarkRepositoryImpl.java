@@ -15,11 +15,11 @@ import com.codefororlando.orlandowalkingtours.event.RxBus;
 import com.codefororlando.orlandowalkingtours.log.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -168,10 +168,19 @@ public class LandmarkRepositoryImpl
                 String json = new String(
                         response.data,
                         HttpHeaderParser.parseCharset(response.headers));
-                Type listType = new TypeToken<ArrayList<RemoteLandmark>>() {
-                }.getType();
                 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").create();
-                List<RemoteLandmark> data = gson.fromJson(json, listType);
+                JsonObject root = gson.fromJson(json, JsonObject.class);
+                List<RemoteLandmark> data = new ArrayList<>();
+                for (Map.Entry<String, JsonElement> entry : root.entrySet()) {
+                    String city = entry.getKey();
+                    JsonObject cityData = entry.getValue().getAsJsonObject();
+                    for (Map.Entry<String, JsonElement> landmarkEntry : cityData.entrySet()) {
+                        String id = landmarkEntry.getKey();
+                        JsonObject landmarkData = landmarkEntry.getValue().getAsJsonObject();
+                        landmarkData.addProperty("id", id);
+                        data.add(gson.fromJson(landmarkData, RemoteLandmark.class));
+                    }
+                }
                 return Response.success(data, HttpHeaderParser.parseCacheHeaders(response));
             } catch (UnsupportedEncodingException e) {
                 return Response.error(new ParseError(e));
