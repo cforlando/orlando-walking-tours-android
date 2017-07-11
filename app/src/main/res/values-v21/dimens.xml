@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="corner_fab_space">@dimen/edge_space_material</dimen>
-</resources>
