@@ -1,4 +1,4 @@
-# Orlando Walking Tours Android  [![Build Status](https://travis-ci.org/cforlando/orlando-walking-tours-android.svg?branch=master)](https://travis-ci.org/cforlando/orlando-walking-tours-android)
+# Orlando Walking Tours Android  [![Build Status](https://travis-ci.org/cforlando/orlando-walking-tours-android.svg?branch=develop)](https://travis-ci.org/cforlando/orlando-walking-tours-android)
 ## About  
 **Orlando Walking Tours** is an Android app allowing users to create customized walking tours of the various historic locations around Orlando. 
 
