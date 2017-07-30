@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Orlando Walking Tours</string>
+    <string name="lets_get_started">Let\'s get started</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="browse">Browse</string>
+    <string name="placeholder">Placeholder</string>
 </resources>
