@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_browse"
         android:icon="@drawable/ic_search_black_24dp"
-        android:title="@string/browse" />
+        android:title="@string/tours" />
 
     <item
         android:id="@+id/navigation_dashboard"

@@ -7,4 +7,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="browse">Browse</string>
     <string name="placeholder">Placeholder</string>
+    <string name="tours">Tours</string>
+    <string name="under_construction">Under Construction</string>
 </resources>

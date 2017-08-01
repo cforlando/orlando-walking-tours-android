@@ -1,0 +1,2798 @@
+{
+  "meta": {
+    "view": {
+      "id": "hzkr-id6u",
+      "name": "Orlando Historical Landmarks",
+      "averageRating": 0,
+      "createdAt": 1422733274,
+      "displayType": "table",
+      "downloadCount": 49,
+      "hideFromCatalog": false,
+      "hideFromDataJson": false,
+      "indexUpdatedAt": 1465067402,
+      "locale": "",
+      "newBackend": false,
+      "numberOfComments": 0,
+      "oid": 21422207,
+      "provenance": "official",
+      "publicationAppendEnabled": false,
+      "publicationDate": 1465066824,
+      "publicationGroup": 2176646,
+      "publicationStage": "published",
+      "rowsUpdatedAt": 1465066767,
+      "rowsUpdatedBy": "qpa7-tia9",
+      "tableId": 11133077,
+      "totalTimesRated": 0,
+      "viewCount": 293,
+      "viewLastModified": 1465066824,
+      "viewType": "tabular",
+      "columns": [
+        {
+          "id": -1,
+          "name": "sid",
+          "dataTypeName": "meta_data",
+          "fieldName": ":sid",
+          "position": 0,
+          "renderTypeName": "meta_data",
+          "format": {},
+          "flags": [
+            "hidden"
+          ]
+        },
+        {
+          "id": -1,
+          "name": "id",
+          "dataTypeName": "meta_data",
+          "fieldName": ":id",
+          "position": 0,
+          "renderTypeName": "meta_data",
+          "format": {},
+          "flags": [
+            "hidden"
+          ]
+        },
+        {
+          "id": -1,
+          "name": "position",
+          "dataTypeName": "meta_data",
+          "fieldName": ":position",
+          "position": 0,
+          "renderTypeName": "meta_data",
+          "format": {},
+          "flags": [
+            "hidden"
+          ]
+        },
+        {
+          "id": -1,
+          "name": "created_at",
+          "dataTypeName": "meta_data",
+          "fieldName": ":created_at",
+          "position": 0,
+          "renderTypeName": "meta_data",
+          "format": {},
+          "flags": [
+            "hidden"
+          ]
+        },
+        {
+          "id": -1,
+          "name": "created_meta",
+          "dataTypeName": "meta_data",
+          "fieldName": ":created_meta",
+          "position": 0,
+          "renderTypeName": "meta_data",
+          "format": {},
+          "flags": [
+            "hidden"
+          ]
+        },
+        {
+          "id": -1,
+          "name": "updated_at",
+          "dataTypeName": "meta_data",
+          "fieldName": ":updated_at",
+          "position": 0,
+          "renderTypeName": "meta_data",
+          "format": {},
+          "flags": [
+            "hidden"
+          ]
+        },
+        {
+          "id": -1,
+          "name": "updated_meta",
+          "dataTypeName": "meta_data",
+          "fieldName": ":updated_meta",
+          "position": 0,
+          "renderTypeName": "meta_data",
+          "format": {},
+          "flags": [
+            "hidden"
+          ]
+        },
+        {
+          "id": -1,
+          "name": "meta",
+          "dataTypeName": "meta_data",
+          "fieldName": ":meta",
+          "position": 0,
+          "renderTypeName": "meta_data",
+          "format": {},
+          "flags": [
+            "hidden"
+          ]
+        },
+        {
+          "id": 257696060,
+          "name": "ID",
+          "dataTypeName": "number",
+          "description": "Unique ID",
+          "fieldName": "id",
+          "position": 1,
+          "renderTypeName": "number",
+          "tableColumnId": 36554769,
+          "width": 100,
+          "cachedContents": {
+            "non_null": 60,
+            "average": "30.5",
+            "largest": "60",
+            "null": 0,
+            "top": [
+              {
+                "item": "9",
+                "count": 20
+              },
+              {
+                "item": "56",
+                "count": 19
+              },
+              {
+                "item": "7",
+                "count": 18
+              },
+              {
+                "item": "32",
+                "count": 17
+              },
+              {
+                "item": "49",
+                "count": 16
+              },
+              {
+                "item": "20",
+                "count": 15
+              },
+              {
+                "item": "31",
+                "count": 14
+              },
+              {
+                "item": "37",
+                "count": 13
+              },
+              {
+                "item": "12",
+                "count": 12
+              },
+              {
+                "item": "5",
+                "count": 11
+              },
+              {
+                "item": "60",
+                "count": 10
+              },
+              {
+                "item": "8",
+                "count": 9
+              },
+              {
+                "item": "52",
+                "count": 8
+              },
+              {
+                "item": "1",
+                "count": 7
+              },
+              {
+                "item": "47",
+                "count": 6
+              },
+              {
+                "item": "48",
+                "count": 5
+              },
+              {
+                "item": "6",
+                "count": 4
+              },
+              {
+                "item": "34",
+                "count": 3
+              },
+              {
+                "item": "13",
+                "count": 2
+              }
+            ],
+            "smallest": "1",
+            "sum": "1830"
+          },
+          "format": {}
+        },
+        {
+          "id": 257696061,
+          "name": "Address",
+          "dataTypeName": "text",
+          "fieldName": "address",
+          "position": 2,
+          "renderTypeName": "text",
+          "tableColumnId": 24323753,
+          "width": 184,
+          "cachedContents": {
+            "non_null": 60,
+            "largest": "Washington Street & Fern Creek",
+            "null": 0,
+            "top": [
+              {
+                "item": "519 W. South Street",
+                "count": 20
+              },
+              {
+                "item": "541-541½ W. South Street",
+                "count": 19
+              },
+              {
+                "item": "Washington Street & Fern Creek",
+                "count": 18
+              },
+              {
+                "item": "535 W. Washington Street",
+                "count": 17
+              },
+              {
+                "item": "71 E. Church Street",
+                "count": 16
+              },
+              {
+                "item": "647 West South Street",
+                "count": 15
+              },
+              {
+                "item": "701 West South Street",
+                "count": 14
+              },
+              {
+                "item": "100 South Orange Avenue",
+                "count": 13
+              },
+              {
+                "item": "15-17 West Pine Street",
+                "count": 12
+              },
+              {
+                "item": "36 West Pine Street",
+                "count": 11
+              },
+              {
+                "item": "1 South Orange Avenue",
+                "count": 10
+              },
+              {
+                "item": "2 South Orange Avenue",
+                "count": 9
+              },
+              {
+                "item": "1 North Orange Avenue",
+                "count": 8
+              },
+              {
+                "item": "37 North Orange Avenue",
+                "count": 7
+              },
+              {
+                "item": "49 North Orange Avenue",
+                "count": 6
+              },
+              {
+                "item": "63 North Orange Avenue",
+                "count": 5
+              },
+              {
+                "item": "140 North Magnolia Avenue",
+                "count": 4
+              },
+              {
+                "item": "65 East Central Boulevard",
+                "count": 3
+              },
+              {
+                "item": "35 East Pine Street",
+                "count": 2
+              }
+            ],
+            "smallest": "100-102 W. Church Street"
+          },
+          "format": {}
+        },
+        {
+          "id": 257696062,
+          "name": "Local",
+          "dataTypeName": "calendar_date",
+          "fieldName": "local",
+          "position": 3,
+          "renderTypeName": "calendar_date",
+          "tableColumnId": 24323754,
+          "width": 160,
+          "cachedContents": {
+            "non_null": 42,
+            "largest": "2012-12-03T00:00:00",
+            "null": 18,
+            "top": [
+              {
+                "item": "1989-04-24T00:00:00",
+                "count": 20
+              },
+              {
+                "item": "1997-03-31T00:00:00",
+                "count": 19
+              },
+              {
+                "item": "2002-06-24T00:00:00",
+                "count": 18
+              },
+              {
+                "item": "1978-02-27T00:00:00",
+                "count": 17
+              },
+              {
+                "item": "1978-08-07T00:00:00",
+                "count": 16
+              },
+              {
+                "item": "2004-04-05T00:00:00",
+                "count": 15
+              },
+              {
+                "item": "2003-03-17T00:00:00",
+                "count": 14
+              },
+              {
+                "item": "1995-02-23T00:00:00",
+                "count": 13
+              },
+              {
+                "item": "2005-06-13T00:00:00",
+                "count": 12
+              },
+              {
+                "item": "1998-09-28T00:00:00",
+                "count": 11
+              },
+              {
+                "item": "1979-05-14T00:00:00",
+                "count": 10
+              },
+              {
+                "item": "1987-08-31T00:00:00",
+                "count": 9
+              },
+              {
+                "item": "1985-12-02T00:00:00",
+                "count": 8
+              },
+              {
+                "item": "1996-07-05T00:00:00",
+                "count": 7
+              },
+              {
+                "item": "1982-10-11T00:00:00",
+                "count": 6
+              },
+              {
+                "item": "1977-03-21T00:00:00",
+                "count": 5
+              },
+              {
+                "item": "1991-11-11T00:00:00",
+                "count": 4
+              },
+              {
+                "item": "1987-09-21T00:00:00",
+                "count": 3
+              },
+              {
+                "item": "1982-08-23T00:00:00",
+                "count": 2
+              },
+              {
+                "item": "1987-03-16T00:00:00",
+                "count": 1
+              }
+            ],
+            "smallest": "1977-03-21T00:00:00"
+          },
+          "format": {}
+        },
+        {
+          "id": 257696063,
+          "name": "NRHP",
+          "dataTypeName": "calendar_date",
+          "fieldName": "nrhp",
+          "position": 4,
+          "renderTypeName": "calendar_date",
+          "tableColumnId": 24323755,
+          "width": 148,
+          "cachedContents": {
+            "non_null": 12,
+            "largest": "2013-02-06T00:00:00",
+            "null": 48,
+            "top": [
+              {
+                "item": "1976-04-22T00:00:00",
+                "count": 20
+              },
+              {
+                "item": "2004-05-14T00:00:00",
+                "count": 19
+              },
+              {
+                "item": "2013-02-06T00:00:00",
+                "count": 18
+              },
+              {
+                "item": "1994-12-29T00:00:00",
+                "count": 17
+              },
+              {
+                "item": "1984-01-26T00:00:00",
+                "count": 16
+              },
+              {
+                "item": "1979-07-10T00:00:00",
+                "count": 15
+              },
+              {
+                "item": "1983-07-07T00:00:00",
+                "count": 14
+              },
+              {
+                "item": "2012-06-07T00:00:00",
+                "count": 13
+              },
+              {
+                "item": "1980-07-17T00:00:00",
+                "count": 12
+              },
+              {
+                "item": "2009-09-02T00:00:00",
+                "count": 11
+              },
+              {
+                "item": "1980-06-03T00:00:00",
+                "count": 10
+              },
+              {
+                "item": "2000-02-04T00:00:00",
+                "count": 9
+              }
+            ],
+            "smallest": "1976-04-22T00:00:00"
+          },
+          "format": {
+            "view": "date_time",
+            "align": "left"
+          }
+        },
+        {
+          "id": 257696064,
+          "name": "Name",
+          "dataTypeName": "text",
+          "fieldName": "name",
+          "position": 5,
+          "renderTypeName": "text",
+          "tableColumnId": 24323756,
+          "width": 148,
+          "cachedContents": {
+            "non_null": 60,
+            "largest": "Yowell-Duckworth Building",
+            "null": 0,
+            "top": [
+              {
+                "item": "Dr. William Monroe Wells House",
+                "count": 20
+              },
+              {
+                "item": "Victorian House & Cottage",
+                "count": 19
+              },
+              {
+                "item": "Dickson Azalea Park & Washington Street Bridge",
+                "count": 18
+              },
+              {
+                "item": "Mount Zion Missionary Baptist Church",
+                "count": 17
+              },
+              {
+                "item": "S.E. Waters Grocery/Coca Cola Sign",
+                "count": 16
+              },
+              {
+                "item": "Hankins Building",
+                "count": 15
+              },
+              {
+                "item": "Mount Pleasant Baptist Church",
+                "count": 14
+              },
+              {
+                "item": "Orlando Bank and Trust Company",
+                "count": 13
+              },
+              {
+                "item": "Elijah Hand Building",
+                "count": 12
+              },
+              {
+                "item": "Carey Hand Building",
+                "count": 11
+              },
+              {
+                "item": "Yowell-Duckworth Building",
+                "count": 10
+              },
+              {
+                "item": "Dickson-Ives Company",
+                "count": 9
+              },
+              {
+                "item": "The State Bank of Orlando & Trust Company",
+                "count": 8
+              },
+              {
+                "item": "Angebilt Hotel",
+                "count": 7
+              },
+              {
+                "item": "Rose Building",
+                "count": 6
+              },
+              {
+                "item": "Rutland’s",
+                "count": 5
+              },
+              {
+                "item": "Cathedral of St. Luke",
+                "count": 4
+              },
+              {
+                "item": "Old Orange County Courthouse",
+                "count": 3
+              },
+              {
+                "item": "Ellis Building",
+                "count": 2
+              }
+            ],
+            "smallest": "Angebilt Hotel"
+          },
+          "format": {}
+        },
+        {
+          "id": 257696065,
+          "name": "Type",
+          "dataTypeName": "text",
+          "fieldName": "type",
+          "position": 6,
+          "renderTypeName": "text",
+          "tableColumnId": 24323757,
+          "width": 148,
+          "cachedContents": {
+            "non_null": 60,
+            "largest": "Sign",
+            "null": 0,
+            "top": [
+              {
+                "item": "Building",
+                "count": 20
+              },
+              {
+                "item": "Sign",
+                "count": 19
+              },
+              {
+                "item": "Park",
+                "count": 18
+              }
+            ],
+            "smallest": "Building"
+          },
+          "format": {}
+        },
+        {
+          "id": 257696066,
+          "name": "Downtown Walking Tour",
+          "dataTypeName": "text",
+          "fieldName": "downtown_walking_tour",
+          "position": 7,
+          "renderTypeName": "text",
+          "tableColumnId": 24323758,
+          "width": 352,
+          "cachedContents": {
+            "non_null": 60,
+            "largest": "Two Victorian-influenced structures on this parcel exemplify unusual structures built in the 1920s in Orlando. The ornate spindle-work and some architectural details indicate an earlier construction period than documented. The main structure has both Stick style and Queen Anne style elements. The rear cottage is Folk Victorian. The porch details of the cottage, including the spindle-work porch posts, spindle-work and knob beadwork frieze, scroll design with beads on bracket and beaded balustrades, are identical to the main structure.",
+            "null": 0,
+            "top": [
+              {
+                "item": "Dr. William Monroe Wells built this Foursquare style house on a lot one block to the east in 1924. He was known as one of Orlando's longest practicing African American doctors and was involved in the commercial and cultural life of the community with the Well’sbuilt Hotel and the South Street Casino.",
+                "count": 20
+              },
+              {
+                "item": "Two Victorian-influenced structures on this parcel exemplify unusual structures built in the 1920s in Orlando. The ornate spindle-work and some architectural details indicate an earlier construction period than documented. The main structure has both Stick style and Queen Anne style elements. The rear cottage is Folk Victorian. The porch details of the cottage, including the spindle-work porch posts, spindle-work and knob beadwork frieze, scroll design with beads on bracket and beaded balustrades, are identical to the main structure.",
+                "count": 19
+              },
+              {
+                "item": "In 1926, the Concrete Steel Bridge Company replaced the simple wooden bridge across Fern Creek with a large closed spandrel bridge. The center spandrel arches over Fern Creek and the other two act as covered walkways. The brick driving deck has a Beaux-Arts influence balustrade and sidewalks on each side. It is the only bridge of its kind in the City of Orlando and perhaps Florida. In 1933, the Civitan Club requested Mayor S.Y. Way to approve converting the surrounding overgrown, city-owned space to a park. In 1935, they broke ground and with the aid of Botanist Mulford B. Foster laid out plantings to preserve native plants and planted trees and shrubs bearing berries to encourage a bird sanctuary. Local groups including The Orlando Garden Club, First Methodist Church, employees of Landmark Image Date listed Narrative Dickson Ives Department Store, and the Sentinel Star newspaper adopted plots within the park to beautify. They dedicated H.H. Dickson Azalea Park on February 21, 1937, honoring Henry Hill Dickson, a pioneer Orlando businessman and advocate of the City’s beautification. The park, which includes a series of terraces, bridges, walls, stairs, and paths, is Orlando’s only cultural landscape designated a historic Landmark. This scenic public park and bridge is often the site of picnics, hikes, weddings, and engagement pictures.",
+                "count": 18
+              },
+              {
+                "item": "Construction of this red brick Classical Revival church broke ground in 1956. In 1962, the first services were held here. The Mt. Zion Missionary Baptist Church is associated with many local religious and community leaders including Reverend J.J. Scott, Gabriel Jones, Reverend K.K. Hill, Georgia Woodley, and Reverend N.G. Staggers.",
+                "count": 17
+              },
+              {
+                "item": "\"The building that stood at 71 East Church Street was constructed in 1924 by Seward E. Waters to house his grocery store.  F.A. Peppercorn was the contractor for the two story brick and concrete block structure. Waters contracted to have the Coca-Cola sign painted on the side of the building facing an empty lot shortly after construction.  Sometime around 1925, a building was built to the west on the empty lot and the sign was hidden from view and forgotten. In 1997, the building to the west was torn down and the sign was rediscovered in excellent condition.  The sign was landmarked on June 1, 1998.  The S.E. Waters grocery store was demolished in 2004.\"",
+                "count": 16
+              },
+              {
+                "item": "Dr. I.S. Hankins constructed this Art Deco commercial building in 1947. Hankins was an early African American physician and civic leader. He was an active participant in the Washington Shores development, which provided opportunities for new home ownership for Orlando’s African Americans.",
+                "count": 15
+              },
+              {
+                "item": "This African American church was organized in 1919 and met in various locations until land was finally purchased. Church members made the rusticated concrete blocks that were used for construction of the walls. The Gothic style church opened in 1921.",
+                "count": 14
+              },
+              {
+                "item": "Dedicated in 1924, this Twentieth Century Commercial style skyscraper was constructed for the Orlando Bank & Trust Company. The building was one of the most fashionable business addresses in the city. In 1930, at the height of the Depression, investor H.W. Metcalf purchased the building.",
+                "count": 13
+              },
+              {
+                "item": "Elĳah Hand came to Orlando from Shelbyville, Indiana in 1885. He constructed the building in 1905 aer moving his funeral business from across the street. Hand is noted for being the first funeral director in the area to use embalming.",
+                "count": 12
+              },
+              {
+                "item": "Carey Hand came to Orlando to join his father in the funeral business. In 1920, he constructed this brick funeral home, which local architect F.H. Trimble designed. The funeral home was the first in Florida to have a chapel. The 1925 crematorium was the first constructed in the South.",
+                "count": 11
+              },
+              {
+                "item": "Newton Yowell and Eugene Duckworth operated a store and in 1913 commissioned Orlando architect Murry S. King to design a 4-story department store. Benjamin Drew bought out Duckworth and the building was expanded over the years, including adding a fih story. The business survived into the 1960s.",
+                "count": 10
+              },
+              {
+                "item": "In the 1880s, H.H. Dickson and Sidney Ives, Sr. arrived in Orlando independently of each other. They both opened mercantile establishments and eventually they purchased this property and opened a feed store and grocery. In 1920, they demolished their store, temporarily scaering the various departments around downtown and constructed this brick structure to house their growing business.",
+                "count": 9
+              },
+              {
+                "item": "The State Bank of Orlando and Trust Company formed in 1893. The bank hired W.L. Stoddart, a New York architect, to design this Twentieth Century Commercial style structure, which was completed in 1924",
+                "count": 8
+              },
+              {
+                "item": "The Angebilt Hotel is an example of Twentieth Century Commercial style by Murry S. King, the first registered architect in Florida. The hotel was completed in 1923 for Joseph Ange at a cost of one million dollars. The Angebilt and the San Juan Hotel, which was across the street, had the reputation as the two best hotels in the city.",
+                "count": 7
+              },
+              {
+                "item": "This 1924 structure was designed by Murry S. King for Walter Rose, a local developer and later a state senator. King planned for this building to be the base of a 10-story office building. Rose never constructed the upper floors, as the economy during the Depression could not support the project.",
+                "count": 6
+              },
+              {
+                "item": "F. Earl Deloe, a local architect, designed this Art Moderne structure for Joseph Rutland’s menswear store. Originally constructed as a two-story structure around 1941, three additional stories were added in 1952. In the late 1960s, Rutland's closed its downtown location, but remained open in the suburban Colonial Plaza Shopping Center.",
+                "count": 5
+              },
+              {
+                "item": "A frame church was constructed on this site in the mid 1880s and was used until it was outgrown in the 1920s. The firm of Frohman, Robb and Lile of Boston, the architects of the National Cathedral, designed this Gothic Revival church for the congregation. Dedication of this church took place on Easter of 1926.",
+                "count": 4
+              },
+              {
+                "item": "Orlando architect Murry S. King designed the sixth Orange County Courthouse, completed in 1927. The “Million Dollar Courthouse” is the finest example of Beaux Arts architecture in the city. The Orange County Regional History Center is located here now.",
+                "count": 3
+              },
+              {
+                "item": "J.L. and N.B. Giles built this structure in 1885 or 1886 as a speculative venture. J.L. Giles was Mayor of Orlando in 1916-1919, 1924-1925 and yet again in 1928-1931. It has been said that this building was completely remodeled or demolished and rebuilt in 1925 by William Ellis, a local investor",
+                "count": 2
+              }
+            ],
+            "smallest": "\"The building that stood at 71 East Church Street was constructed in 1924 by Seward E. Waters to house his grocery store.  F.A. Peppercorn was the contractor for the two story brick and concrete block structure. Waters contracted to have the Coca-Cola sign painted on the side of the building facing an empty lot shortly after construction.  Sometime around 1925, a building was built to the west on the empty lot and the sign was hidden from view and forgotten. In 1997, the building to the west was torn down and the sign was rediscovered in excellent condition.  The sign was landmarked on June 1, 1998.  The S.E. Waters grocery store was demolished in 2004.\""
+          },
+          "format": {}
+        },
+        {
+          "id": 257696067,
+          "name": "Location",
+          "dataTypeName": "location",
+          "fieldName": "location",
+          "position": 8,
+          "renderTypeName": "location",
+          "tableColumnId": 24323759,
+          "width": 196,
+          "cachedContents": {
+            "non_null": 60,
+            "largest": {
+              "latitude": "28.538234229000068",
+              "human_address": "{\"address\":\"N. Orange &amp; Wilkinson\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+              "longitude": "-81.37738750599993"
+            },
+            "null": 0,
+            "top": [
+              {
+                "item": {
+                  "latitude": "28.538336411000046",
+                  "human_address": "{\"address\":\"519 W. South Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.38559210299996"
+                },
+                "count": 20
+              },
+              {
+                "item": {
+                  "latitude": "28.538234229000068",
+                  "human_address": "{\"address\":\"541-541&frac12; W. South Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37738750599993"
+                },
+                "count": 19
+              },
+              {
+                "item": {
+                  "latitude": "28.544325",
+                  "human_address": "{\"address\":\"100 Rosearden Dr\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.358495"
+                },
+                "count": 18
+              },
+              {
+                "item": {
+                  "latitude": "28.54388788700004",
+                  "human_address": "{\"address\":\"535 W. Washington Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.38670069399996"
+                },
+                "count": 17
+              },
+              {
+                "item": {
+                  "latitude": "28.540416",
+                  "human_address": "{\"address\":\"71 E. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.377642"
+                },
+                "count": 16
+              },
+              {
+                "item": {
+                  "latitude": "28.53830133500003",
+                  "human_address": "{\"address\":\"647 West South Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.38829587399994"
+                },
+                "count": 15
+              },
+              {
+                "item": {
+                  "latitude": "28.538527472000055",
+                  "human_address": "{\"address\":\"701 West South Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.36806138299994"
+                },
+                "count": 14
+              },
+              {
+                "item": {
+                  "latitude": "28.541130477000024",
+                  "human_address": "{\"address\":\"100 South Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37904147699999"
+                },
+                "count": 13
+              },
+              {
+                "item": {
+                  "latitude": "28.54133384800008",
+                  "human_address": "{\"address\":\"15-17 West Pine Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37961968299999"
+                },
+                "count": 12
+              },
+              {
+                "item": {
+                  "latitude": "28.54128257800005",
+                  "human_address": "{\"address\":\"36 West Pine Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37976049999997"
+                },
+                "count": 11
+              },
+              {
+                "item": {
+                  "latitude": "28.541911724000045",
+                  "human_address": "{\"address\":\"1 South Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37899884199999"
+                },
+                "count": 10
+              },
+              {
+                "item": {
+                  "latitude": "28.541988927000034",
+                  "human_address": "{\"address\":\"2 South Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37907143599995"
+                },
+                "count": 9
+              },
+              {
+                "item": {
+                  "latitude": "28.542281606000074",
+                  "human_address": "{\"address\":\"1 North Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37900921299996"
+                },
+                "count": 8
+              },
+              {
+                "item": {
+                  "latitude": "28.54296030000006",
+                  "human_address": "{\"address\":\"37 North Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37901958299994"
+                },
+                "count": 7
+              },
+              {
+                "item": {
+                  "latitude": "28.54304096000004",
+                  "human_address": "{\"address\":\"49 North Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37901958299994"
+                },
+                "count": 6
+              },
+              {
+                "item": {
+                  "latitude": "28.54321477900004",
+                  "human_address": "{\"address\":\"63 North Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37902029999998"
+                },
+                "count": 5
+              },
+              {
+                "item": {
+                  "latitude": "28.544026216000077",
+                  "human_address": "{\"address\":\"140 North Magnolia Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37750004799994"
+                },
+                "count": 4
+              },
+              {
+                "item": {
+                  "latitude": "28.54216753000003",
+                  "human_address": "{\"address\":\"65 East Central Boulevard\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37790071799998"
+                },
+                "count": 3
+              },
+              {
+                "item": {
+                  "latitude": "28.541346933000057",
+                  "human_address": "{\"address\":\"35 East Pine Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+                  "longitude": "-81.37838707499998"
+                },
+                "count": 2
+              }
+            ],
+            "smallest": {
+              "latitude": "28.542281606000074",
+              "human_address": "{\"address\":\"1 North Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+              "longitude": "-81.37900921299996"
+            }
+          },
+          "format": {},
+          "subColumnTypes": [
+            "human_address",
+            "latitude",
+            "longitude",
+            "machine_address",
+            "needs_recoding"
+          ]
+        },
+        {
+          "id": 257696068,
+          "name": "Thumbnail",
+          "dataTypeName": "photo",
+          "fieldName": "thumbnail",
+          "position": 9,
+          "renderTypeName": "photo",
+          "tableColumnId": 24323823,
+          "width": 100,
+          "cachedContents": {
+            "non_null": 0,
+            "null": 60
+          },
+          "format": {}
+        },
+        {
+          "id": 257696069,
+          "name": "Full Size Image",
+          "dataTypeName": "photo",
+          "fieldName": "full_size_image",
+          "position": 10,
+          "renderTypeName": "photo",
+          "tableColumnId": 24323861,
+          "width": 100,
+          "cachedContents": {
+            "non_null": 0,
+            "null": 60
+          },
+          "format": {}
+        },
+        {
+          "id": 257696070,
+          "name": "City",
+          "dataTypeName": "text",
+          "fieldName": "city",
+          "position": 11,
+          "renderTypeName": "text",
+          "tableColumnId": 24525498,
+          "width": 100,
+          "cachedContents": {
+            "non_null": 0,
+            "null": 60
+          },
+          "format": {}
+        },
+        {
+          "id": 257696071,
+          "name": "State",
+          "dataTypeName": "text",
+          "fieldName": "state",
+          "position": 12,
+          "renderTypeName": "text",
+          "tableColumnId": 24525499,
+          "width": 100,
+          "cachedContents": {
+            "non_null": 0,
+            "null": 60
+          },
+          "format": {}
+        },
+        {
+          "id": 257696072,
+          "name": "Postal Code",
+          "dataTypeName": "text",
+          "fieldName": "postal_code",
+          "position": 13,
+          "renderTypeName": "text",
+          "tableColumnId": 24525500,
+          "width": 100,
+          "cachedContents": {
+            "non_null": 0,
+            "null": 60
+          },
+          "format": {}
+        }
+      ],
+      "grants": [
+        {
+          "inherited": false,
+          "type": "viewer",
+          "flags": [
+            "public"
+          ]
+        }
+      ],
+      "metadata": {
+        "custom_fields": {
+          "Brigade": {
+            "Group": "Code for Orlando"
+          }
+        },
+        "renderTypeConfig": {
+          "visible": {
+            "table": true
+          }
+        },
+        "availableDisplayTypes": [
+          "table",
+          "fatrow",
+          "page"
+        ],
+        "jsonQuery": {
+          "order": [
+            {
+              "ascending": true,
+              "columnFieldName": "name"
+            }
+          ]
+        }
+      },
+      "owner": {
+        "id": "qpa7-tia9",
+        "displayName": "Andrew Kozlik",
+        "roleName": "editor",
+        "screenName": "Andrew Kozlik",
+        "rights": [
+          "create_datasets",
+          "view_domain",
+          "create_pages",
+          "view_goals",
+          "view_dashboards",
+          "view_story",
+          "view_unpublished_story"
+        ]
+      },
+      "query": {
+        "orderBys": [
+          {
+            "ascending": true,
+            "expression": {
+              "columnId": 257696064,
+              "type": "column"
+            }
+          }
+        ]
+      },
+      "rights": [
+        "read"
+      ],
+      "tableAuthor": {
+        "id": "qpa7-tia9",
+        "displayName": "Andrew Kozlik",
+        "roleName": "editor",
+        "screenName": "Andrew Kozlik",
+        "rights": [
+          "create_datasets",
+          "view_domain",
+          "create_pages",
+          "view_goals",
+          "view_dashboards",
+          "view_story",
+          "view_unpublished_story"
+        ]
+      },
+      "flags": [
+        "default",
+        "restorable",
+        "restorePossibleForType"
+      ]
+    }
+  },
+  "data": [
+    [
+      39,
+      "E7B5FAA2-AC78-4D72-9843-17820EAEF1A8",
+      39,
+      1422704476,
+      "906309",
+      1465038173,
+      "906309",
+      null,
+      "16",
+      "24 N. Rosalind Avenue",
+      "1980-04-07T00:00:00",
+      "1980-06-03T00:00:00",
+      "First Church of Christ Scientist",
+      "Building",
+      "A Christian Science Church was established in Orlando around 1917. It met at the Lucerne Theater until this structure was completed in 1928. Architect George Foote Dunham, himself a Christian Scientist, designed 50 churches from Orlando to British Columbia. The congregation remained here until 1975 when the St. George Orthodox Church purchased the building.",
+      [
+        "{\"address\":\"24 N. Rosalind Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.543180386000074",
+        "-81.37595220899993",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      40,
+      "9FEFEEDE-0695-4690-8549-D0A1DFFA9235",
+      40,
+      1422704476,
+      "906309",
+      1465038159,
+      "906309",
+      null,
+      "2",
+      "1400 Sligh Boulevard",
+      "1978-02-27T00:00:00",
+      null,
+      "Atlantic Coast Line Station",
+      "Building",
+      "Built in 1926, architect A.M. Griffin was inspired by early 20th Century Mission Revival architecture. The station features twin bell towers, arches, and a tile roof. It was built for the Atlantic Coast Line Railroad to increase and encourage tourism in the area.",
+      [
+        "{\"address\":\"1400 Sligh Boulevard\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.525957230000074",
+        "-81.38141171999996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      28,
+      "61C72C4A-BBA1-44EC-A32E-B833C86F4432",
+      28,
+      1422704476,
+      "906309",
+      1465038160,
+      "906309",
+      null,
+      "3",
+      "46 N. Orange Avenue",
+      "1987-09-21T00:00:00",
+      null,
+      "Beacham Theatre",
+      "Building",
+      "In 1921, Braxton Beacham Sr. built Orlando's first theater. He also built the stores that extended to Washington St., giving him 213 feet of frontage on Orange Ave. and 145 feet on Washington St. The theatre had its first formal opening on December 9, 1921. Beneath Orange Ave. is a tunnel that, before it was blocked about 30 feet into it, allowed performers an easy way to get to the Angebilt Hotel across the street. The Beacham hosted vaudeville acts from 1921 to 1936, when it switched to showing first-run movies. They continued until 1975, when live musical acts appeared at what was then called the Great Southern Music Hall. For a time, it was Laser World, and then Moulin Orange, with live musical shows. It later was converted to a night club.",
+      [
+        "{\"address\":\"46 N. Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.542970671000035",
+        "-81.37908180599999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      8,
+      "98F0ABC6-49AC-4987-9C67-176133A6DDCD",
+      8,
+      1422704476,
+      "906309",
+      1465038161,
+      "906309",
+      null,
+      "4",
+      "100-102 W. Church Street",
+      "1978-02-27T00:00:00",
+      null,
+      "Bumby Hardware Building",
+      "Building",
+      "Joseph Bumby, Sr. came from England in 1873. He started selling hay, grain and fertilizer from a warehouse on Church Street when the railroad came in 1880. In 1886, Bumby built this structure and started a successful hardware business.",
+      [
+        "{\"address\":\"100-102 W. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54030387800003",
+        "-81.38080836299997",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      52,
+      "A7171CE8-1A12-4FB6-8DFD-26EBE029045A",
+      52,
+      1422704476,
+      "906309",
+      1465038162,
+      "906309",
+      null,
+      "5",
+      "36 West Pine Street",
+      null,
+      null,
+      "Carey Hand Building",
+      "Building",
+      "Carey Hand came to Orlando to join his father in the funeral business. In 1920, he constructed this brick funeral home, which local architect F.H. Trimble designed. The funeral home was the first in Florida to have a chapel. The 1925 crematorium was the first constructed in the South.",
+      [
+        "{\"address\":\"36 West Pine Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54128257800005",
+        "-81.37976049999997",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      59,
+      "F2FC1E5B-89F8-4AAB-9522-4AC9CB9FE0B9",
+      59,
+      1422704476,
+      "906309",
+      1465038162,
+      "906309",
+      null,
+      "6",
+      "140 North Magnolia Avenue",
+      null,
+      null,
+      "Cathedral of St. Luke",
+      "Building",
+      "A frame church was constructed on this site in the mid 1880s and was used until it was outgrown in the 1920s. The firm of Frohman, Robb and Lile of Boston, the architects of the National Cathedral, designed this Gothic Revival church for the congregation. Dedication of this church took place on Easter of 1926.",
+      [
+        "{\"address\":\"140 North Magnolia Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.544026216000077",
+        "-81.37750004799994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      29,
+      "701AEFF4-24D5-4650-8058-B3B96D6AADF3",
+      29,
+      1422704476,
+      "906309",
+      1465038172,
+      "906309",
+      null,
+      "15",
+      "578 N. Orange Avenue",
+      "1982-08-23T00:00:00",
+      null,
+      "Firestone Tire & Rubber Company Building",
+      "Building",
+      "The Firestone Building is significant for its architecture and as an indicator of Orlando’s growth in commerce and transportation. The appearance of the building from the street was designed to appeal to the auto tourist’s romantic travel fantasies, while providing assurance of modern efficient service. The long canopies on the two street facades, the continuous decorative parapet, the cool, shadowed interior under a vast roof and the fanciful tower and lantern all suggest a building much larger and more important than its actual size and function. It was built in 1929 by the John H. Bull company of St. Petersburg; Francis J. Kennard & Sons were the architects.",
+      [
+        "{\"address\":\"578 N. Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.550719766000043",
+        "-81.37920164399998",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      5,
+      "84321AF6-CF8C-4340-AECE-33BF51C6AA55",
+      5,
+      1422704476,
+      "906309",
+      1465038185,
+      "906309",
+      null,
+      "23",
+      "23-25 W. Church Street",
+      "1978-02-27T00:00:00",
+      null,
+      "Hunt-Branson Building",
+      "Building",
+      "The Hunt-Branson Building, built 1911, is a typical commercial structure built in Orlando during the early 20th century. Its main importance lies in its age as an early building along Church Street.",
+      [
+        "{\"address\":\"23-25 W. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.540361741000027",
+        "-81.37953554399996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      44,
+      "85D7FF2B-A585-4466-BA4D-902CAB64622F",
+      44,
+      1422704476,
+      "906309",
+      1465038163,
+      "906309",
+      null,
+      "7",
+      "Washington Street & Fern Creek",
+      "1991-11-11T00:00:00",
+      null,
+      "Dickson Azalea Park & Washington Street Bridge",
+      "Park",
+      "In 1926, the Concrete Steel Bridge Company replaced the simple wooden bridge across Fern Creek with a large closed spandrel bridge. The center spandrel arches over Fern Creek and the other two act as covered walkways. The brick driving deck has a Beaux-Arts influence balustrade and sidewalks on each side. It is the only bridge of its kind in the City of Orlando and perhaps Florida. In 1933, the Civitan Club requested Mayor S.Y. Way to approve converting the surrounding overgrown, city-owned space to a park. In 1935, they broke ground and with the aid of Botanist Mulford B. Foster laid out plantings to preserve native plants and planted trees and shrubs bearing berries to encourage a bird sanctuary. Local groups including The Orlando Garden Club, First Methodist Church, employees of Landmark Image Date listed Narrative Dickson Ives Department Store, and the Sentinel Star newspaper adopted plots within the park to beautify. They dedicated H.H. Dickson Azalea Park on February 21, 1937, honoring Henry Hill Dickson, a pioneer Orlando businessman and advocate of the City’s beautification. The park, which includes a series of terraces, bridges, walls, stairs, and paths, is Orlando’s only cultural landscape designated a historic Landmark. This scenic public park and bridge is often the site of picnics, hikes, weddings, and engagement pictures.",
+      [
+        "{\"address\":\"100 Rosearden Dr\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.544325",
+        "-81.358495",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      54,
+      "22761A0E-A664-4FE2-AF72-D7053F81D03C",
+      54,
+      1422704476,
+      "906309",
+      1465038164,
+      "906309",
+      null,
+      "8",
+      "2 South Orange Avenue",
+      null,
+      null,
+      "Dickson-Ives Company",
+      "Building",
+      "In the 1880s, H.H. Dickson and Sidney Ives, Sr. arrived in Orlando independently of each other. They both opened mercantile establishments and eventually they purchased this property and opened a feed store and grocery. In 1920, they demolished their store, temporarily scaering the various departments around downtown and constructed this brick structure to house their growing business.",
+      [
+        "{\"address\":\"2 South Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.541988927000034",
+        "-81.37907143599995",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      42,
+      "1B583B9B-0566-41C6-868B-38BA543E27EC",
+      42,
+      1422704476,
+      "906309",
+      1465038165,
+      "906309",
+      null,
+      "9",
+      "519 W. South Street",
+      "2003-03-17T00:00:00",
+      null,
+      "Dr. William Monroe Wells House",
+      "Building",
+      "Dr. William Monroe Wells built this Foursquare style house on a lot one block to the east in 1924. He was known as one of Orlando's longest practicing African American doctors and was involved in the commercial and cultural life of the community with the Well’sbuilt Hotel and the South Street Casino.",
+      [
+        "{\"address\":\"519 W. South Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.538336411000046",
+        "-81.38559210299996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      14,
+      "11202109-44BA-419C-85CD-FBCBCB138C98",
+      14,
+      1422704476,
+      "906309",
+      1465038168,
+      "906309",
+      null,
+      "10",
+      "1327 Eastin Avenue",
+      "2005-06-13T00:00:00",
+      null,
+      "Eastin House",
+      "Building",
+      "This original one-story bungalow has an eclectic mix of Colonial, Craftsman, and other fanciful details. The windows are distinctive 9 over 1 Craftsman style wood casement, fixed, and double hung windows. The expansive bands of windows are the most striking detail on the house. Other details include the main entry’s projecting portico with an elliptical arch matching the sunburst design over the doorway and elaborately carved rafter tails shaped with a series of curved cuts. Joseph Woodnick constructed the home in 1926 for himself though it is not noted that he lived here. Woodnick’s career as a builder of fine homes in Orlando spanned from 1921 to mid-1940s. The house is shown in the Ron Howard movie “Parenthood”.",
+      [
+        "{\"address\":\"1327 Eastin Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.56373018000005",
+        "-81.38827931999998",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      10,
+      "D11CAA07-3855-488D-8391-9E10F2AF0967",
+      10,
+      1422704476,
+      "906309",
+      1465038169,
+      "906309",
+      null,
+      "11",
+      "596 W. Church Street",
+      "2004-04-05T00:00:00",
+      null,
+      "Ebenezer Methodist Church",
+      "Building",
+      "As early as 1892, this congregation had a wooden church on this site. It was the first African American Methodist church in Orlando. Starting in 1922, the members built this Gothic style brick church.",
+      [
+        "{\"address\":\"596 W. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54013260100004",
+        "-81.38678020099997",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      51,
+      "63328980-6045-41D9-9D43-452F9FF4B452",
+      51,
+      1422704476,
+      "906309",
+      1465038170,
+      "906309",
+      null,
+      "12",
+      "15-17 West Pine Street",
+      null,
+      null,
+      "Elijah Hand Building",
+      "Building",
+      "Elĳah Hand came to Orlando from Shelbyville, Indiana in 1885. He constructed the building in 1905 aer moving his funeral business from across the street. Hand is noted for being the first funeral director in the area to use embalming.",
+      [
+        "{\"address\":\"15-17 West Pine Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54133384800008",
+        "-81.37961968299999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      61,
+      "7FC5B255-B69B-4DF2-A323-3E4E37F610E4",
+      61,
+      1422704476,
+      "906309",
+      1465038171,
+      "906309",
+      null,
+      "13",
+      "35 East Pine Street",
+      null,
+      null,
+      "Ellis Building",
+      "Building",
+      "J.L. and N.B. Giles built this structure in 1885 or 1886 as a speculative venture. J.L. Giles was Mayor of Orlando in 1916-1919, 1924-1925 and yet again in 1928-1931. It has been said that this building was completely remodeled or demolished and rebuilt in 1925 by William Ellis, a local investor",
+      [
+        "{\"address\":\"35 East Pine Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.541346933000057",
+        "-81.37838707499998",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      20,
+      "A7C46324-D071-4C62-8D09-3A172CB86B9B",
+      20,
+      1422704476,
+      "906309",
+      1465038172,
+      "906309",
+      null,
+      "14",
+      "301 N. Ivanhoe Boulevard East",
+      "1996-07-05T00:00:00",
+      null,
+      "Fairchild Chapel Sign",
+      "Sign",
+      "Constructed in 1940, the Art Deco building was a modern and up-to-date funeral home offering ambulance service, a crematorium, and an on-site chapel. Fairchild Funeral Home, one of the oldest continually operating funeral businesses in Orlando, faced tough competition from Carey Hand Funeral Home, established in 1907. Fairchild capitalized on their modern facilities with heavy advertising and erecting a large roof top sign in the 1950s. Though slightly changed from the original design and orientation, the sign consists of a large metal frame and five-foot tall channel letters with plastic faces and neon tubing inside. ",
+      [
+        "{\"address\":\"301 N. Ivanhoe Boulevard East\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.566031",
+        "-81.373492",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      32,
+      "C9AE669D-1FF0-4F0C-A7E7-ACC1FF956D67",
+      32,
+      1422704476,
+      "906309",
+      1465038174,
+      "906309",
+      null,
+      "17",
+      "190 S. Orange Avenue",
+      "1978-02-27T00:00:00",
+      null,
+      "First National Bank",
+      "Building",
+      "Founded in 1911, The People's National Bank became the First National Bank in 1920. During the Depression, the bank planned a new building, designed by Orlando architect Howard M. Reynolds. The First National Bank and Trust Company failed in the early 1930s and was reorganized in 1934 as the First National Bank at Orlando. In 1973, the bank merged with other Orlando banks to become Sun Banks, with this branch called Sun First National Bank at Orlando. Most recently, Valencia College had offices and classrooms here until 2014.",
+      [
+        "{\"address\":\"190 S. Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.540541661000077",
+        "-81.37905184699997",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      33,
+      "5F5F8EB0-914A-4B6C-89E6-A9D9FFB65438",
+      33,
+      1422704476,
+      "906309",
+      1465038176,
+      "906309",
+      null,
+      "18",
+      "500 S. Orange Avenue",
+      "2012-12-03T00:00:00",
+      "2012-06-07T00:00:00",
+      "Former OUC Admin. Bld",
+      "Building",
+      "Now the Aloft Hotel, this building is a prime example of adaptive reuse. The former OUC administration building was opened in 1967. It is an academically composed Modern Movement office building featuring a landscaped plaza with the building recessed from the property line and sited on a raised pedestal. The exterior of the building is clad in granite panels at the first floor and precast concrete panels above. The windows throughout the building are aluminum framed with large plate glass units at the first floor and elongated stacked 1-light units on the upper floors. The architect was Richard Boone Rodgers.",
+      [
+        "{\"address\":\"500 S. Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.53662044600003",
+        "-81.37871192399996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      48,
+      "2FF5C308-3C3E-47F9-88C4-07B87E36B768",
+      48,
+      1422704476,
+      "906309",
+      1465038177,
+      "906309",
+      null,
+      "20",
+      "647 West South Street",
+      null,
+      null,
+      "Hankins Building",
+      "Building",
+      "Dr. I.S. Hankins constructed this Art Deco commercial building in 1947. Hankins was an early African American physician and civic leader. He was an active participant in the Washington Shores development, which provided opportunities for new home ownership for Orlando’s African Americans.",
+      [
+        "{\"address\":\"647 West South Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.53830133500003",
+        "-81.38829587399994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      12,
+      "5F840FAE-32AA-488D-9846-E7BEBB10F7C7",
+      12,
+      1422704476,
+      "906309",
+      1465038186,
+      "906309",
+      null,
+      "24",
+      "1418 Clouser Avenue",
+      "2003-03-17T00:00:00",
+      "2013-02-06T00:00:00",
+      "Jack Kerouac House",
+      "Building",
+      "Jack Kerouac, a great American author of the 20th Century, lived in this house when his most successful book, On the Road, was published. Kerouac became famous overnight on September 5, 1957, when The New York Times gave a rave review. Here, he wrote the book’s follow-up The Dharma Bums in twelve days using a rented typewriter and a roll of teletype paper taped together as a continuous scroll. Because the home had no air conditioning, Kerouac mostly wrote at night or underneath the large oak in the backyard. Having arrived penniless and renting the home with his mother, he left for New York in 1958 as a famous American writer. Today, the property is managed by the Jack Kerouac Writer in Residence Project of Orlando, a nonprofit group that opens the home to a writer or poet to live and write, rent free. In 1998, the group renovated the c. 1920 Frame Vernacular house to look like it did when Kerouac lived there. In 2013, The Jack Kerouac House became the newest site in Orlando to be placed on National Register of Historic Places.",
+      [
+        "{\"address\":\"1418 Clouser Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.564560975000063",
+        "-81.39144233299999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      22,
+      "3E461314-E92B-43C7-9150-04660856E537",
+      22,
+      1422704476,
+      "906309",
+      1465038187,
+      "906309",
+      null,
+      "25",
+      "704 Kuhl Avenue",
+      "1982-10-11T00:00:00",
+      "1984-01-26T00:00:00",
+      "J.J. Bridges House",
+      "Building",
+      "Built in 1916, the Bridges House was the first of the highly academic Colonial Revival style homes built in the city. It is important because it inspired a documentable second generation of residences which are simple and elegant as opposed to the more massive, opulent, columned “great houses” by Edward Pringle Hyer of the late 1920s and 1930s. Rev. John J. Bridges, D.D., and his wife Isobel retired to Orlando following a distinguished career as a clergyman in New York and northern New Jersey. The Bridges used their architect, Wilson C. Ely of Newark, NJ. Bridges’ brother, Edward pattern his house after John’s in 1922, which was moved to Bourne Place after 1925.",
+      [
+        "{\"address\":\"704 Kuhl Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.533581765000065",
+        "-81.37848324499998",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      21,
+      "226B0962-81C1-49C0-9462-5B0E7747FEE1",
+      21,
+      1422704476,
+      "906309",
+      1465038191,
+      "906309",
+      null,
+      "27",
+      "1600 E. Kaley Street",
+      "1995-02-23T00:00:00",
+      null,
+      "Kaley Street Elementary School",
+      "Building",
+      "This 1936 Tudor Revival school is the only example of this style utilized as a non-residential building in the City. With a lack of building resources during the Great Depression, crews built Kaley Elementary from eight pound bricks removed from nearby streets thought to be part of a WPA project. Designer Maurice Kressly designed several of Orlando’s important commercial and institutional buildings of the 1920s-40s. The central entrance bay with cascading rows of recessed brick arches is detailed with thin slivers of tile radiating from the arch under a small gable roof with flared eaves. Curved brick steps lead to the original double wood doors. Originally built with 6 classrooms, an auditorium, cafeteria, and a playground, today the school consists of a group of one story brick buildings dating from the 1930s to the 1990s constructed in a rectangular pattern with two courtyards. Although altered, Kaley Street School maintains its architectural integrity. \"",
+      [
+        "{\"address\":\"1600 E. Kaley Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.52037327200003",
+        "-81.35889037199996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      4,
+      "FF7F08AC-45FA-4739-B500-D28456601A02",
+      4,
+      1422704476,
+      "906309",
+      1465038193,
+      "906309",
+      null,
+      "28",
+      "15-17 W. Church Street",
+      "1978-02-27T00:00:00",
+      null,
+      "Kress Building",
+      "Building",
+      "The S.H. Kress Company adopted a new architectural model in 1930, moving from traditional to modern designs. Architect Edward F. Sibbert was the impetus behind the use of decorative terra co\u0001a and the Art Deco styling of this and many other Kress stores. The Kress store opened in 1936.",
+      [
+        "{\"address\":\"15-17 W. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.540364474000057",
+        "-81.37938526199997",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      1,
+      "F4313637-DE69-45C2-BA97-49AEDE4EC9F3",
+      1,
+      1422704476,
+      "906309",
+      1465038196,
+      "906309",
+      null,
+      "30",
+      "638 W. Anderson Street",
+      "1989-04-24T00:00:00",
+      null,
+      "Maxey-Crooms House",
+      "Building",
+      "The Woodford James Maxey House constructed circa 1924 was built by local contractor Jim Murrell. It is a Frame Vernacular residence which features Craftsman elements. This house reflects the development and evolution of the local African-American community not only in terms of its architectural merit but to the status gained by the original owner. Mr. Maxey represents the level of success achievable in this historically black neighborhood despite the egregious discriminatory conditions against African-Americans during the greater half of the 20th century.",
+      [
+        "{\"address\":\"638 W. Anderson Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.536532872000066",
+        "-81.38822977199999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      6,
+      "E4361328-0F40-409C-A4F3-A44D4DD97016",
+      6,
+      1422704476,
+      "906309",
+      1465038200,
+      "906309",
+      null,
+      "33",
+      "27-35 W. Church Street",
+      "1978-02-27T00:00:00",
+      null,
+      "Nicholson-Colyer Building",
+      "Building",
+      "This late Victorian structure was built in 1911 for J.A. Colyer, an African American and J.E. Nicholson, who came here from Canada. Colyer was a tailor and Nicholson was a baker. This is one of few properties outside the traditional African American neighborhoods that was owned and operated by African Americans.",
+      [
+        "{\"address\":\"27-35 W. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.540360375000034",
+        "-81.37961068499999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      19,
+      "97580B62-187A-4E7D-958E-B58DF2F5D643",
+      19,
+      1422704476,
+      "906309",
+      1465038176,
+      "906309",
+      null,
+      "19",
+      "800 W. Grand Street",
+      "1995-02-23T00:00:00",
+      null,
+      "Grand Avenue School",
+      "Building",
+      "Grand Avenue School, a two-story Mediterranean Revival structure was constructed in 1926. It is one of a pair of identical schools that was designed by Howard M. Reynolds during the Florida Land Boom, the twin being the Princeton School in College Park. Grand Avenue’s details are characteristic of Mediterranean Revival style including its stucco walls, low pitched tile clad gable roof, multipaned windows, decorative gable vents and medallions, and the projecting parapeted entry with its columns and arched doorway. ",
+      [
+        "{\"address\":\"800 W. Grand Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.526493041000037",
+        "-81.39061960399994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      27,
+      "D1803771-39A8-40D9-B17D-DC93D7E975E2",
+      27,
+      1422704476,
+      "906309",
+      1465038194,
+      "906309",
+      null,
+      "29",
+      "99 Marks Street",
+      "1991-11-11T00:00:00",
+      null,
+      "Marks Street School",
+      "Building",
+      "Built in 1925, The Marks Street School is Orlando’s oldest remaining Mediterranean Revival school building and features include arcades, courtyards, large arched windows, heavy paneled wood doors, and applied ornamentation. Local architect Howard Reynolds, who served as the architect for Orange County and the School Board, designed this and many other school and public buildings including the Callahan School, the First National Bank, Orlando High School (now Howard Middle School), the Princeton Street School, the Grand Avenue School, and oversaw the design of the St. James School. This one-story building was designed so that every classroom had an outside entrance, an innovative safety feature and a means of aiding air-circulation in the days before air-conditioning. Pictured is the entrance tower to the auditorium with twisted terra cotta pilasters with composite capitals, a round topped arched doorway, and a three arch arcade with twisted columns on the curved parapet. This landmark is an example of adaptive reuse, serving the local community throughout its history as an elementary school, special education center, a book depository, and currently, the Marks Street Senior Center. ",
+      [
+        "{\"address\":\"99 Marks Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.55678768200005",
+        "-81.37819109299994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      49,
+      "EDB8CA59-E4F3-4FFC-9562-03BB716FB808",
+      49,
+      1422704476,
+      "906309",
+      1465038197,
+      "906309",
+      null,
+      "31",
+      "701 West South Street",
+      null,
+      null,
+      "Mount Pleasant Baptist Church",
+      "Building",
+      "This African American church was organized in 1919 and met in various locations until land was finally purchased. Church members made the rusticated concrete blocks that were used for construction of the walls. The Gothic style church opened in 1921.",
+      [
+        "{\"address\":\"701 West South Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.538527472000055",
+        "-81.36806138299994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      7,
+      "27ECADEF-466E-4F6B-90C3-BDBA6DB695DD",
+      7,
+      1422704476,
+      "906309",
+      1465038203,
+      "906309",
+      null,
+      "35",
+      "76-78 W. Church Street",
+      "1978-02-27T00:00:00",
+      "1976-04-22T00:00:00",
+      "Old Orlando Railroad Depot",
+      "Building",
+      "The railroad came to Orlando from Sanford in 1880. The first depot was run from the Bumby warehouse and during the 1880s two wooden stations were constructed here. Because of Orlando's expanding role in regional commerce, especially citrus, the South Florida Railroad constructed this depot in 1890.",
+      [
+        "{\"address\":\"76-78 W. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54030387800003",
+        "-81.38040524699994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      30,
+      "BF15CC1F-C047-416C-A6D7-A367FDD22ECE",
+      30,
+      1422704476,
+      "906309",
+      1465038205,
+      "906309",
+      null,
+      "36",
+      "1101 N. Orange Avenue",
+      "1987-03-16T00:00:00",
+      null,
+      "Old OUC Building/ Dr. Phillips Center",
+      "Building",
+      "John Cheney organized the Orlando Light and Water Company in 1897 and built a small plant at the present location using Lake Ivanhoe as a reservoir. In 1922, The City of Orlando bought the company to establish the Orlando Utilities Commission serving Orlando to Longwood. In 1923, OUC built this Italian Palazzo Revival style plant overlooking N. Orange Avenue. The two-story rectangular building is divided into three bays with a hip roof covered in red ceramic tile. Round arched and flat topped windows are the dominant features on the façades. In 1992, after OUC moved to another building, it was converted to an arts center. The Dr. Phillips Center for the Performing Arts included spaces for ballet and opera. During the holiday season, large illuminated channel letters overlook Orange Avenue to wish motorists “Happy Holidays” or “Happy New Year”. The 12 foot high sign was an Orlando tradition during the 1950s through the 1990s. Restoration efforts by the Ivanhoe Village Main Street, City of Orlando, OUC, and Ivanhoe Foundation returned the holiday sign to service in 2013. ",
+      [
+        "{\"address\":\"1101 N. Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.528771102000064",
+        "-81.37644884299993",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      3,
+      "20948FC2-0326-41DB-99B6-B1D4856579DA",
+      3,
+      1422704476,
+      "906309",
+      1465038209,
+      "906309",
+      null,
+      "39",
+      "410 W. Central Boulevard",
+      "2002-06-24T00:00:00",
+      null,
+      "Orlando Union Rescue Mission Sign",
+      "Sign",
+      "This Mission style structure has a central undulating parapet wall that is accented with barrel tiles. Awning windows pierce the façade and the ground floor has several single entry doors. A cross is located on top of the building that is lit at night. The metal, neon, double face cross reads “Christ is Savior, God is Love”.",
+      [
+        "{\"address\":\"410 W. Central Boulevard\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.541993536000064",
+        "-81.38474066199996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      47,
+      "952317D6-D910-4C81-9201-BBA6394095F5",
+      47,
+      1422704476,
+      "906309",
+      1465038266,
+      "906309",
+      null,
+      "49",
+      "71 E. Church Street",
+      null,
+      null,
+      "S.E. Waters Grocery/Coca Cola Sign",
+      "Sign",
+      "\"The building that stood at 71 East Church Street was constructed in 1924 by Seward E. Waters to house his grocery store.  F.A. Peppercorn was the contractor for the two story brick and concrete block structure. Waters contracted to have the Coca-Cola sign painted on the side of the building facing an empty lot shortly after construction.  Sometime around 1925, a building was built to the west on the empty lot and the sign was hidden from view and forgotten. In 1997, the building to the west was torn down and the sign was rediscovered in excellent condition.  The sign was landmarked on June 1, 1998.  The S.E. Waters grocery store was demolished in 2004.\"",
+      [
+        "{\"address\":\"71 E. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.540416",
+        "-81.377642",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      24,
+      "28078954-C047-4BCF-A068-F8A5AF420BFB",
+      24,
+      1422704476,
+      "906309",
+      1465038179,
+      "906309",
+      null,
+      "22",
+      "125 N. Lucerne Circle East",
+      "1978-02-27T00:00:00",
+      null,
+      "Hendry/Walker House",
+      "Building",
+      "This home was moved from Magnolia Avenue in 1982. The 10-room home is one of Orlando’s few remaining Victorian homes built in the 1890s. In 1900 S.G. Walker, a citrus, pineapple, and cane grower, purchased the home and lived there with his daughter, Mrs. Lorena Hendry, who lived there for 80 years.",
+      [
+        "{\"address\":\"125 N. Lucerne Circle East\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.535954",
+        "-81.376394",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      16,
+      "44267A61-F2C8-4115-A9C1-A19D4CDDE593",
+      16,
+      1422704476,
+      "906309",
+      1465038292,
+      "906309",
+      null,
+      "21",
+      "1730 N. Forest Avenue",
+      "1979-05-14T00:00:00",
+      "1994-12-29T00:00:00",
+      "Harry P. Leu House/Mizell Cemetery",
+      "Building",
+      "The Leu House is a remarkable example of a turn of the century farmhouse. Under four owners changes have taken place- its exterior enriched by Colonial Revival trim, porches added in 1906 and 1939 and the detached kitchen and out buildings have been converted into offices. It is Named for Orange County’s first Sheriff David Mizell, whose son is thought to have constructed the original part of the present home. The home is also named for Henry P. Leu, a humanitarian who contributed generously to the growth of Orlando and donated the home and gardens to the City. ",
+      [
+        "{\"address\":\"1730 N. Forest Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.56638964600006",
+        "-81.35522150699995",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      17,
+      "4F6D2DFB-3FDD-41C3-8AC1-AC8606604860",
+      17,
+      1422704476,
+      "906309",
+      1465038189,
+      "906309",
+      null,
+      "26",
+      "715 N. Garland Avenue",
+      "1987-08-31T00:00:00",
+      null,
+      "Judge John M. Cheney House",
+      "Building",
+      "The Cheney House is a very fine example of early 20th Century Colonial Revival architecture in Florida. It was the home of major local figure Judge John M. Cheney. It was built in 1904 for A.J. Adams and acquired by Cheney in 1907. It is also believed to be one of the first residences wired for electricity in Orlando.",
+      [
+        "{\"address\":\"715 N. Garland Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.553635039000028",
+        "-81.38172974999998",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      45,
+      "8492DA2F-219C-47E1-BBB6-B7B51F296010",
+      45,
+      1422704476,
+      "906309",
+      1465038199,
+      "906309",
+      null,
+      "32",
+      "535 W. Washington Street",
+      "2007-11-12T00:00:00",
+      null,
+      "Mount Zion Missionary Baptist Church",
+      "Building",
+      "Construction of this red brick Classical Revival church broke ground in 1956. In 1962, the first services were held here. The Mt. Zion Missionary Baptist Church is associated with many local religious and community leaders including Reverend J.J. Scott, Gabriel Jones, Reverend K.K. Hill, Georgia Woodley, and Reverend N.G. Staggers.",
+      [
+        "{\"address\":\"535 W. Washington Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54388788700004",
+        "-81.38670069399996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      60,
+      "8C3E7563-CBE5-4DC6-B7EA-FE364BA77D03",
+      60,
+      1422704476,
+      "906309",
+      1465038202,
+      "906309",
+      null,
+      "34",
+      "65 East Central Boulevard",
+      null,
+      null,
+      "Old Orange County Courthouse",
+      "Building",
+      "Orlando architect Murry S. King designed the sixth Orange County Courthouse, completed in 1927. The “Million Dollar Courthouse” is the finest example of Beaux Arts architecture in the city. The Orange County Regional History Center is located here now.",
+      [
+        "{\"address\":\"65 East Central Boulevard\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54216753000003",
+        "-81.37790071799998",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      2,
+      "7F62A26A-868D-4C24-AB71-4E57C3A92F5E",
+      2,
+      1422704476,
+      "906309",
+      1465038216,
+      "906309",
+      null,
+      "42",
+      "425 N. Bumby Avenue",
+      "1997-03-31T00:00:00",
+      null,
+      "Plaza Theatre Sign",
+      "Sign",
+      "The Plaza Theatre Sign is the only unchanged theater sign from the 1960s and is the only known sign of its type in the City. The roof-top sign sits on a stepped platform and consists of four curved painted metal supports that hold a drum-like, faceted-surface cylinder with the channel letters “Plaza Theatre”. The sign was built in San Diego and shipped to Orlando where the Harper Neon Company installed the sign. The Plaza Theatre opened in 1963, with the John Wayne movie, “McLintock”. Wayne, along with other movie stars of the day, including Cary Grant, Audrey Hepburn, Maureen O’Hara, Paul Newman, Gregory Peck, Rock Hudson, and Jack Lemon sent telegrams of congratulations and good wishes to the theater that were posted in the lobby. The Plaza Theatre introduced Orlando moviegoers to twin screens, rocking-chair seats, angle seating, and wider screens. Architect Robert E. Collins also designed the underwater theater at Weeki Wachee and buildings in Peru and New York City. The movie theater closed in 1992 and the building was rehabilitated. Known today as Plaza Live Orlando, the building showcases the Orlando Philharmonic Orchestra and many other concerts, comedians, and cultural events.",
+      [
+        "{\"address\":\"425 N. Bumby Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.548431334000043",
+        "-81.35194902699999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      50,
+      "0A0D5D5A-491F-4330-A7A4-800C92BD66A5",
+      50,
+      1422704476,
+      "906309",
+      1465038206,
+      "906309",
+      null,
+      "37",
+      "100 South Orange Avenue",
+      null,
+      null,
+      "Orlando Bank and Trust Company",
+      "Building",
+      "Dedicated in 1924, this Twentieth Century Commercial style skyscraper was constructed for the Orlando Bank & Trust Company. The building was one of the most fashionable business addresses in the city. In 1930, at the height of the Depression, investor H.W. Metcalf purchased the building.",
+      [
+        "{\"address\":\"100 South Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.541130477000024",
+        "-81.37904147699999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      38,
+      "897DAB0F-3674-44E2-B4C6-8D3120121771",
+      38,
+      1422704476,
+      "906309",
+      1465038208,
+      "906309",
+      null,
+      "38",
+      "800 E. Robinson Street",
+      "1990-04-16T00:00:00",
+      null,
+      "Orlando High School",
+      "Building",
+      "Built in 1926, the school was originally named for C.E. Howard, a school trustee, though from 1927-1952 it was known as Orlando High School. When Boone and Edgewater High Schools were built, OHS was converted to a junior high school and resumed the original name of Howard. Famous graduates include astronaut John Young, Nobel Prize winner Marshall Nirenberg and Orlando Mayor Carl Langford. Designed by architect Howard M. Reynolds, the design of the main building incorporates Greek Revival and Neoclassical Revival characteristics. The most recognizable feature of the brick building is the six massive ionic columns which frame the main entrance. The two-story structure is adorned with cast emblems on the parapet portion of the central bay and the two flanking wings.",
+      [
+        "{\"address\":\"800 E. Robinson Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.545743061000053",
+        "-81.36642053399999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      31,
+      "D58019A3-B2F6-41E7-AA21-D25BFC8493F2",
+      31,
+      1422704476,
+      "906309",
+      1465038211,
+      "906309",
+      null,
+      "40",
+      "N. Orange & Wilkinson",
+      "1989-12-18T00:00:00",
+      null,
+      "Orwin Manor Gates",
+      "Building",
+      "In 1924, the large stucco gates proclaimed the borders of a new development called Orwin manor, led by Walter Rose. The name Orwin is a combination of Orlando and Winter Park. ",
+      [
+        "{\"address\":\"N. Orange &amp; Wilkinson\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.538234229000068",
+        "-81.37738750599993",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      15,
+      "D291C7A4-F2E0-4209-B81A-F79ED046F9F5",
+      15,
+      1422704476,
+      "906309",
+      1465038225,
+      "906309",
+      null,
+      "45",
+      "2015 Edgewater Drive",
+      "1998-09-28T00:00:00",
+      null,
+      "Publix Pole Sign",
+      "Sign",
+      "This pole sign is the only neon pole sign from the 1960s left on Edgewater drive and the only Publix pole sign left in Central Florida that resembles its original appearance. The pole sign consists of three major components; the support system, the lighted cabinet with plastic faces, and the spinning “butterfly” on top. The sign appears virtually the same, except the plastic faces have been replaced over the years. ",
+      [
+        "{\"address\":\"2015 Edgewater Drive\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.570171435000077",
+        "-81.38938896699995",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      58,
+      "60AA7C06-2FA4-4ECE-9F44-2BDDD761D8ED",
+      58,
+      1422704476,
+      "906309",
+      1465038233,
+      "906309",
+      null,
+      "48",
+      "63 North Orange Avenue",
+      null,
+      null,
+      "Rutland’s",
+      "Building",
+      "F. Earl Deloe, a local architect, designed this Art Moderne structure for Joseph Rutland’s menswear store. Originally constructed as a two-story structure around 1941, three additional stories were added in 1952. In the late 1960s, Rutland's closed its downtown location, but remained open in the suburban Colonial Plaza Shopping Center.",
+      [
+        "{\"address\":\"63 North Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54321477900004",
+        "-81.37902029999998",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      55,
+      "C2E97076-F968-429B-AE34-405C67D6C9D9",
+      55,
+      1422704476,
+      "906309",
+      1465038243,
+      "906309",
+      null,
+      "52",
+      "1 North Orange Avenue",
+      null,
+      null,
+      "The State Bank of Orlando & Trust Company",
+      "Building",
+      "The State Bank of Orlando and Trust Company formed in 1893. The bank hired W.L. Stoddart, a New York architect, to design this Twentieth Century Commercial style structure, which was completed in 1924",
+      [
+        "{\"address\":\"1 North Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.542281606000074",
+        "-81.37900921299996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      34,
+      "F801DF9B-C998-4C25-94D7-DBED423E4CD5",
+      34,
+      1422704476,
+      "906309",
+      1465038244,
+      "906309",
+      null,
+      "53",
+      "16-18 W. Pine Street",
+      null,
+      "1980-07-17T00:00:00",
+      "Tinker Building",
+      "Building",
+      "Joe Tinker constructed this building in 1925 to house his real estate offices. Tinker played shortstop for the Chicago Cubs during their most prolific period, when they won four pennants in 1906-8 and 1910 and back-to-back World Series in 1907 and 1908. He moved to Orlando in 1920 to manage the Orlando Tigers, a baseball team in the Florida State League.",
+      [
+        "{\"address\":\"16-18 W. Pine Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.541273701000023",
+        "-81.37943776699996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      37,
+      "E99E46D4-3551-495F-B4D2-4E8400BBC981",
+      37,
+      1422704476,
+      "906309",
+      1465038247,
+      "906309",
+      null,
+      "55",
+      "46 E. Robinson Street",
+      "1989-04-24T00:00:00",
+      null,
+      "U.S. Post Office & Court House",
+      "Building",
+      "Orlando's earliest post offices were located in homes, then in businesses. The first post office building was erected in 1917 on Central Boulevard. The federal government bought this land from the Catholic Church. Architect Louis A. Simon, of the Public Buildings Administration, is credited with the restrained classical design of the building, which opened in 1941.",
+      [
+        "{\"address\":\"46 E. Robinson Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.545666692000054",
+        "-81.37811493799995",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      43,
+      "0FA4E488-82A1-4D31-BC3B-684A980CD191",
+      43,
+      1422704476,
+      "906309",
+      1465038249,
+      "906309",
+      null,
+      "56",
+      "541-541½ W. South Street",
+      "1989-01-30T00:00:00",
+      null,
+      "Victorian House & Cottage",
+      "Building",
+      "Two Victorian-influenced structures on this parcel exemplify unusual structures built in the 1920s in Orlando. The ornate spindle-work and some architectural details indicate an earlier construction period than documented. The main structure has both Stick style and Queen Anne style elements. The rear cottage is Folk Victorian. The porch details of the cottage, including the spindle-work porch posts, spindle-work and knob beadwork frieze, scroll design with beads on bracket and beaded balustrades, are identical to the main structure.",
+      [
+        "{\"address\":\"541-541&frac12; W. South Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.538234229000068",
+        "-81.37738750599993",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      41,
+      "B2EF1CEF-1BBF-4303-8ADB-176A71A18D4C",
+      41,
+      1422704476,
+      "906309",
+      1465038250,
+      "906309",
+      null,
+      "57",
+      "511 W. South Street",
+      "1998-11-30T00:00:00",
+      "2000-02-04T00:00:00",
+      "Well’s Built Hotel",
+      "Building",
+      "Dr. William Monroe Wells constructed this hotel in 1926. It provided lodging to African Americans during segregation when rooms were not available to them in other areas. Many famous entertainers and athletes stayed here. Next-door was Dr. Wells' South Street Casino, where many of the entertainers performed for the African American community. The Well'sbuilt Museum of African American History is located here now.",
+      [
+        "{\"address\":\"511 W. South Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.53833849800003",
+        "-81.38539054899996",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      25,
+      "920443AF-8A45-4351-9C8E-BC842047A599",
+      25,
+      1422704476,
+      "906309",
+      1465038213,
+      "906309",
+      null,
+      "41",
+      "135 N. Lucerne Circle East",
+      "1978-02-27T00:00:00",
+      "1979-07-10T00:00:00",
+      "Peleg Peckham/Dr. Phillips House",
+      "Building",
+      "Built in 1893, Col. Peleg Peckham constructed the house as a wedding gift for his daughter. In 1912, citrus magnate Dr. Phillips and wife, Della, purchased it and hired architect L. Percival Hutton to remodel the mansion adding the Greek Revival portico, a cellar, additional bedrooms, and converting gas-lights to electricity. This is the only example of a 19th c. Shingle style mansion in Orlando. It features horizontal bands of shingles in various shapes including the diamond-patterned shingles on the roof of the turret. One of Orlando’s first millionaire families, the Phillips’ were prominent supporters of the arts, hosting many cultural events at the house. Their support continues through Dr. Phillips, Inc., which provides grants to educational and cultural organizations. Now a bed and breakfast, it is also listed on the National Register of Historic Places.",
+      [
+        "{\"address\":\"135 N. Lucerne Circle East\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.535901",
+        "-81.375908",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      13,
+      "3F2CCD95-1A54-4E84-9073-BF63DB70DEE7",
+      13,
+      1422704476,
+      "906309",
+      1465038219,
+      "906309",
+      null,
+      "43",
+      "700 E. Colonial Drive",
+      "1995-02-23T00:00:00",
+      null,
+      "Porter Paints Sign",
+      "Sign",
+      "The Porter Paint Company was founded in 1922 in Louisville, Kentucky as a mail-order paint business, primarily for barns. As the company grew, retail and wholesale stores opened, including this shop on Colonial Dr., the first Porter Paints in the Orlando area. In 1954, Citrus Fruit Products (now Dr. Phillips, Inc.), owned the property and hired L. Alex Hatton, a local architect, to design the International Style building for their new tenants, Porter Paints. The black, white, and orange striped sign are part of the building’s outer walls and made of porcelain enamel-faced metal panels, the only example of this material used for a pre-1966 non-illuminated sign in the City. In 1995, Porter Paints became the first company to take advantage of the historic sign ordinance that protects historic signs that do not conform to current codes. The Porter Paints sign’s structure, material, color, and graphics are important elements to the overall composition of the small store.",
+      [
+        "{\"address\":\"700 E. Colonial Drive\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.553172974000063",
+        "-81.36841052499994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      36,
+      "52268940-03EA-40D3-A8F8-A50A410678FE",
+      36,
+      1422704476,
+      "906309",
+      1465038239,
+      "906309",
+      null,
+      "50",
+      "1101 W. Princeton Street",
+      null,
+      "2009-09-02T00:00:00",
+      "S. Howard Atha House (College Park)",
+      "Building",
+      "The Atha House, built 1928,  is an excellent example of a private residence constructed in the Colonial Revival style which was popular in the United States from 1880 to 1955.  Located in the historic College Park neighborhood, this two-story home features an irregular plan, hipped roof surfaced with composition shingles , wide roof eaves, wood frame structural system clad in aluminum siding and continuous brick foundation.  The central two-story section of the house exhibits a symmetrical front façade with three bays, a corbelled brick chimney, a gabled dormer with Palladian window and dentils and a one-story flat roof partial-width entry portico with fluted Doric columns.  It was built by prominent local contractor Howard Kiehl for S. Howard Atha, one of the founders of the Orlando real estate firm Cooper-Atha-Barr, also known as CABCO.",
+      [
+        "{\"address\":\"1101 W. Princeton Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.571097870000074",
+        "-81.39450048899994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      9,
+      "41035A3E-C99C-42E4-9F32-6CCE1B3E06B6",
+      9,
+      1422704476,
+      "906309",
+      1465038241,
+      "906309",
+      null,
+      "51",
+      "129-131 W. Church Street",
+      "1978-08-07T00:00:00",
+      null,
+      "Slemons Department Store",
+      "Building",
+      "This dry goods store was constructed in 1924 for William Slemons. He first came to Orlando in 1886. Slemons and his sons owned a number of stores in downtown Orlando from the 1880's well into the middle of the twentieth century.",
+      [
+        "{\"address\":\"129-131 W. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.540341245000036",
+        "-81.38109321599995",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      53,
+      "243C78BB-82CA-4E00-9AC1-EDB340A14B89",
+      53,
+      1422704476,
+      "906309",
+      1465038255,
+      "906309",
+      null,
+      "60",
+      "1 South Orange Avenue",
+      null,
+      null,
+      "Yowell-Duckworth Building",
+      "Building",
+      "Newton Yowell and Eugene Duckworth operated a store and in 1913 commissioned Orlando architect Murry S. King to design a 4-story department store. Benjamin Drew bought out Duckworth and the building was expanded over the years, including adding a fih story. The business survived into the 1960s.",
+      [
+        "{\"address\":\"1 South Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.541911724000045",
+        "-81.37899884199999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      35,
+      "F2880732-19DB-4C2B-A5F5-41E6E311EE7C",
+      35,
+      1422704476,
+      "906309",
+      1465038223,
+      "906309",
+      null,
+      "44",
+      "311 W. Princeton Street",
+      "1989-06-05T00:00:00",
+      null,
+      "Princeton School",
+      "Building",
+      "Constructed in 1926, Princeton Street School is one of a pair of identical schools designed by Howard M. Reynolds during the Florida Land Boom. Grand Avenue School is its twin. The school’s details are characteristic of the Mediterranean Revival style, including stucco walls, low pitched mission tile clad gable roof, multi-paned windows, decorative gable vents and medallions and the projecting parapet entry with columns and arched doorway.  The school is built of hollow clay tile over a steel frame with a stucco exterior wall finish. ",
+      [
+        "{\"address\":\"311 W. Princeton Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.571247666000033",
+        "-81.38378081199994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      26,
+      "BE58148E-32D2-4540-816C-1E609AA94508",
+      26,
+      1422704476,
+      "906309",
+      1465038228,
+      "906309",
+      null,
+      "46",
+      "37-39 S. Magnolia Avenue",
+      "1978-02-27T00:00:00",
+      "1983-07-07T00:00:00",
+      "Rogers Building",
+      "Building",
+      "Englishman Gordon Rogers came to Orlando in 1886 and constructed this Queen Anne style building. The second story English Club sponsored dances, theater and other events for the large British community. Reportedly, the pressed metal siding, which is virtually unheard of in Florida, was shipped from England.",
+      [
+        "{\"address\":\"37-39 S. Magnolia Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54182078300005",
+        "-81.37741296799999",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      57,
+      "496AE72F-06A2-4C5D-99D0-4319D5231804",
+      57,
+      1422704476,
+      "906309",
+      1465038231,
+      "906309",
+      null,
+      "47",
+      "49 North Orange Avenue",
+      null,
+      null,
+      "Rose Building",
+      "Building",
+      "This 1924 structure was designed by Murry S. King for Walter Rose, a local developer and later a state senator. King planned for this building to be the base of a 10-story office building. Rose never constructed the upper floors, as the economy during the Depression could not support the project.",
+      [
+        "{\"address\":\"49 North Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54304096000004",
+        "-81.37901958299994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      11,
+      "71FCBF98-1517-4537-AC4E-2DA4272E588A",
+      11,
+      1422704476,
+      "906309",
+      1465038246,
+      "906309",
+      null,
+      "54",
+      "1610 W. Church Street",
+      null,
+      "2004-05-14T00:00:00",
+      "Tinker Field",
+      "Building",
+      "According to richesmi.cah.ucf.edu ... Tinker Field is named after Joseph B. Tinker, who was a shortstop for the Chicago Cubs, manager of the Orlando Tigers, and the first Floridian to be selected for the Baseball Hall of Fame. The first baseball field at this location was built in 1914. The stadium was dedicated in 1923 and could seat approximately 1,500 people.  Tinker Field was also the Spring Training home for the Cincinnati Reds from 1923 to 1935, the Brooklyn Dodgers from 1934 to 1935, and the Washington Senators and the Minnesota Twins from 1936 to the 1990s. On May 14, 2004, Tinker Field was added to the National Register of Historic Places. The field has also served as the home to the Orlando Electric Daisy Carnival, an electric dance music festival, in 2011 and 2012. The stadium currently seats 5,100 people.  From Historic Preservation Board... Baseball park named for Joe Tinker.  The original field and buildings at Tinker Field were begun in December of 1922.  The ballpark was dedicated as “Tinker field” on April 19, 1923 and is emblematic of the rise of professional baseball in the state of Florida and Orlando. The original field and stands, which cost $50,000.00 were located to the south of Lake Lorna Doone.  The ballpark was said to be larger than the New York Yankees Field with a distance from home plate to the right field fence being 278 feet and to left field over 310 feet. It is the only place in Central Florida where Martin Luther King spoke.",
+      [
+        "{\"address\":\"1610 W. Church Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.540173502000073",
+        "-81.40163506899995",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      18,
+      "79DDB0CD-1F38-41A6-94AA-ECCFBDC9F58D",
+      18,
+      1422704476,
+      "906309",
+      1465038252,
+      "906309",
+      null,
+      "58",
+      "80 W. Gore Street",
+      "1985-12-02T00:00:00",
+      null,
+      "William Davis House",
+      "Building",
+      "\"This two-story, Greek Revival residence was constructed c. 1925 for WM Davis, who was engaged in the turpentine industry and farming in Winter Garden, Ocala, and Lockhart before investing in real estate. This residence is symmetrical in elevation with two end brick chimneys and a large central two-story portico. The heavily denticulated pediment is supported by fluted Corinthian columns. \"",
+      [
+        "{\"address\":\"80 W. Gore Street\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.531122909000032",
+        "-81.37962107399994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      23,
+      "5B1A7DA2-081A-44FB-99B3-6A4B56C98D51",
+      23,
+      1422704476,
+      "906309",
+      1465038253,
+      "906309",
+      null,
+      "59",
+      "614 Lake Avenue",
+      "1977-03-21T00:00:00",
+      null,
+      "W.R. O’Neal/Poyntz House",
+      "Building",
+      "This home was constructed around 1884 by Oliver and Matilda Poyntz as a Frame Vernacular structure. The home was one of six built around what is now Lake Cherokee by newlyweds and nicknamed “honeymoon row”. The home was later sold to Annie Mallory in 1909, who married William O’Neal in 1914. His daughter, Mabelle lived in the home until she passed away in 1975. ",
+      [
+        "{\"address\":\"614 Lake Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.533670604000065",
+        "-81.37247231799995",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      56,
+      "7E39711F-1BB7-453E-B301-FD2092893CAE",
+      56,
+      1422704476,
+      "906309",
+      1465038281,
+      "906309",
+      null,
+      "1",
+      "37 North Orange Avenue",
+      null,
+      null,
+      "Angebilt Hotel",
+      "Building",
+      "The Angebilt Hotel is an example of Twentieth Century Commercial style by Murry S. King, the first registered architect in Florida. The hotel was completed in 1923 for Joseph Ange at a cost of one million dollars. The Angebilt and the San Juan Hotel, which was across the street, had the reputation as the two best hotels in the city.",
+      [
+        "{\"address\":\"37 North Orange Avenue\",\"city\":\"Orlando\",\"state\":\"Florida\",\"zip\":\"\"}",
+        "28.54296030000006",
+        "-81.37901958299994",
+        null,
+        false
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ]
+}
