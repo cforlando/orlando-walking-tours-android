@@ -43,7 +43,7 @@ class TourAdapter(val context: Context, val tourList: List<Tour>) : BaseAdapter(
         }
 
         holder.textView.text = tourList[position].name
-        holder.imageView.setImageResource(R.mipmap.lake_eola)
+        // TODO: Get image somehow
 
         return view!!
     }
