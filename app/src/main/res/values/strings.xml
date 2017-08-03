@@ -9,4 +9,5 @@
     <string name="placeholder">Placeholder</string>
     <string name="tours">Tours</string>
     <string name="under_construction">Under Construction</string>
+    <string name="no_tours">No tours</string>
 </resources>
