@@ -12,13 +12,13 @@ import com.codefororlando.orlandowalkingtours.R
 /**
  * Created by ryan on 7/29/17.
  */
-class BrowseFragment : Fragment() {
+class ToursFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = inflater?.inflate(R.layout.fragment_browse, container, false)!!
+        val view: View = inflater?.inflate(R.layout.fragment_tours, container, false)!!
 
-        val tourGrid: GridView = view.findViewById(R.id.browse_grid) as GridView
-        val emptyText: TextView = view.findViewById(R.id.browse_emptyGridText) as TextView
+        val tourGrid: GridView = view.findViewById(R.id.tours_grid) as GridView
+        val emptyText: TextView = view.findViewById(R.id.tours_emptyGridText) as TextView
 
         tourGrid.emptyView = emptyText
 

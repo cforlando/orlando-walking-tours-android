@@ -2,9 +2,7 @@ package com.codefororlando.orlandowalkingtours.dashboard
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.widget.TextView
 import com.codefororlando.orlandowalkingtours.PlaceholderFragment
 import com.codefororlando.orlandowalkingtours.R
 
@@ -15,7 +13,7 @@ class DashboardActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_browse -> {
                 supportFragmentManager.beginTransaction()
-                        .replace(R.id.dashboard_fragmentContainer, BrowseFragment())
+                        .replace(R.id.dashboard_fragmentContainer, ToursFragment())
                         .commit()
                 return@OnNavigationItemSelectedListener true
             }
@@ -33,7 +31,7 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
 
         supportFragmentManager.beginTransaction()
-                .add(R.id.dashboard_fragmentContainer, BrowseFragment())
+                .add(R.id.dashboard_fragmentContainer, ToursFragment())
                 .commit()
 
         val navigation = findViewById(R.id.navigation) as BottomNavigationView

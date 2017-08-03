@@ -7,7 +7,7 @@
 
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/tours_addTourFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <TextView
-        android:id="@+id/browse_emptyGridText"
+        android:id="@+id/tours_emptyGridText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_tours"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.473" />
 
     <GridView
-        android:id="@+id/browse_grid"
+        android:id="@+id/tours_grid"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:columnWidth="90dp"
