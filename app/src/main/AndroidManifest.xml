@@ -23,7 +23,6 @@
             android:name="io.fabric.ApiKey"
             android:value="2d2847685753c340e6f36168e9e66b3c41f3f998" />
 
-        <activity android:name=".StartActivity" />
         <activity
             android:name=".dashboard.DashboardActivity"
             android:label="@string/title_activity_dashboard"></activity>
