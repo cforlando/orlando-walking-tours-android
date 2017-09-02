@@ -14,11 +14,18 @@ import com.codefororlando.orlandowalkingtours.R
  */
 class ToursFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = inflater?.inflate(R.layout.fragment_tours, container, false)!!
+    lateinit var tourGrid: GridView
+    lateinit var emptyText: TextView
 
-        val tourGrid: GridView = view.findViewById(R.id.tours_grid) as GridView
-        val emptyText: TextView = view.findViewById(R.id.tours_emptyGridText) as TextView
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater?.inflate(R.layout.fragment_tours, container, false)
+
+
+        if (view != null){
+            tourGrid = view.findViewById(R.id.tours_grid) as GridView
+            emptyText = view.findViewById(R.id.tours_emptyGridText) as TextView
+        }
+
 
         tourGrid.emptyView = emptyText
 
