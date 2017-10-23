@@ -1,6 +1,6 @@
-package com.codefororlando.orlandowalkingtours.api
+package com.codefororlando.orlandowalkingtours.data.remote
 
-import com.codefororlando.orlandowalkingtours.entities.Location
+import com.codefororlando.orlandowalkingtours.data.entities.Location
 import io.reactivex.Flowable
 
 /**

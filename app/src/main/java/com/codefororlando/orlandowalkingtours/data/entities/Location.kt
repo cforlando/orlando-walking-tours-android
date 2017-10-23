@@ -1,4 +1,4 @@
-package com.codefororlando.orlandowalkingtours.entities
+package com.codefororlando.orlandowalkingtours.data.entities
 
 /**
  * Created by ryan on 10/12/17.

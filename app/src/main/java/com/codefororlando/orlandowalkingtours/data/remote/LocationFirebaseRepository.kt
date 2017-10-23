@@ -1,8 +1,8 @@
-package com.codefororlando.orlandowalkingtours.api
+package com.codefororlando.orlandowalkingtours.data.remote
 
-import com.codefororlando.orlandowalkingtours.entities.Coordinates
-import com.codefororlando.orlandowalkingtours.entities.Location
-import com.codefororlando.orlandowalkingtours.entities.RegistryDates
+import com.codefororlando.orlandowalkingtours.data.entities.Coordinates
+import com.codefororlando.orlandowalkingtours.data.entities.Location
+import com.codefororlando.orlandowalkingtours.data.entities.RegistryDates
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
