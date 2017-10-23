@@ -37,6 +37,7 @@ class LocationFirebaseRepository() : LocationRepository {
     }
 
     private fun DataSnapshot.extractLocation(): Location {
+        val id = this.key
         val name = child("name").getValue(String::class.java)
         val address = child("address").getValue(String::class.java)
         val description = child("description").getValue(String::class.java)
@@ -44,7 +45,7 @@ class LocationFirebaseRepository() : LocationRepository {
         val pictures = listOf<String>() // TODO: Support pictures
         val registryDates = extractRegistryDates()
 
-        return Location(name, address, description, coordinates, pictures, registryDates)
+        return Location(id, name, address, description, coordinates, pictures, registryDates)
     }
 
     private fun DataSnapshot.extractCoordinates(): Coordinates {
