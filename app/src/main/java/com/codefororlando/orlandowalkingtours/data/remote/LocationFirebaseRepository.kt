@@ -3,18 +3,14 @@ package com.codefororlando.orlandowalkingtours.data.remote
 import com.codefororlando.orlandowalkingtours.data.entities.Coordinates
 import com.codefororlando.orlandowalkingtours.data.entities.Location
 import com.codefororlando.orlandowalkingtours.data.entities.RegistryDates
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.FlowableEmitter
+import com.google.firebase.database.*
+import io.reactivex.*
 
 /**
  * Created by ryan on 10/12/17.
  */
 class LocationFirebaseRepository() : LocationRepository {
+
     private val database = FirebaseDatabase.getInstance()
 
     override fun getLocationsFrom(city: String): Flowable<Location> {
@@ -34,6 +30,24 @@ class LocationFirebaseRepository() : LocationRepository {
                 }
             })
         }, BackpressureStrategy.BUFFER)
+    }
+
+    override fun getLocationById(id: String): Single<Location> {
+        val locationRef = database.getReference("historic-locations/orlando")
+
+        return Single.create { emitter: SingleEmitter<Location> ->
+            locationRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError?) = emitter.onError(Throwable("Database cancelled"))
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    if (p0.hasChild(id))
+                        emitter.onSuccess(p0.child(id).extractLocation())
+                    else
+                        emitter.onError(Throwable("Location $id not found"))
+                }
+
+            })
+        }
     }
 
     private fun DataSnapshot.extractLocation(): Location {
