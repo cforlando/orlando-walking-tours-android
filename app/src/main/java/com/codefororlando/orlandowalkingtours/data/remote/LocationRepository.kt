@@ -9,6 +9,6 @@ import io.reactivex.Single
  * Created by ryan on 10/12/17.
  */
 interface LocationRepository {
-    fun getLocationsFrom(city: String): Flowable<Location>
+    fun getLocations(): Flowable<Location>
     fun getLocationById(id: String): Single<Location>
 }

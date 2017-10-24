@@ -12,44 +12,38 @@ import io.reactivex.*
 class LocationFirebaseRepository() : LocationRepository {
 
     private val database = FirebaseDatabase.getInstance()
+    private val orlandoRef = database.getReference("historic-locations/orlando")
 
-    override fun getLocationsFrom(city: String): Flowable<Location> {
-        val cityRef = database.getReference("historic-locations/" + city)
+    override fun getLocations(): Flowable<Location> = Flowable.create({ emitter: FlowableEmitter<Location> ->
+        orlandoRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                emitter.onError(error.toException())
+            }
 
-        return Flowable.create({ emitter: FlowableEmitter<Location> ->
-            cityRef.addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
-                    emitter.onError(error.toException())
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.children.forEach {
+                    emitter.onNext(it.extractLocation())
                 }
+                emitter.onComplete()
+            }
+        })
+    }, BackpressureStrategy.BUFFER)
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    snapshot.children.forEach {
-                        emitter.onNext(it.extractLocation())
-                    }
-                    emitter.onComplete()
-                }
-            })
-        }, BackpressureStrategy.BUFFER)
+
+    override fun getLocationById(id: String): Single<Location> = Single.create { emitter: SingleEmitter<Location> ->
+        orlandoRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError?) = emitter.onError(Throwable("Database cancelled"))
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.hasChild(id))
+                    emitter.onSuccess(p0.child(id).extractLocation())
+                else
+                    emitter.onError(Throwable("Location $id not found"))
+            }
+
+        })
     }
-
-    override fun getLocationById(id: String): Single<Location> {
-        val locationRef = database.getReference("historic-locations/orlando")
-
-        return Single.create { emitter: SingleEmitter<Location> ->
-            locationRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError?) = emitter.onError(Throwable("Database cancelled"))
-
-                override fun onDataChange(p0: DataSnapshot) {
-                    if (p0.hasChild(id))
-                        emitter.onSuccess(p0.child(id).extractLocation())
-                    else
-                        emitter.onError(Throwable("Location $id not found"))
-                }
-
-            })
-        }
-    }
-
+    
     private fun DataSnapshot.extractLocation(): Location {
         val id = this.key
         val name = child("name").getValue(String::class.java)
