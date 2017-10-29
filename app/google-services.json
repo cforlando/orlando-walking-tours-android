@@ -1,0 +1,121 @@
+{
+  "project_info": {
+    "project_number": "858237534684",
+    "firebase_url": "https://orlando-walking-tours.firebaseio.com",
+    "project_id": "orlando-walking-tours",
+    "storage_bucket": "orlando-walking-tours.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858237534684:android:f2896d2906417b71",
+        "android_client_info": {
+          "package_name": "com.codefororlando.orlandowalkingtours"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858237534684-e7i5jqnhmpohk7kva5dfe7rrbf722on6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codefororlando.orlandowalkingtours",
+            "certificate_hash": "1afe9af3859d219a66c0dce04267082891ea4ebd"
+          }
+        },
+        {
+          "client_id": "858237534684-ect2utnlfkvfgtb2nfqucgg2o80167l4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codefororlando.orlandowalkingtours",
+            "certificate_hash": "40decb8ae6491d810dfb41c734a258fd3f0ff897"
+          }
+        },
+        {
+          "client_id": "858237534684-s1bs00sp661emq19m0kd1md44jqbuq5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh6OmEvsgYeU0aJWufbJikHTceZznca0w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858237534684-l6cuete38uapg31991iceh7hjpcse9h8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.werureo.walking-tours-manager"
+              }
+            },
+            {
+              "client_id": "858237534684-s1bs00sp661emq19m0kd1md44jqbuq5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858237534684:android:3c3e5c7e46cbc942",
+        "android_client_info": {
+          "package_name": "io.github.rfonzi.walkingtoursfirebasetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858237534684-dibjbb9t4btqbiig1drraiuju4d2f3ba.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.rfonzi.walkingtoursfirebasetest",
+            "certificate_hash": "40decb8ae6491d810dfb41c734a258fd3f0ff897"
+          }
+        },
+        {
+          "client_id": "858237534684-s1bs00sp661emq19m0kd1md44jqbuq5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh6OmEvsgYeU0aJWufbJikHTceZznca0w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858237534684-l6cuete38uapg31991iceh7hjpcse9h8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.werureo.walking-tours-manager"
+              }
+            },
+            {
+              "client_id": "858237534684-s1bs00sp661emq19m0kd1md44jqbuq5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
